@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://df2mo3lrprncg"
+path="res://.godot/imported/erg.obj-8f46a4268bd0014cb244fd24fe71b437.mesh"
+
+[deps]
+
+files=["res://.godot/imported/erg.obj-8f46a4268bd0014cb244fd24fe71b437.mesh"]
+
+source_file="res://models/erg.obj"
+dest_files=["res://.godot/imported/erg.obj-8f46a4268bd0014cb244fd24fe71b437.mesh", "res://.godot/imported/erg.obj-8f46a4268bd0014cb244fd24fe71b437.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

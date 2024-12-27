@@ -1,0 +1,21 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl test
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 0.549020 0.039216
+Ks 0.330000 0.330000 0.330000
+map_Kd v1/test.png
+
+newmtl Brick_Tumbled
+Ka 0.000000 0.000000 0.000000
+Kd 0.529412 0.517647 0.517647
+Ks 0.330000 0.330000 0.330000
+map_Kd v1/Brick_Tumbled.jpg
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+

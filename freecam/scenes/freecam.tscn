@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciu2em6r6oouk"]
+
+[ext_resource type="Script" path="res://freecam/scripts/freecam.gd" id="1_fee0g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vm0nv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_372hk"]
+
+[node name="freecam" type="CharacterBody3D"]
+process_mode = 3
+collision_layer = 16
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_fee0g")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.698, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_vm0nv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-0.991199, 0, -0.132377, 0, 1, 0, 0.132377, 0, -0.991199, 0, 0, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_372hk")

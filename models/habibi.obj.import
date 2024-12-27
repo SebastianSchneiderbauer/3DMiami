@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cvs77fr7ebsl7"
+path="res://.godot/imported/habibi.obj-48046516ee7c0fd203a2789534d6b301.mesh"
+
+[deps]
+
+files=["res://.godot/imported/habibi.obj-48046516ee7c0fd203a2789534d6b301.mesh"]
+
+source_file="res://models/habibi.obj"
+dest_files=["res://.godot/imported/habibi.obj-48046516ee7c0fd203a2789534d6b301.mesh", "res://.godot/imported/habibi.obj-48046516ee7c0fd203a2789534d6b301.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
