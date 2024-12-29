@@ -250,7 +250,7 @@ func _physics_process(delta): # "main"
 		wallJumpForce = Vector3(0,0,0)
 	
 	# trigger dash
-	if Input.is_action_just_pressed("shift") and dashes > 0 and can_dash and not dashing:
+	if Input.is_action_just_pressed("shift") and dashes > 0 and can_dash and not dashing and direction != Vector3.ZERO:
 		dash()
 	 
 	if camera.extraFOV < 0:
