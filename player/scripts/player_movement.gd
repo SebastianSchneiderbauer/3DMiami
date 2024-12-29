@@ -149,7 +149,7 @@ func crouch(delta): #transitioning between crouched and uncrouched
 	
 	get_child(0).position.y = get_child(0).get_scale().y
 
-func _physics_process(delta): # "main"
+func handle_movement(delta: float):
 	# Get the input direction and handle movement
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -258,7 +258,6 @@ func _physics_process(delta): # "main"
 		if camera.extraFOV > 0:
 			camera.extraFOV = 0
 	
-	
 	# dash logic implementation
 	if dashing:
 		velocity.y = 0
@@ -276,6 +275,9 @@ func _physics_process(delta): # "main"
 			dashes += 1
 	
 	move_and_slide()
+
+func _physics_process(delta): # "main"
+	handle_movement(delta)
 
 func dash():
 	dashing = true
