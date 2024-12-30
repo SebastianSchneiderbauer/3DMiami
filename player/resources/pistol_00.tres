@@ -4,12 +4,12 @@
 
 [resource]
 script = ExtResource("1_uqrhc")
-max_ammo = 0
+max_ammo = 15
 spread = 0.0
 name = "Pistol_00"
-weaponIndex = 0
-damage = 0.0
-cooldown = 0.0
+weaponIndex = 1
+damage = 5.0
+attackCooldown = 0.0
 equipCooldown = 0.0
 unequipCooldown = 0.0
 hasAltFire = false
