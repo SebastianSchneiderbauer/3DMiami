@@ -5,7 +5,6 @@ class_name Weapon
 enum WeaponType {
 	MELEE,
 	RANGED,
-	UNDEFINED
 }
 
 @export var name: String = "Abstract Weapon"
@@ -15,7 +14,7 @@ enum WeaponType {
 @export var equipCooldown: float = 0
 @export var unequipCooldown: float = 0
 @export var hasAltFire: bool = false
-@export var weaponType: WeaponType = WeaponType.UNDEFINED
+@export var weaponType: WeaponType
 
 func attack():
 	pass
