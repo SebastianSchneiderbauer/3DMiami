@@ -56,6 +56,8 @@ var direction = Vector3(0,0,0)
 @onready var camera = $Camera3D
 var mouse_delta = Vector2.ZERO
 
+var inventory = Inventory.new()
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -278,6 +280,8 @@ func handle_movement(delta: float):
 
 func _physics_process(delta): # "main"
 	handle_movement(delta)
+	
+	inventory.pickUp(Pistol_00.new(1))
 
 func dash():
 	dashing = true
@@ -348,5 +352,5 @@ func get_walljump_vector(): #oh yeah
 	return wallVector * -1 * wallJumpStrength
 
 func _on_deathborder_body_shape_entered(body_rid, body, body_shape_index, local_shape_index): #reset position (respawn) when hitting a death barrier
-	if body.position == position:
+	if body == self:
 		position = Vector3(0,2,0)

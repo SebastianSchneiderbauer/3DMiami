@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Pistol_00" load_steps=2 format=3 uid="uid://4j361v2a7tjv"]
+
+[ext_resource type="Script" path="res://player/scripts/pistol_00.gd" id="1_uqrhc"]
+
+[resource]
+script = ExtResource("1_uqrhc")
+max_ammo = 0
+spread = 0.0
+name = "Pistol_00"
+weaponIndex = 0
+damage = 0.0
+cooldown = 0.0
+equipCooldown = 0.0
+unequipCooldown = 0.0
+hasAltFire = false
+weaponType = 2
