@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccyk6o8xwgvom"]
+[gd_scene load_steps=15 format=3 uid="uid://ccyk6o8xwgvom"]
 
 [ext_resource type="PackedScene" uid="uid://cspwugujnubo6" path="res://player/scenes/playerbody.tscn" id="1_usqua"]
 [ext_resource type="PackedScene" uid="uid://un86sjtic6jc" path="res://platform/scenes/platform.tscn" id="2_opplc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b8hjhavrjd78m" path="res://debug/scenes/debug.tscn" id="4_7po43"]
 [ext_resource type="Script" path="res://debug/scripts/debug-show.gd" id="5_fo6v3"]
 [ext_resource type="ArrayMesh" uid="uid://bmuauchfm1rh8" path="res://models/v1.obj" id="6_ib4g0"]
+[ext_resource type="PackedScene" uid="uid://l4d3yjnbo3va" path="res://crosshair/scenes/crosshair.tscn" id="7_xgtnc"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_dhx0n"]
 
@@ -62,6 +63,8 @@ process_mode = 3
 mouse_filter = 2
 script = ExtResource("5_fo6v3")
 metadata/_edit_use_anchors_ = true
+
+[node name="crosshair" parent="CanvasLayer" instance=ExtResource("7_xgtnc")]
 
 [node name="V1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275654, 0.0499973, -21.4856)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://tmldw1ul5axs"]
+[gd_scene load_steps=9 format=3 uid="uid://tmldw1ul5axs"]
 
 [ext_resource type="Script" path="res://pause menu/scripts/pausemenu.gd" id="1_wysa8"]
 [ext_resource type="Script" path="res://pause menu/scripts/sensitivity_slider.gd" id="2_63iid"]
 [ext_resource type="Script" path="res://pause menu/scripts/fov_slider.gd" id="3_5hrir"]
+[ext_resource type="Script" path="res://pause menu/scripts/crosshair_slider.gd" id="4_2nsw8"]
 
 [sub_resource type="Animation" id="Animation_6wy0n"]
 length = 0.001
@@ -150,10 +151,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -117.5
-offset_top = -115.0
-offset_right = 117.5
-offset_bottom = 50.0
+offset_left = -117.0
+offset_top = -198.0
+offset_right = 118.0
+offset_bottom = 258.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -215,6 +216,26 @@ text = "ERROR IN SCRIPT
 "
 horizontal_alignment = 1
 uppercase = true
+
+[node name="crosshair_header" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "CROSSHAIR SCALE"
+horizontal_alignment = 1
+
+[node name="crosshair_slider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.2
+script = ExtResource("4_2nsw8")
+
+[node name="crosshair_read" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "ERROR IN SCRIPT"
+horizontal_alignment = 1
 
 [node name="showDebug" type="CheckButton" parent="."]
 visible = false
