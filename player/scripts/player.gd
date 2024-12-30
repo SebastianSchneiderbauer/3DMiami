@@ -58,15 +58,21 @@ var mouse_delta = Vector2.ZERO
 
 var inventory = Inventory.new()
 
+var isDebugging = true #are you wanting to use debug keys for testing
+
+func _physics_process(delta): # "main"
+	handle_movement(delta)
+	handle_debugs()
+
+func _process(delta):
+	handle_mouse_look()
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_delta = event.relative
-
-func _process(delta):
-	handle_mouse_look()
 
 func handle_mouse_look():
 	# Apply mouse movement to camera and body
@@ -278,10 +284,21 @@ func handle_movement(delta: float):
 	
 	move_and_slide()
 
-func _physics_process(delta): # "main"
-	handle_movement(delta)
+func handle_debugs(): #all of the debug stuff i wanna do
+	if not isDebugging:
+		return
 	
-	inventory.pickUp(Pistol_00.new(1))
+	if Input.is_action_just_pressed("debug1"):
+		inventory.pickUp(Pistol_00.new(1))
+	
+	if Input.is_action_just_pressed("debug2"):
+		inventory.pickUp(Pistol_00.new(2))
+	
+	if Input.is_action_just_pressed("debug3"):
+		pass
+	
+	if Input.is_action_just_pressed("debug4"):
+		pass
 
 func dash():
 	dashing = true
