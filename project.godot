@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [display]
 
 window/stretch/aspect="expand"
-window/vsync/vsync_mode=0
 
 [input]
 

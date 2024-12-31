@@ -12,3 +12,5 @@ World building:
 			1.) you are trying to bring down all corpos, so you either sneak into them and destroy them from the inside, get hired by them because they think you eliminated the enemys for them or just blatenly attack them. Not much Story telling needed there
 			2.) You are escaping the "origin"-Powerhouse, and just work as a Assassing or War-Machine thats for hire, meaning you would jump between power houses. Not sure how you would do big missions, since you would not get hired by Company A if you previously worked for them, but were contracted by company B to like destroy a base of them. however, not much story would be needed
 		
+
+implement a system to save your settings and load them again. maybe as a overwrite to the normal reset?
