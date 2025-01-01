@@ -15,10 +15,6 @@ run/main_scene="res://world/scenes/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
-
-window/stretch/aspect="expand"
-
 [input]
 
 ui_left={

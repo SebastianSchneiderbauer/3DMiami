@@ -16,6 +16,7 @@ func toggle_pause():
 		# Pause the game
 		get_tree().paused = true
 		$AnimationPlayer.play("fade_in")
+		get_child(2).show()
 		# Show and release the mouse
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
@@ -53,3 +54,9 @@ func _process(delta: float) -> void:
 		timer += delta
 		if timer > 0.5:
 			visible = true
+
+
+func _on_graphics_pressed() -> void:
+	$VBoxContainer.hide()
+	$"graphics setting".show()
+	get_child(2).hide()
