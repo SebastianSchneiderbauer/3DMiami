@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cspwugujnubo6"]
+[gd_scene load_steps=12 format=3 uid="uid://cspwugujnubo6"]
 
 [ext_resource type="Script" path="res://player/scripts/player.gd" id="1_144kg"]
 [ext_resource type="Texture2D" uid="uid://dl5gdn1eq11js" path="res://textures/3.jpg" id="2_h62rp"]
 [ext_resource type="Script" path="res://player/scripts/player_camera.gd" id="3_b7c5l"]
 [ext_resource type="Script" path="res://player/scenes/sub_viewport.gd" id="4_4xq10"]
+[ext_resource type="Texture2D" uid="uid://crbun60gpeip5" path="res://textures/crosshair.png" id="5_nqgyk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rf2iv"]
 
@@ -15,6 +16,14 @@ albedo_texture = ExtResource("2_h62rp")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gahwa"]
 radius = 0.2
 height = 2.063
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22oll"]
+transparency = 1
+albedo_texture = ExtResource("5_nqgyk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s7kln"]
+material = SubResource("StandardMaterial3D_22oll")
+size = Vector2(3, 3)
 
 [node name="playerbody" type="CharacterBody3D"]
 collision_mask = 2
@@ -32,6 +41,7 @@ mesh = SubResource("CapsuleMesh_7usf5")
 [node name="Camera3D" type="Camera3D" parent="."]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69835, 0)
+cull_mask = 1
 script = ExtResource("3_b7c5l")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -51,7 +61,7 @@ script = ExtResource("4_4xq10")
 
 [node name="Viewportcam" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.698, 0)
-cull_mask = 1047554
+cull_mask = 2
 fov = 90.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Viewportcam"]
@@ -59,3 +69,13 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.1460
 layers = 2
 mesh = SubResource("CapsuleMesh_gahwa")
 skeleton = NodePath("../../../../Camera3D")
+
+[node name="crosshair?" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Viewportcam"]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, -40.8074)
+layers = 2
+mesh = SubResource("PlaneMesh_s7kln")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Viewportcam/crosshair?"]
+transform = Transform3D(10, 0, 0, 0, 10, -5.68434e-14, 0, 5.68434e-14, 10, 0, 1.02662, 0)
+layers = 2
+omni_range = 0.87631
