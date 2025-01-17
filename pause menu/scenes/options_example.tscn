@@ -43,7 +43,7 @@ popup/item_0/disabled = true
 popup/item_0/separator = true
 popup/item_1/text = "BILINEAR"
 popup/item_1/id = 1
-popup/item_2/text = "AMS FSR 2.2"
+popup/item_2/text = "AMD FSR 2.2"
 popup/item_2/id = 2
 
 [node name="FSROptions" type="OptionButton" parent="Options_Setting"]
