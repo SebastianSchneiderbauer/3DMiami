@@ -24,9 +24,9 @@ var maxWallJumps = 3
 var wallJumps = 0
 
 var slideJumpExtraVelocity = 1 
-var SJEVincrease = 0.15
-var SJEVdecrease = 1
-var SJEVdecreaseL = 0.25
+var SJEVincrease = 0.3
+var SJEVdecrease = 1.5
+var SJEVdecreaseL = 0.2
 
 var groundPoundStart = 0
 const groundPoundImpactMinHeight = 2
@@ -132,7 +132,10 @@ func crouch(delta): #transitioning between crouched and uncrouched
 	
 	if (not Input.is_action_pressed("ctrl") and not groundPounding) or not can_crouch or ((Input.is_action_pressed("ctrl") and Input.is_action_just_pressed("ui_accept"))):
 		if Input.is_action_just_pressed("ui_accept") and direction != Vector3(0,direction.y,0) and not wallrunning:
-			slideJumpExtraVelocity += SJEVincrease
+			if sliding:
+				slideJumpExtraVelocity += SJEVincrease
+			else:
+				slideJumpExtraVelocity += SJEVincrease*0.5
 		crouched = false
 		sliding = false
 	
@@ -220,9 +223,6 @@ func handle_movement(delta: float):
 	if groundPounding:
 		groundPound()
 	
-	# trigger crouch function
-	crouch(delta)
-	
 	# Add gravity
 	if not is_on_floor():
 		velocity += currentGravity * delta
@@ -248,8 +248,14 @@ func handle_movement(delta: float):
 			velocity.y = JUMP_VELOCITY*1.5
 		elif not wallrunning and jumps > 0:
 			jumps -= 1
-			velocity.y = JUMP_VELOCITY * groundPoundJumpMultiplier
 			
+			if sliding:
+				velocity.y = JUMP_VELOCITY*0.8
+			else:
+				velocity.y = JUMP_VELOCITY * groundPoundJumpMultiplier
+	
+	# trigger crouch function
+	crouch(delta)
 	
 	if wallJumpForce.length() > 0.5:
 		velocity += wallJumpForce
