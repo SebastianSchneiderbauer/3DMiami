@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://drbs8u6ai0tym"]
 
-[ext_resource type="Script" path="res://pause menu/scripts/graphics.gd" id="1_ub60o"]
+[ext_resource type="Script" uid="uid://rjn1rgnmivgk" path="res://pause menu/scripts/graphics.gd" id="1_ub60o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sfw2w"]
 
@@ -39,6 +39,7 @@ layout_mode = 2
 selected = 1
 item_count = 3
 popup/item_0/text = "SCALER"
+popup/item_0/id = 0
 popup/item_0/disabled = true
 popup/item_0/separator = true
 popup/item_1/text = "BILINEAR"
@@ -52,6 +53,7 @@ layout_mode = 2
 selected = 0
 item_count = 8
 popup/item_0/text = "FSR Options"
+popup/item_0/id = 0
 popup/item_0/disabled = true
 popup/item_0/separator = true
 popup/item_1/text = "Literal Potato"
@@ -125,9 +127,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -184.0
+offset_left = -192.0
 offset_top = -140.0
-offset_right = 184.0
+offset_right = 192.0
 offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2

@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://cspwugujnubo6"]
 
-[ext_resource type="Script" path="res://player/scripts/player.gd" id="1_144kg"]
+[ext_resource type="Script" uid="uid://b3na6pfobh1r4" path="res://player/scripts/player.gd" id="1_144kg"]
 [ext_resource type="Texture2D" uid="uid://dl5gdn1eq11js" path="res://textures/3.jpg" id="2_h62rp"]
-[ext_resource type="Script" path="res://player/scripts/player_camera.gd" id="3_b7c5l"]
-[ext_resource type="Script" path="res://player/scenes/sub_viewport.gd" id="4_4xq10"]
+[ext_resource type="Script" uid="uid://dnxe1rkei6s01" path="res://player/scripts/player_camera.gd" id="3_b7c5l"]
+[ext_resource type="Script" uid="uid://dyplctk7at8sm" path="res://player/scenes/sub_viewport.gd" id="4_4xq10"]
 [ext_resource type="Texture2D" uid="uid://crbun60gpeip5" path="res://textures/crosshair.png" id="5_nqgyk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rf2iv"]
@@ -70,8 +70,13 @@ layers = 2
 mesh = SubResource("CapsuleMesh_gahwa")
 skeleton = NodePath("../../../../Camera3D")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Viewportcam/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -7.10543e-15, 0, 7.10543e-15, 1, -0.607669, 1.23751, 0.0775294)
+layers = 2
+omni_range = 1.66946
+
 [node name="crosshair?" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Viewportcam"]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, -40.8074)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, -4.18772)
 layers = 2
 mesh = SubResource("PlaneMesh_s7kln")
 

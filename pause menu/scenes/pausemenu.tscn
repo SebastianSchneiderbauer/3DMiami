@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://tmldw1ul5axs"]
 
-[ext_resource type="Script" path="res://pause menu/scripts/pausemenu.gd" id="1_wysa8"]
-[ext_resource type="Script" path="res://pause menu/scripts/sensitivity_slider.gd" id="2_63iid"]
-[ext_resource type="Script" path="res://pause menu/scripts/fov_slider.gd" id="3_5hrir"]
+[ext_resource type="Script" uid="uid://dhl35cgionnjr" path="res://pause menu/scripts/pausemenu.gd" id="1_wysa8"]
+[ext_resource type="Script" uid="uid://cj55pnt05ed7i" path="res://pause menu/scripts/sensitivity_slider.gd" id="2_63iid"]
+[ext_resource type="Script" uid="uid://cp4lmjxa37wqv" path="res://pause menu/scripts/fov_slider.gd" id="3_5hrir"]
 [ext_resource type="PackedScene" uid="uid://drbs8u6ai0tym" path="res://pause menu/scenes/options_example.tscn" id="4_unh3j"]
 
 [sub_resource type="Animation" id="Animation_6wy0n"]
@@ -162,9 +162,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mprwk"]
 _data = {
-"RESET": SubResource("Animation_6wy0n"),
-"fade_in": SubResource("Animation_6yqb4"),
-"fade_out": SubResource("Animation_yaxso")
+&"RESET": SubResource("Animation_6wy0n"),
+&"fade_in": SubResource("Animation_6yqb4"),
+&"fade_out": SubResource("Animation_yaxso")
 }
 
 [node name="Pausemenu" type="Control"]
@@ -231,8 +231,7 @@ uppercase = true
 z_index = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
-text = "FOV
-"
+text = "FOV"
 horizontal_alignment = 1
 uppercase = true
 
@@ -294,7 +293,7 @@ color = Color(0, 0, 0, 0.568627)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_mprwk")
+&"": SubResource("AnimationLibrary_mprwk")
 }
 
 [node name="graphics setting" parent="." instance=ExtResource("4_unh3j")]
