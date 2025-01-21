@@ -85,6 +85,6 @@ shape = SubResource("ConcavePolygonShape3D_k2p4n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.384815, 1.56875, 3.06549)
 turnSpeed = 3.0
 glow = true
-texture = "4.jpg"
+texture = "tst.png"
 
 [connection signal="body_shape_entered" from="deathborder" to="playerbody" method="_on_deathborder_body_shape_entered"]

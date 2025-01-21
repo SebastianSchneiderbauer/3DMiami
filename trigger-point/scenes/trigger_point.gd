@@ -38,9 +38,9 @@ func _process(delta: float) -> void:
 func apply_texture_to_mesh(texture: Texture2D) -> void:
 	if not mesh.mesh:
 		return
-
-	# Ensure a unique material is created for this instance
+	
 	var new_material = StandardMaterial3D.new()
 	new_material.albedo_texture = texture
+	new_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mesh.mesh = mesh.mesh.duplicate()
 	mesh.mesh.surface_set_material(0, new_material)
