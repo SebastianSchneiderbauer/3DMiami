@@ -41,7 +41,7 @@ mesh = SubResource("CapsuleMesh_7usf5")
 [node name="Camera3D" type="Camera3D" parent="."]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69835, 0)
-cull_mask = 1
+cull_mask = 5
 script = ExtResource("3_b7c5l")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]

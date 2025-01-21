@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccyk6o8xwgvom"]
+[gd_scene load_steps=15 format=3 uid="uid://ccyk6o8xwgvom"]
 
 [ext_resource type="PackedScene" uid="uid://cspwugujnubo6" path="res://player/scenes/playerbody.tscn" id="1_usqua"]
 [ext_resource type="PackedScene" uid="uid://un86sjtic6jc" path="res://platform/scenes/platform.tscn" id="2_opplc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b8hjhavrjd78m" path="res://debug/scenes/debug.tscn" id="4_7po43"]
 [ext_resource type="Script" uid="uid://chcgdl31802fn" path="res://debug/scripts/debug-show.gd" id="5_fo6v3"]
 [ext_resource type="ArrayMesh" uid="uid://bmuauchfm1rh8" path="res://models/v1.obj" id="6_ib4g0"]
+[ext_resource type="PackedScene" uid="uid://d4bumkj5n6yv" path="res://trigger-point/scenes/trigger_point.tscn" id="8_0sksf"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_dhx0n"]
 
@@ -41,7 +42,9 @@ environment = SubResource("Environment_1cl1u")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.686898, -0.459003, 0.56346, -0.0868728, 0.82161, 0.563392, -0.721543, 0.338043, -0.604237, 16.9722, 0, -26.4996)
+light_cull_mask = 4293918727
 shadow_enabled = true
+shadow_caster_mask = 4293918721
 
 [node name="deathborder" type="Area3D" parent="."]
 
@@ -77,5 +80,11 @@ collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="V1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_k2p4n")
+
+[node name="trigger-point" parent="." instance=ExtResource("8_0sksf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.384815, 1.56875, 3.06549)
+turnSpeed = 3.0
+glow = true
+texture = "4.jpg"
 
 [connection signal="body_shape_entered" from="deathborder" to="playerbody" method="_on_deathborder_body_shape_entered"]
