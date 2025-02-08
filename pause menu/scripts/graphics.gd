@@ -142,7 +142,6 @@ func _on_screen_selector_item_selected(index):
 		_window.set_mode(Window.MODE_FULLSCREEN)
 	
 
-
 func _on_return_pressed() -> void:
 	get_parent().hide()
 	get_parent().get_parent().get_child(0).show()

@@ -60,3 +60,9 @@ func _on_graphics_pressed() -> void:
 	$VBoxContainer.hide()
 	$"graphics setting".show()
 	get_child(2).hide()
+
+
+func _on_gameplay_pressed() -> void:
+	$VBoxContainer.hide()
+	$"gameplay setting".show()
+	get_child(2).hide()

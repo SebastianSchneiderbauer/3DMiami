@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://drbs8u6ai0tym"]
 
-[ext_resource type="Script" uid="uid://rjn1rgnmivgk" path="res://pause menu/scripts/graphics.gd" id="1_ub60o"]
+[ext_resource type="Script" uid="uid://rjn1rgnmivgk" path="res://pause menu/scripts/graphics.gd" id="1_qioq1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sfw2w"]
 
@@ -16,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Options_Setting" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(382, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -29,7 +30,7 @@ offset_bottom = 121.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-script = ExtResource("1_ub60o")
+script = ExtResource("1_qioq1")
 
 [node name="Resolution_OptionButton" type="OptionButton" parent="Options_Setting"]
 layout_mode = 2
@@ -72,6 +73,7 @@ popup/item_7/text = "Daddy’s Credit Card"
 popup/item_7/id = 7
 
 [node name="ScaleBox" type="HBoxContainer" parent="Options_Setting"]
+clip_contents = true
 layout_mode = 2
 
 [node name="ScaleSlider" type="HSlider" parent="Options_Setting/ScaleBox"]
@@ -127,9 +129,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -192.0
+offset_left = -200.0
 offset_top = -140.0
-offset_right = 192.0
+offset_right = 200.0
 offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2

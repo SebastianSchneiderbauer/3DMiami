@@ -82,7 +82,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_k2p4n")
 
 [node name="trigger-point" parent="." instance=ExtResource("8_0sksf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.384815, 1.56875, 3.06549)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.20301, 5.05117, 0.806729)
 turnSpeed = 3.0
 glow = true
 texture = "tst.png"
