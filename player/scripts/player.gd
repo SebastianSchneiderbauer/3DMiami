@@ -1,5 +1,10 @@
 extends CharacterBody3D
 
+@onready var sound_dash:AudioStreamPlayer = $dash
+@onready var sound_jump:AudioStreamPlayer = $jump
+@onready var sound_jumpF:AudioStreamPlayer = $jumpF
+@onready var sound_vault:AudioStreamPlayer = $vault
+
 const gravity = Vector3(0,-9.8,0)
 var currentGravity = Vector3(0,-9.8,0)
 const gravityWallrunnning = Vector3(0,-0.4,0)
@@ -273,6 +278,10 @@ func handle_movement(delta: float):
 		camera.extraFOV += delta*15
 		if camera.extraFOV > 0:
 			camera.extraFOV = 0
+	elif camera.extraFOV > 0:
+		camera.extraFOV -= delta*15
+		if camera.extraFOV < 0:
+			camera.extraFOV = 0
 	
 	# dash logic implementation
 	if dashing:
@@ -298,8 +307,8 @@ func handle_movement(delta: float):
 	if(is_on_wall() and vaulter.is_on_floor() and not vaulter.is_on_wall()):
 		global_position.y = vaulter.global_position.y
 		dashes += 1
-		dashStrength = 5
-		dash(-1)
+		dashStrength = 4
+		dash(-1.3)
 		dashStrength = 10
 	
 	print(position)
@@ -323,6 +332,11 @@ func handle_debugs(): #all of the debug stuff i wanna do
 		pass
 
 func dash(multiplier):
+	if multiplier > 0:
+		sound_dash.play()
+	else:
+		sound_vault.play()
+	
 	dashing = true
 	dashes -= 1
 	restrictedMovement = direction.normalized() * SPEED * dashStrength
