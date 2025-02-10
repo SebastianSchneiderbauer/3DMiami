@@ -288,6 +288,11 @@ func handle_movement(delta: float):
 			dashRegenTimer = 0
 			dashes += 1
 	
+	#my try at doing vaulting
+	var vaulter:CharacterBody3D = $vaulter
+	vaulter.global_position = global_position + Vector3(velocity.x,0,velocity.z).normalized()
+	vaulter.global_position.y += 1 + vaulter.diff
+	
 	move_and_slide()
 
 func handle_debugs(): #all of the debug stuff i wanna do
@@ -366,7 +371,7 @@ func can_uncrouch():
 	if result:
 		print(origin.distance_to(result.position))
 	else:
-		print("ZERRO")
+		print("ZERO")
 	return not result
 
 func get_walljump_vector(): #oh yeah

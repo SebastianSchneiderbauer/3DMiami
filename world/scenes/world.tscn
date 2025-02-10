@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ciu2em6r6oouk" path="res://freecam/scenes/freecam.tscn" id="3_he444"]
 [ext_resource type="PackedScene" uid="uid://tmldw1ul5axs" path="res://pause menu/scenes/pausemenu.tscn" id="3_rnr10"]
 [ext_resource type="PackedScene" uid="uid://b8hjhavrjd78m" path="res://debug/scenes/debug.tscn" id="4_7po43"]
-[ext_resource type="Script" uid="uid://chcgdl31802fn" path="res://debug/scripts/debug-show.gd" id="5_fo6v3"]
+[ext_resource type="Script" path="res://debug/scripts/debug-show.gd" id="5_fo6v3"]
 [ext_resource type="ArrayMesh" uid="uid://bmuauchfm1rh8" path="res://models/v1.obj" id="6_ib4g0"]
 [ext_resource type="PackedScene" uid="uid://d4bumkj5n6yv" path="res://trigger-point/scenes/trigger_point.tscn" id="8_0sksf"]
 

@@ -291,6 +291,7 @@ layout_mode = 1
 
 [node name="gameplay setting" parent="." instance=ExtResource("3_t5tbi")]
 visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/Gameplay" to="." method="_on_gameplay_pressed"]
 [connection signal="pressed" from="VBoxContainer/Graphics" to="." method="_on_graphics_pressed"]
