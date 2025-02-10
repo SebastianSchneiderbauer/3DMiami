@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cspwugujnubo6"]
+[gd_scene load_steps=18 format=3 uid="uid://cspwugujnubo6"]
 
 [ext_resource type="Script" uid="uid://b3na6pfobh1r4" path="res://player/scripts/player.gd" id="1_144kg"]
 [ext_resource type="Texture2D" uid="uid://dl5gdn1eq11js" path="res://textures/3.jpg" id="2_h62rp"]
-[ext_resource type="Script" path="res://player/scripts/player_camera.gd" id="3_b7c5l"]
+[ext_resource type="Script" uid="uid://dnxe1rkei6s01" path="res://player/scripts/player_camera.gd" id="3_b7c5l"]
+[ext_resource type="Texture2D" uid="uid://bsc4c47ex8jf6" path="res://textures/tst.png" id="3_r0rgb"]
 [ext_resource type="Script" uid="uid://dyplctk7at8sm" path="res://player/scripts/sub_viewport.gd" id="4_4xq10"]
 [ext_resource type="Texture2D" uid="uid://crbun60gpeip5" path="res://textures/crosshair.png" id="5_nqgyk"]
 [ext_resource type="Script" uid="uid://dna0f1rwsqdh2" path="res://player/scripts/vaulter.gd" id="6_x7xd3"]
@@ -12,7 +13,12 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ebpl"]
 albedo_texture = ExtResource("2_h62rp")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egspp"]
+transparency = 1
+albedo_texture = ExtResource("3_r0rgb")
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7usf5"]
+material = SubResource("StandardMaterial3D_egspp")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gahwa"]
 radius = 0.2
@@ -27,6 +33,13 @@ material = SubResource("StandardMaterial3D_22oll")
 size = Vector2(3, 3)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tljvs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0rgb"]
+transparency = 1
+albedo_texture = ExtResource("3_r0rgb")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_r0rgb"]
+material = SubResource("StandardMaterial3D_r0rgb")
 
 [node name="playerbody" type="CharacterBody3D"]
 collision_mask = 2
@@ -89,7 +102,8 @@ layers = 2
 omni_range = 0.87631
 
 [node name="vaulter" type="CharacterBody3D" parent="."]
-collision_mask = 3
+visible = false
+collision_mask = 2
 script = ExtResource("6_x7xd3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="vaulter"]
@@ -97,5 +111,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_tljvs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="vaulter/CollisionShape3D"]
-transform = Transform3D(-0.991199, 0, -0.132377, 0, 1, 0, 0.132377, 0, -0.991199, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_7usf5")
+mesh = SubResource("CapsuleMesh_r0rgb")

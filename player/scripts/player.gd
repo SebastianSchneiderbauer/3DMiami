@@ -17,6 +17,7 @@ var dashes = maxDashes
 var dashTime = 0.5
 var dashing = false
 var dashDirection = Vector3.ZERO
+var dashStrength = 10
 
 var maxJumps = 2
 var jumps = 0
@@ -44,6 +45,7 @@ var can_gp = true
 var can_move = true
 var can_wallrun = true
 var can_dash = true
+var can_jump = true
 
 var crouchSpeed = 8
 
@@ -265,7 +267,7 @@ func handle_movement(delta: float):
 	
 	# trigger dash
 	if Input.is_action_just_pressed("shift") and dashes > 0 and can_dash and not dashing and direction != Vector3.ZERO:
-		dash()
+		dash(1)
 	 
 	if camera.extraFOV < 0:
 		camera.extraFOV += delta*15
@@ -290,8 +292,17 @@ func handle_movement(delta: float):
 	
 	#my try at doing vaulting
 	var vaulter:CharacterBody3D = $vaulter
-	vaulter.global_position = global_position + Vector3(velocity.x,0,velocity.z).normalized()
-	vaulter.global_position.y += 1 + vaulter.diff
+	vaulter.global_position = global_position + Vector3(velocity.x,0,velocity.z).normalized()*0.5
+	vaulter.global_position.y += 2
+	
+	if(is_on_wall() and vaulter.is_on_floor() and not vaulter.is_on_wall()):
+		global_position.y = vaulter.global_position.y
+		dashes += 1
+		dashStrength = 5
+		dash(-1)
+		dashStrength = 10
+	
+	print(position)
 	
 	move_and_slide()
 
@@ -311,12 +322,12 @@ func handle_debugs(): #all of the debug stuff i wanna do
 	if Input.is_action_just_pressed("debug4"):
 		pass
 
-func dash():
+func dash(multiplier):
 	dashing = true
 	dashes -= 1
-	restrictedMovement = direction.normalized() * SPEED * 10
+	restrictedMovement = direction.normalized() * SPEED * dashStrength
 	dashTimer = 0
-	camera.extraFOV = -5
+	camera.extraFOV = -5 * multiplier
 
 func get_shortest_wall_vector(): # gets a vector to the wall, for doing a good walljump
 	
