@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cspwugujnubo6"]
+[gd_scene load_steps=21 format=3 uid="uid://cspwugujnubo6"]
 
 [ext_resource type="Script" uid="uid://b3na6pfobh1r4" path="res://player/scripts/player.gd" id="1_144kg"]
 [ext_resource type="Texture2D" uid="uid://dl5gdn1eq11js" path="res://textures/3.jpg" id="2_h62rp"]
@@ -7,10 +7,9 @@
 [ext_resource type="Script" uid="uid://dyplctk7at8sm" path="res://player/scripts/sub_viewport.gd" id="4_4xq10"]
 [ext_resource type="Texture2D" uid="uid://crbun60gpeip5" path="res://textures/crosshair.png" id="5_nqgyk"]
 [ext_resource type="Script" uid="uid://dna0f1rwsqdh2" path="res://player/scripts/vaulter.gd" id="6_x7xd3"]
-[ext_resource type="AudioStream" uid="uid://dot8e26b8vf55" path="res://sounds/dash.MP3" id="8_qs662"]
-[ext_resource type="AudioStream" uid="uid://b04ca1syqsvem" path="res://sounds/jump.MP3" id="9_n8vx6"]
-[ext_resource type="AudioStream" uid="uid://d0k2y03rvarse" path="res://sounds/jumpF.MP3" id="10_ef16p"]
-[ext_resource type="AudioStream" uid="uid://dc87tgfc4w0sl" path="res://sounds/vault.MP3" id="11_n8vx6"]
+[ext_resource type="AudioStream" uid="uid://cqqsph451bhb0" path="res://sounds/slide.wav" id="8_6o1gm"]
+[ext_resource type="AudioStream" uid="uid://ca0ycvxjov2ww" path="res://sounds/dash.wav" id="9_qs662"]
+[ext_resource type="AudioStream" uid="uid://cpog7tucimiox" path="res://sounds/vault.MP3" id="10_qs662"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rf2iv"]
 
@@ -117,18 +116,24 @@ shape = SubResource("CapsuleShape3D_tljvs")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="vaulter/CollisionShape3D"]
 mesh = SubResource("CapsuleMesh_r0rgb")
 
-[node name="dash" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_qs662")
-volume_db = -7.838
-pitch_scale = 1.2
+[node name="jump" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_6o1gm")
+attenuation_model = 3
+volume_db = 30.0
 
-[node name="jump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_n8vx6")
+[node name="dash" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_qs662")
+attenuation_model = 3
+volume_db = -10.0
+pitch_scale = 0.95
 
-[node name="jumpF" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_ef16p")
+[node name="jumpF" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_6o1gm")
+attenuation_model = 3
+volume_db = 39.697
+pitch_scale = 0.8
 
-[node name="vault" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_n8vx6")
-volume_db = -10.504
-pitch_scale = 1.14
+[node name="vault" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_qs662")
+attenuation_model = 3
+volume_db = 30.0

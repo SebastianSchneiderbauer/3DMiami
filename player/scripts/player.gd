@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
-@onready var sound_dash:AudioStreamPlayer = $dash
-@onready var sound_jump:AudioStreamPlayer = $jump
-@onready var sound_jumpF:AudioStreamPlayer = $jumpF
-@onready var sound_vault:AudioStreamPlayer = $vault
+@onready var sound_dash:AudioStreamPlayer3D = $dash
+@onready var sound_jump:AudioStreamPlayer3D = $jump
+@onready var sound_jumpF:AudioStreamPlayer3D = $jumpF
+@onready var sound_vault:AudioStreamPlayer3D = $vault
 
 const gravity = Vector3(0,-9.8,0)
 var currentGravity = Vector3(0,-9.8,0)
@@ -246,6 +246,12 @@ func handle_movement(delta: float):
 	# Handle jump
 	if Input.is_action_just_pressed("ui_accept"):
 		if wallrunning and wallJumps > 0:
+			if wallJumps == 1:
+				
+				sound_jumpF.play()
+			else:
+				sound_jump.play()
+			
 			wallJumps -= 1
 			
 			wallrunning = false
@@ -254,6 +260,11 @@ func handle_movement(delta: float):
 			
 			velocity.y = JUMP_VELOCITY*1.5
 		elif not wallrunning and jumps > 0:
+			if jumps == 1:
+				sound_jumpF.play()
+			else:
+				sound_jump.play()
+			
 			jumps -= 1
 			
 			if sliding:

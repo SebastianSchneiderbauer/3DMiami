@@ -1,12 +1,13 @@
-VAULT:
-Robot / Mech movement by Breviceps -- https://freesound.org/s/505670/ -- License: Creative Commons 0
-MECH STEPS - 1.wav by jdpstar -- https://freesound.org/s/538402/ -- License: Attribution 4.0
-mover stop.wav by dingus23 -- https://freesound.org/s/436385/ -- License: Attribution 4.0
+- jump sound/slide sound
+	Footsteps-Tile-Jump-02-From.wav by DWOBoyle -- https://freesound.org/s/458279/ -- License: Attribution 4.0
 
-DASH:
-Deep wooshing.wav by sophiehall3535 -- https://freesound.org/s/245932/ -- License: Creative Commons 0
-Firework Launch (1) by LukaCafuka -- https://freesound.org/s/750684/ -- License: Creative Commons 0
+- ground pound
+	Stone slab impact.With a crunch_2(17lrs).wav by newlocknew -- https://freesound.org/s/592581/ -- License: Attribution NonCommercial 4.0
 
-JUMP:
-
-LAST JUMP:
+- dash
+	Cloud Poof by qubodup -- https://freesound.org/s/714258/ -- License: Attribution 4.0
+	cloud-punch.wav by CaptainYulef -- https://freesound.org/s/641241/ -- License: Creative Commons 0
+	Gas Cloud.wav by puppetmaster685719 -- https://freesound.org/s/627733/ -- License: Creative Commons 
+	Poof in cloud by Mateusz_Chenc -- https://freesound.org/s/512217/ -- License: Creative Commons 0
+	Poof.wav by ryansitz -- https://freesound.org/s/387834/ -- License: Creative Commons 0
+	explosionsfx.wav by OtisJames -- https://freesound.org/s/249613/ -- License: Creative Commons 0
