@@ -99,6 +99,10 @@ transform = Transform3D(10, 0, 0, 0, 10, -5.68434e-14, 0, 5.68434e-14, 10, 0, 1.
 layers = 2
 omni_range = 0.87631
 
+[node name="croucher" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+collision_mask = 2
+
 [node name="vaulter" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 0

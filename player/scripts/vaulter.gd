@@ -2,7 +2,14 @@ extends CharacterBody3D
 
 func can_vault() -> bool:
 	var vaultChecker:RayCast3D = $vaultChecker
-	vaultChecker.target_position = get_parent().position
+	var posi:Vector3 = get_parent().position
+	
+	print(posi)
+	posi.y += 1
+	print("e")
+	print(posi)
+	
+	vaultChecker.target_position = posi
 	vaultChecker.force_raycast_update()
 	
 	return not vaultChecker.is_colliding()

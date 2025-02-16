@@ -137,14 +137,17 @@ func crouch(delta): #transitioning between crouched and uncrouched
 	const targetUp = 1
 	const targetDown = 0.5
 	
+	print(can_uncrouch())
+	
 	if (not Input.is_action_pressed("ctrl") and not groundPounding) or not can_crouch or ((Input.is_action_pressed("ctrl") and Input.is_action_just_pressed("ui_accept"))):
-		if Input.is_action_just_pressed("ui_accept") and direction != Vector3(0,direction.y,0) and not wallrunning:
-			if sliding:
-				slideJumpExtraVelocity += SJEVincrease
-			else:
-				slideJumpExtraVelocity += SJEVincrease*0.5
-		crouched = false
-		sliding = false
+		if can_uncrouch():
+			if Input.is_action_just_pressed("ui_accept") and direction != Vector3(0,direction.y,0) and not wallrunning:
+				if sliding:
+					slideJumpExtraVelocity += SJEVincrease
+				else:
+					slideJumpExtraVelocity += SJEVincrease*0.5
+			crouched = false
+			sliding = false
 	
 	var playerhitbox = get_child(0)
 	
@@ -389,24 +392,11 @@ func get_shortest_wall_vector(): # gets a vector to the wall, for doing a good w
 	return shortest_vector
 
 func can_uncrouch():
-	var max_distance = 2
-	var space_state = get_world_3d().direct_space_state
-	var origin = global_transform.origin
-
-	var upward_vector = Vector3(0, 1, 0) * max_distance
-	var ray_target = origin + upward_vector
-
-	var query = PhysicsRayQueryParameters3D.new()
-	query.from = origin
-	query.to = ray_target
-	query.collision_mask = 2  # Detect walls only
-	# Perform raycast
-	var result = space_state.intersect_ray(query)
-	if result:
-		print(origin.distance_to(result.position))
-	else:
-		print("ZERO")
-	return not result
+	var crouchChecker:RayCast3D = $croucher
+	crouchChecker.target_position = get_parent().position
+	crouchChecker.force_raycast_update()
+	
+	return not crouchChecker.is_colliding()
 
 func get_walljump_vector(): #oh yeah
 	var wallVector = get_shortest_wall_vector()
