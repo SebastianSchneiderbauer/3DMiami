@@ -19,7 +19,7 @@ const dashRegenTime = 1.0
 var dashRegenTimer = 0
 var dashTimer = 0
 var dashes = maxDashes
-var dashTime = 0.5
+var dashTime = 0.6
 var dashing = false
 var dashDirection = Vector3.ZERO
 var dashStrength = 10
@@ -315,14 +315,12 @@ func handle_movement(delta: float):
 	vaulter.global_position = global_position + Vector3(velocity.x,0,velocity.z).normalized()*0.5
 	vaulter.global_position.y += 2
 	
-	if(is_on_wall() and vaulter.is_on_floor() and not vaulter.is_on_wall()):
+	if(is_on_wall() and vaulter.is_on_floor() and not vaulter.is_on_wall() and vaulter.can_vault()):
 		global_position.y = vaulter.global_position.y
 		dashes += 1
 		dashStrength = 4
 		dash(-1.3)
 		dashStrength = 10
-	
-	print(position)
 	
 	move_and_slide()
 
