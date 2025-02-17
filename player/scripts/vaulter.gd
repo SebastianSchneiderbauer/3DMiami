@@ -2,14 +2,13 @@ extends CharacterBody3D
 
 func can_vault() -> bool:
 	var vaultChecker:RayCast3D = $vaultChecker
-	var posi:Vector3 = get_parent().position
+	var posi:Vector3 = get_parent().global_position
 	
-	print(posi)
-	posi.y += 1
-	print("e")
-	print(posi)
+	posi.y += 3
 	
-	vaultChecker.target_position = posi
+	var transVector:Vector3 = posi - vaultChecker.global_position #used to translate the global position vector into the scene coordinate system
+	
+	vaultChecker.target_position = vaultChecker.position - transVector #translate the global coords in to scene coordinates
 	vaultChecker.force_raycast_update()
 	
 	return not vaultChecker.is_colliding()

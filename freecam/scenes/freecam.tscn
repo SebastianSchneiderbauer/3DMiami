@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ciu2em6r6oouk"]
 
-[ext_resource type="Script" path="res://freecam/scripts/freecam.gd" id="1_fee0g"]
+[ext_resource type="Script" uid="uid://1d5w6yf11t3d" path="res://freecam/scripts/freecam.gd" id="1_fee0g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vm0nv"]
 

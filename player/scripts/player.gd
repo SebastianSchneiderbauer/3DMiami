@@ -137,8 +137,6 @@ func crouch(delta): #transitioning between crouched and uncrouched
 	const targetUp = 1
 	const targetDown = 0.5
 	
-	print(can_uncrouch())
-	
 	if (not Input.is_action_pressed("ctrl") and not groundPounding) or not can_crouch or ((Input.is_action_pressed("ctrl") and Input.is_action_just_pressed("ui_accept"))):
 		if can_uncrouch():
 			if Input.is_action_just_pressed("ui_accept") and direction != Vector3(0,direction.y,0) and not wallrunning:
@@ -317,6 +315,8 @@ func handle_movement(delta: float):
 	var vaulter:CharacterBody3D = $vaulter
 	vaulter.global_position = global_position + Vector3(velocity.x,0,velocity.z).normalized()*0.5
 	vaulter.global_position.y += 2
+	
+	print("onWall: " + str(is_on_wall()) + " vaulterOnFloor: " + str(vaulter.is_on_floor()) + " vaulterNotOnWall: " + str(not vaulter.is_on_wall()) + " canVault: " + str(vaulter.can_vault()))
 	
 	if(is_on_wall() and vaulter.is_on_floor() and not vaulter.is_on_wall() and vaulter.can_vault()):
 		global_position.y = vaulter.global_position.y
