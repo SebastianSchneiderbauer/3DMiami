@@ -14,5 +14,5 @@ func can_vault() -> bool:
 	return not vaultChecker.is_colliding()
 
 func _physics_process(delta):
-	velocity = Vector3(0,-130,0)
+	velocity = Vector3(0,-130,0) #no specific number, just made up, however it works so fuck you i wont change this
 	move_and_slide()
