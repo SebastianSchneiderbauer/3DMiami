@@ -108,7 +108,6 @@ collision_mask = 2
 
 [node name="vaulter" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("6_x7xd3")

@@ -1,12 +1,8 @@
 extends CharacterBody3D
 
-var maxVaultHeight = 3
-
-func can_vault() -> bool:
+func can_vault() -> bool: #just checks if the vault is obstructed
 	var vaultChecker:RayCast3D = $vaultChecker
 	var posi:Vector3 = get_parent().global_position
-	
-	posi.y += maxVaultHeight
 	
 	var transVector:Vector3 = posi - vaultChecker.global_position #used to translate the global position vector into the scene coordinate system
 	
@@ -14,7 +10,3 @@ func can_vault() -> bool:
 	vaultChecker.force_raycast_update()
 	
 	return not vaultChecker.is_colliding()
-
-func _physics_process(delta):
-	velocity = Vector3(0,-130,0) #no specific number, just made up, however it works so fuck you i wont change this
-	move_and_slide()

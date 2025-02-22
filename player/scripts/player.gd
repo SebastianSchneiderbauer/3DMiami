@@ -53,7 +53,6 @@ var can_dash = true
 var can_jump = true
 
 var crouchSpeed = 8
-var crouchjump = false
 
 var crouched = false
 var sliding = false
@@ -138,12 +137,6 @@ func crouch(delta): #transitioning between crouched and uncrouched
 	const targetUp = 1
 	const targetDown = 0.5
 	
-	if not Input.is_action_pressed("ctrl") and not can_uncrouch():
-		crouchjump = true
-	
-	if Input.is_action_pressed("ctrl") and not can_uncrouch():
-		crouchjump = false
-	
 	if (not Input.is_action_pressed("ctrl") and not groundPounding) or not can_crouch or ((Input.is_action_pressed("ctrl") and Input.is_action_just_pressed("ui_accept"))):
 		if can_uncrouch():
 			if Input.is_action_just_pressed("ui_accept") and direction != Vector3(0,direction.y,0) and not wallrunning:
@@ -153,10 +146,6 @@ func crouch(delta): #transitioning between crouched and uncrouched
 					slideJumpExtraVelocity += SJEVincrease*0.5
 			crouched = false
 			sliding = false
-			
-			if crouchjump:
-				dash(-1.3)
-				crouchjump = false
 	
 	var playerhitbox = get_child(0)
 	
@@ -325,15 +314,19 @@ func handle_movement(delta: float):
 	#my try at doing vaulting
 	var vaulter:CharacterBody3D = $vaulter
 	
-	vaulter.global_position = global_position + Vector3(velocity.x,0,velocity.z).normalized()*0.5
-	vaulter.global_position.y += 2
-	
-	if(is_on_wall() and vaulter.is_on_floor() and not vaulter.is_on_wall() and vaulter.can_vault()):
+	if(is_on_wall() and vaulter.is_on_floor() and not vaulter.is_on_wall() and vaulter.can_vault() and (vaulter.global_position.y-1) - global_position.y > 0.1):
 		global_position.y = vaulter.global_position.y
 		dashes += 1
 		dashStrength = 4
 		dash(-1.3)
 		dashStrength = 10
+	
+	vaulter.global_position = global_position + Vector3(velocity.x,0,velocity.z).normalized()*0.5
+	vaulter.global_position.y += 2
+	vaulter.velocity = Vector3(0,-60,0) #no specific number, just made up, however it works so fuck you i wont change this.
+	vaulter.move_and_slide()
+	vaulter.velocity = Vector3(0,-1,0) #bc Godot can´t comprehend us being fast, we need to take a baby step
+	vaulter.move_and_slide()
 	
 	move_and_slide()
 
