@@ -53,6 +53,7 @@ var can_dash = true
 var can_jump = true
 
 var crouchSpeed = 8
+var crouchjump = false
 
 var crouched = false
 var sliding = false
@@ -137,6 +138,12 @@ func crouch(delta): #transitioning between crouched and uncrouched
 	const targetUp = 1
 	const targetDown = 0.5
 	
+	if not Input.is_action_pressed("ctrl") and not can_uncrouch():
+		crouchjump = true
+	
+	if Input.is_action_pressed("ctrl") and not can_uncrouch():
+		crouchjump = false
+	
 	if (not Input.is_action_pressed("ctrl") and not groundPounding) or not can_crouch or ((Input.is_action_pressed("ctrl") and Input.is_action_just_pressed("ui_accept"))):
 		if can_uncrouch():
 			if Input.is_action_just_pressed("ui_accept") and direction != Vector3(0,direction.y,0) and not wallrunning:
@@ -146,6 +153,10 @@ func crouch(delta): #transitioning between crouched and uncrouched
 					slideJumpExtraVelocity += SJEVincrease*0.5
 			crouched = false
 			sliding = false
+			
+			#if crouchjump and :
+				#dash(-1.3)
+				#crouchjump = false
 	
 	var playerhitbox = get_child(0)
 	
