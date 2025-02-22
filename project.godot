@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="3DMiami"
-run/main_scene="res://world/scenes/world.tscn"
+run/main_scene="res://legacy/world/scenes/world.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,12 @@ DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 [editor_plugins]
 
 enabled=PackedStringArray()
+
+[file_customization]
+
+folder_colors={
+"res://legacy/": "gray"
+}
 
 [input]
 

@@ -1,0 +1,147 @@
+[gd_scene load_steps=20 format=3 uid="uid://cspwugujnubo6"]
+
+[ext_resource type="Script" uid="uid://b3na6pfobh1r4" path="res://legacy/player/scripts/player.gd" id="1_144kg"]
+[ext_resource type="Texture2D" uid="uid://dl5gdn1eq11js" path="res://legacy/textures/3.jpg" id="2_h62rp"]
+[ext_resource type="Script" uid="uid://dnxe1rkei6s01" path="res://legacy/player/scripts/player_camera.gd" id="3_b7c5l"]
+[ext_resource type="Texture2D" uid="uid://bsc4c47ex8jf6" path="res://legacy/textures/tst.png" id="3_r0rgb"]
+[ext_resource type="Script" uid="uid://dyplctk7at8sm" path="res://legacy/player/scripts/sub_viewport.gd" id="4_4xq10"]
+[ext_resource type="Texture2D" uid="uid://crbun60gpeip5" path="res://legacy/textures/crosshair.png" id="5_nqgyk"]
+[ext_resource type="Script" uid="uid://dna0f1rwsqdh2" path="res://legacy/player/scripts/vaulter.gd" id="6_x7xd3"]
+[ext_resource type="AudioStream" uid="uid://cqqsph451bhb0" path="res://legacy/sounds/slide.wav" id="8_6o1gm"]
+[ext_resource type="AudioStream" uid="uid://ca0ycvxjov2ww" path="res://legacy/sounds/dash.wav" id="9_qs662"]
+[ext_resource type="AudioStream" uid="uid://cpog7tucimiox" path="res://legacy/sounds/vault.MP3" id="10_qs662"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rf2iv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qs662"]
+albedo_texture = ExtResource("2_h62rp")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7usf5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gahwa"]
+radius = 0.2
+height = 2.063
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22oll"]
+transparency = 1
+albedo_texture = ExtResource("5_nqgyk")
+normal_scale = 16.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s7kln"]
+material = SubResource("StandardMaterial3D_22oll")
+size = Vector2(3, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0rgb"]
+transparency = 1
+albedo_texture = ExtResource("3_r0rgb")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_r0rgb"]
+material = SubResource("StandardMaterial3D_r0rgb")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n8vx6"]
+
+[node name="playerbody" type="CharacterBody3D"]
+collision_mask = 2
+script = ExtResource("1_144kg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_rf2iv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-0.991199, 0, -0.132377, 0, 1, 0, 0.132377, 0, -0.991199, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_qs662")
+mesh = SubResource("CapsuleMesh_7usf5")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69835, 0)
+cull_mask = 5
+script = ExtResource("3_b7c5l")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+script = ExtResource("4_4xq10")
+
+[node name="Viewportcam" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.698, 0)
+cull_mask = 2
+fov = 90.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Viewportcam"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.14603, -0.442069, 0)
+visible = false
+layers = 2
+mesh = SubResource("CapsuleMesh_gahwa")
+skeleton = NodePath("../../../../Camera3D")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Viewportcam/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -7.10543e-15, 0, 7.10543e-15, 1, -0.607669, 1.23751, 0.0775294)
+layers = 2
+omni_range = 1.66946
+
+[node name="crosshair?" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Viewportcam"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -2.95492)
+layers = 2
+gi_lightmap_texel_scale = 10.0
+mesh = SubResource("PlaneMesh_s7kln")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Viewportcam/crosshair?"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.804116, 0)
+layers = 2
+light_energy = 16.0
+spot_angle = 67.6062
+
+[node name="croucher" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+collision_mask = 2
+
+[node name="vaulter" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_x7xd3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="vaulter"]
+layers = 8
+mesh = SubResource("CapsuleMesh_r0rgb")
+
+[node name="vaultChecker" type="RayCast3D" parent="vaulter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="vaulter"]
+shape = SubResource("CapsuleShape3D_n8vx6")
+
+[node name="jump" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_6o1gm")
+attenuation_model = 3
+volume_db = 30.0
+
+[node name="dash" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_qs662")
+attenuation_model = 3
+volume_db = -10.0
+pitch_scale = 0.95
+
+[node name="jumpF" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_6o1gm")
+attenuation_model = 3
+volume_db = 39.697
+pitch_scale = 0.8
+
+[node name="vault" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_qs662")
+attenuation_model = 3
+volume_db = 30.0
