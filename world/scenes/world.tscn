@@ -84,6 +84,7 @@ shape = SubResource("ConcavePolygonShape3D_k2p4n")
 
 [node name="trigger-point" parent="." instance=ExtResource("8_0sksf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.20301, 5.05117, 0.806729)
+visible = false
 turnSpeed = 3.0
 glow = true
 texture = "tst.png"

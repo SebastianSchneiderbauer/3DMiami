@@ -81,6 +81,7 @@ fov = 90.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Viewportcam"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.14603, -0.442069, 0)
+visible = false
 layers = 2
 mesh = SubResource("CapsuleMesh_gahwa")
 skeleton = NodePath("../../../../Camera3D")
@@ -113,6 +114,7 @@ collision_mask = 2
 script = ExtResource("6_x7xd3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="vaulter"]
+layers = 8
 mesh = SubResource("CapsuleMesh_r0rgb")
 
 [node name="vaultChecker" type="RayCast3D" parent="vaulter"]
