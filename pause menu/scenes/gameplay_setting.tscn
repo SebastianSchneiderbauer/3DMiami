@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://be3rlr1padjdd"]
+[gd_scene load_steps=9 format=3 uid="uid://be3rlr1padjdd"]
 
 [ext_resource type="Script" uid="uid://dk6rb3gg6udly" path="res://pause menu/scripts/options.gd" id="1_3788w"]
 [ext_resource type="Script" uid="uid://dpod0l7puq1l4" path="res://pause menu/scripts/sens_slide.gd" id="3_alj0r"]
@@ -12,6 +12,10 @@ font_size = 25
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_alj0r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hndnk"]
+line_spacing = -3.0
+font_size = 13
 
 [node name="gameplay setting" type="Control"]
 layout_mode = 3
@@ -112,7 +116,7 @@ uppercase = true
 [node name="ScaleBox3" type="HBoxContainer" parent="Options"]
 layout_mode = 2
 
-[node name="FOVSlider" type="HSlider" parent="Options/ScaleBox3"]
+[node name="crosshairSlider" type="HSlider" parent="Options/ScaleBox3"]
 custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 min_value = 0.01
@@ -122,16 +126,25 @@ value = 0.1
 ticks_on_borders = true
 script = ExtResource("4_alj0r")
 
-[node name="FOVLabel" type="Label" parent="Options/ScaleBox3"]
+[node name="crosshairLabel" type="Label" parent="Options/ScaleBox3"]
 layout_mode = 2
 text = "ERR"
 label_settings = SubResource("LabelSettings_alj0r")
 horizontal_alignment = 3
 
-[node name="unused" type="CheckBox" parent="Options"]
-visible = false
+[node name="ScaleBox4" type="HBoxContainer" parent="Options"]
 layout_mode = 2
-text = "DONT LOOK AT ME >:("
+
+[node name="show?" type="CheckButton" parent="Options/ScaleBox4"]
+layout_mode = 2
+button_pressed = true
+text = "show crosshair"
+
+[node name="Label" type="Label" parent="Options/ScaleBox4"]
+layout_mode = 2
+text = "maybe you want to use Crosshair X
+or something ¯\\_(ツ)_/¯ idk"
+label_settings = SubResource("LabelSettings_hndnk")
 
 [node name="return" type="Button" parent="Options"]
 layout_mode = 2
@@ -146,9 +159,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -124.0
+offset_top = -140.0
 offset_right = 200.0
-offset_bottom = 132.0
+offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
