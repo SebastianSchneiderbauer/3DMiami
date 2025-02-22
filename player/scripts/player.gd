@@ -154,9 +154,9 @@ func crouch(delta): #transitioning between crouched and uncrouched
 			crouched = false
 			sliding = false
 			
-			#if crouchjump and :
-				#dash(-1.3)
-				#crouchjump = false
+			if crouchjump:
+				dash(-1.3)
+				crouchjump = false
 	
 	var playerhitbox = get_child(0)
 	
