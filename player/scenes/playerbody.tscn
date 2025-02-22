@@ -25,6 +25,7 @@ height = 2.063
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22oll"]
 transparency = 1
 albedo_texture = ExtResource("5_nqgyk")
+normal_scale = 16.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s7kln"]
 material = SubResource("StandardMaterial3D_22oll")
@@ -90,14 +91,16 @@ layers = 2
 omni_range = 1.66946
 
 [node name="crosshair?" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Viewportcam"]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, -30)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -2.95492)
 layers = 2
+gi_lightmap_texel_scale = 10.0
 mesh = SubResource("PlaneMesh_s7kln")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Viewportcam/crosshair?"]
-transform = Transform3D(10, 0, 0, 0, 10, -5.68434e-14, 0, 5.68434e-14, 10, 0, 1.02662, 0)
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Viewportcam/crosshair?"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.804116, 0)
 layers = 2
-omni_range = 0.87631
+light_energy = 16.0
+spot_angle = 67.6062
 
 [node name="croucher" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
