@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cspwugujnubo6"]
+[gd_scene load_steps=20 format=3 uid="uid://cspwugujnubo6"]
 
 [ext_resource type="Script" uid="uid://b3na6pfobh1r4" path="res://player/scripts/player.gd" id="1_144kg"]
 [ext_resource type="Texture2D" uid="uid://dl5gdn1eq11js" path="res://textures/3.jpg" id="2_h62rp"]
@@ -39,10 +39,6 @@ albedo_texture = ExtResource("3_r0rgb")
 material = SubResource("StandardMaterial3D_r0rgb")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n8vx6"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_qs662"]
-radius = 0.1
-height = 0.2
 
 [node name="playerbody" type="CharacterBody3D"]
 collision_mask = 2
@@ -147,6 +143,3 @@ pitch_scale = 0.8
 stream = ExtResource("10_qs662")
 attenuation_model = 3
 volume_db = 30.0
-
-[node name="db" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_qs662")

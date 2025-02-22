@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 var maxVaultHeight = 3
-@onready var db:MeshInstance3D = $"../db"
 
 func can_vault() -> bool:
 	var vaultChecker:RayCast3D = $vaultChecker
