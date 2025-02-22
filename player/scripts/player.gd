@@ -313,10 +313,9 @@ func handle_movement(delta: float):
 	
 	#my try at doing vaulting
 	var vaulter:CharacterBody3D = $vaulter
+	
 	vaulter.global_position = global_position + Vector3(velocity.x,0,velocity.z).normalized()*0.5
 	vaulter.global_position.y += 2
-	
-	print("onWall: " + str(is_on_wall()) + " vaulterOnFloor: " + str(vaulter.is_on_floor()) + " vaulterNotOnWall: " + str(not vaulter.is_on_wall()) + " canVault: " + str(vaulter.can_vault()))
 	
 	if(is_on_wall() and vaulter.is_on_floor() and not vaulter.is_on_wall() and vaulter.can_vault()):
 		global_position.y = vaulter.global_position.y

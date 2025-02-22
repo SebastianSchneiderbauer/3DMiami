@@ -1,10 +1,13 @@
 extends CharacterBody3D
 
+var maxVaultHeight = 3
+@onready var db:MeshInstance3D = $"../db"
+
 func can_vault() -> bool:
 	var vaultChecker:RayCast3D = $vaultChecker
 	var posi:Vector3 = get_parent().global_position
 	
-	posi.y += 3
+	posi.y += maxVaultHeight
 	
 	var transVector:Vector3 = posi - vaultChecker.global_position #used to translate the global position vector into the scene coordinate system
 	
