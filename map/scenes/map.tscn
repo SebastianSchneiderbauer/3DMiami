@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b758ntsu81r26"]
+
+[ext_resource type="Texture2D" uid="uid://u28vwyaroqxv" path="res://map/textures/dev_orange.png" id="1_l8r71"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44ped"]
+albedo_texture = ExtResource("1_l8r71")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_almsb"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fsar7"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l8r71"]
+size = Vector3(5, 3, 1)
+
+[node name="map" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="basePlatform(Mesh)" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_44ped")
+mesh = SubResource("BoxMesh_almsb")
+
+[node name="basePlatform(Collision)" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fsar7")
+
+[node name="Wall1(Mesh)" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0918689, 1.50851, -3.26577)
+material_override = SubResource("StandardMaterial3D_44ped")
+mesh = SubResource("BoxMesh_l8r71")
+
+[node name="Wall1(Collision)" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fsar7")

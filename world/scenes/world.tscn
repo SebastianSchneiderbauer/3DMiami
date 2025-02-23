@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0m4r88nagwh5"]
+
+[ext_resource type="PackedScene" uid="uid://b758ntsu81r26" path="res://map/scenes/map.tscn" id="1_v1eft"]
+
+[sub_resource type="Environment" id="Environment_v1eft"]
+
+[node name="world" type="Node3D"]
+
+[node name="map" parent="." instance=ExtResource("1_v1eft")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v1eft")
+
+[node name="THE SUN" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.911654, -0.216701, 0.349182, 0.209432, 0.486077, 0.84845, -0.353589, 0.846623, -0.397749, 6.90098, 0.967873, -7.08298)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.482686, 0, 0.875793, 0, 1, 0, -0.875793, 0, 0.482686, 5.25976, 1.71356, 4.77047)
