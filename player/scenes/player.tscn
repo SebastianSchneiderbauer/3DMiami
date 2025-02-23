@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=6 format=3 uid="uid://2xraxqbjr6q3"]
+
+[ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://player/scripts/player.gd" id="1_apn28"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_twk7w"]
 
@@ -13,6 +15,7 @@ radius = 0.1
 height = 0.4
 
 [node name="player" type="CharacterBody3D"]
+script = ExtResource("1_apn28")
 
 [node name="hitbox-uncrouched" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
