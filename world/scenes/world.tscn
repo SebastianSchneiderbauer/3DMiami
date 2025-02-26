@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0m4r88nagwh5"]
+[gd_scene load_steps=6 format=3 uid="uid://b0m4r88nagwh5"]
 
 [ext_resource type="PackedScene" uid="uid://b758ntsu81r26" path="res://map/scenes/map.tscn" id="1_v1eft"]
 [ext_resource type="PackedScene" uid="uid://2xraxqbjr6q3" path="res://player/scenes/player.tscn" id="2_op7cj"]
 [ext_resource type="PackedScene" uid="uid://d1acb3ydgpw1b" path="res://overlay-info/scenes/info.tscn" id="3_rf5xd"]
+[ext_resource type="PackedScene" uid="uid://d22k2ss55xjem" path="res://pause-menu/scenes/pause.tscn" id="4_65od5"]
 
 [sub_resource type="Environment" id="Environment_v1eft"]
 
@@ -23,3 +24,6 @@ transform = Transform3D(0.606419, 0, 0.795146, 0, 1, 0, -0.795146, 0, 0.606419, 
 [node name="overlay" type="CanvasLayer" parent="."]
 
 [node name="Info" parent="overlay" instance=ExtResource("3_rf5xd")]
+
+[node name="Pause" parent="overlay" instance=ExtResource("4_65od5")]
+process_mode = 3

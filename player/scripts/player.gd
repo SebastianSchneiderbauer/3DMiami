@@ -9,7 +9,7 @@ var direction:Vector3 = Vector3(0,0,0)
 var input_dir:Vector2
 @onready var camera:Camera3D = $camera
 var mouse_delta:Vector2 = Vector2.ZERO
-var sensitivity:float = 0.2 # editable from outside
+var sensitivity:float = 0.1 # editable from outside
 
 var jumps: int = 2
 var maxJumps: int = 2
@@ -57,7 +57,8 @@ func _process(delta):
 	handle_mouse_look()
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
 
 func _input(event):
 	if event is InputEventMouseMotion:
