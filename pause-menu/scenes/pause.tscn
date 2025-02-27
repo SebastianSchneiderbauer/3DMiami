@@ -1,33 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://d22k2ss55xjem"]
+[gd_scene load_steps=14 format=3 uid="uid://d22k2ss55xjem"]
 
 [ext_resource type="Script" uid="uid://y8pkfxxfc2s3" path="res://pause-menu/scripts/pause.gd" id="1_0nhpn"]
 
-[sub_resource type="Animation" id="Animation_0nhpn"]
-resource_name = "base-hide"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
+[sub_resource type="LabelSettings" id="LabelSettings_0nhpn"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_sshc7"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_iv7ha"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_djb4f"]
+line_spacing = -3.0
+font_size = 13
 
 [sub_resource type="Animation" id="Animation_sshc7"]
 length = 0.001
@@ -50,6 +35,30 @@ tracks/1/path = NodePath("ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gameplay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphic:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -82,12 +91,295 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gameplay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphic:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pan4r"]
+resource_name = "gameplay-show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gameplay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphic:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_gqngu"]
+resource_name = "gameplay-hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gameplay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphic:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wdy4y"]
+resource_name = "graphic-show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gameplay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphic:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hrb25"]
+resource_name = "graphic-hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gameplay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphic:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_d8bnt"]
+resource_name = "base-hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gameplay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphic:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_djb4f"]
 _data = {
 &"RESET": SubResource("Animation_sshc7"),
-&"base-hide": SubResource("Animation_0nhpn"),
-&"base-show": SubResource("Animation_iv7ha")
+&"base-hide": SubResource("Animation_d8bnt"),
+&"base-show": SubResource("Animation_iv7ha"),
+&"gameplay-hide": SubResource("Animation_gqngu"),
+&"gameplay-show": SubResource("Animation_pan4r"),
+&"graphic-hide": SubResource("Animation_hrb25"),
+&"graphic-show": SubResource("Animation_wdy4y")
 }
 
 [node name="Pause" type="Control"]
@@ -153,9 +445,164 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.164706)
 
+[node name="Gameplay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" type="VBoxContainer" parent="Gameplay"]
+custom_minimum_size = Vector2(383, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -105.5
+offset_right = 191.0
+offset_bottom = 105.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Gameplay/Options"]
+layout_mode = 2
+text = "GAMEPLAY SETTINGS"
+label_settings = SubResource("LabelSettings_0nhpn")
+horizontal_alignment = 1
+
+[node name="sensitivity_header" type="Label" parent="Gameplay/Options"]
+z_index = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Sensitivity"
+label_settings = SubResource("LabelSettings_sshc7")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ScaleBox" type="HBoxContainer" parent="Gameplay/Options"]
+layout_mode = 2
+
+[node name="ScaleSlider" type="HSlider" parent="Gameplay/Options/ScaleBox"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+min_value = 0.1
+max_value = 1.0
+step = 0.01
+value = 0.2
+ticks_on_borders = true
+
+[node name="ScaleLabel" type="Label" parent="Gameplay/Options/ScaleBox"]
+layout_mode = 2
+text = "ERR"
+label_settings = SubResource("LabelSettings_iv7ha")
+horizontal_alignment = 3
+
+[node name="fov_header" type="Label" parent="Gameplay/Options"]
+z_index = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "FOV"
+label_settings = SubResource("LabelSettings_sshc7")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ScaleBox2" type="HBoxContainer" parent="Gameplay/Options"]
+layout_mode = 2
+
+[node name="FOVSlider" type="HSlider" parent="Gameplay/Options/ScaleBox2"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+min_value = 11.0
+max_value = 169.0
+value = 90.0
+rounded = true
+ticks_on_borders = true
+
+[node name="FOVLabel" type="Label" parent="Gameplay/Options/ScaleBox2"]
+layout_mode = 2
+text = "ERR"
+label_settings = SubResource("LabelSettings_iv7ha")
+horizontal_alignment = 3
+
+[node name="crosshair_header" type="Label" parent="Gameplay/Options"]
+z_index = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "CROSSHAIR Scale"
+label_settings = SubResource("LabelSettings_sshc7")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ScaleBox3" type="HBoxContainer" parent="Gameplay/Options"]
+layout_mode = 2
+
+[node name="crosshairSlider" type="HSlider" parent="Gameplay/Options/ScaleBox3"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.01
+ticks_on_borders = true
+
+[node name="crosshairLabel" type="Label" parent="Gameplay/Options/ScaleBox3"]
+layout_mode = 2
+text = "ERR"
+label_settings = SubResource("LabelSettings_iv7ha")
+horizontal_alignment = 3
+
+[node name="ScaleBox4" type="HBoxContainer" parent="Gameplay/Options"]
+layout_mode = 2
+
+[node name="show?" type="CheckButton" parent="Gameplay/Options/ScaleBox4"]
+layout_mode = 2
+button_pressed = true
+text = "show crosshair"
+
+[node name="Label" type="Label" parent="Gameplay/Options/ScaleBox4"]
+layout_mode = 2
+text = "maybe you wanna use Crosshair X
+or something ¯\\_(ツ)_/¯ idk"
+label_settings = SubResource("LabelSettings_djb4f")
+
+[node name="return" type="Button" parent="Gameplay/Options"]
+layout_mode = 2
+text = "EXIT"
+
+[node name="ColorRect" type="ColorRect" parent="Gameplay"]
+z_index = -3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -140.0
+offset_right = 200.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.568627)
+
+[node name="Graphic" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_djb4f")
 }
 
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Gameplay" to="." method="_on_gameplay_pressed"]
+[connection signal="pressed" from="VBoxContainer/Graphics" to="." method="_on_graphics_pressed"]

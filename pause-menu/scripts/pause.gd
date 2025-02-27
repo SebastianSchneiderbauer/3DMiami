@@ -15,9 +15,16 @@ func _unhandled_input(event):
 			animationPlayer.play("base-hide")
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-
 func _on_resume_pressed():
 	paused = false
 	get_tree().paused = paused
 	animationPlayer.play("base-hide")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func _on_gameplay_pressed():
+	animationPlayer.play("gameplay-show")
+
+
+func _on_graphics_pressed():
+	animationPlayer.play("graphic-show")
