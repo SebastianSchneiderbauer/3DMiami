@@ -79,7 +79,7 @@ func _on_full_screen_check_box_toggled(toggled_on):
 
 func _on_scale_slider_value_changed(value):
 	var Resolution_Scale = value/100.00
-	get_parent().get_parent().get_parent().get_parent().get_child(0).get_child(2).get_child(0).set_scaling_3d_scale(Resolution_Scale)
+	#get_parent().get_parent().get_parent().get_parent().get_child(0).get_child(2).get_child(0).set_scaling_3d_scale(Resolution_Scale)
 	print(value)
 	var Resolution_Text = str(round(get_window().get_size().x*Resolution_Scale))+"x"+str(round(get_window().get_size().y*Resolution_Scale))
 	
@@ -141,8 +141,3 @@ func _on_screen_selector_item_selected(index):
 	if mode == Window.MODE_FULLSCREEN:
 		_window.set_mode(Window.MODE_FULLSCREEN)
 	
-
-func _on_return_pressed() -> void:
-	get_parent().hide()
-	get_parent().get_parent().get_child(0).show()
-	get_parent().get_parent().get_child(2).show()

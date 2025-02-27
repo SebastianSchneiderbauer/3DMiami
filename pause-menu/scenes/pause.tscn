@@ -738,6 +738,7 @@ libraries = {
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/Gameplay" to="." method="_on_gameplay_pressed"]
 [connection signal="pressed" from="VBoxContainer/Graphics" to="." method="_on_graphics_pressed"]
+[connection signal="pressed" from="Gameplay/Options/return" to="." method="_on_return_gameplay_pressed"]
 [connection signal="item_selected" from="Graphic/Options_Setting/Resolution_OptionButton" to="Graphic/Options_Setting" method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="Graphic/Options_Setting/Scaler" to="Graphic/Options_Setting" method="_on_scaler_item_selected"]
 [connection signal="item_selected" from="Graphic/Options_Setting/FSROptions" to="Graphic/Options_Setting" method="_on_fsr_options_item_selected"]
@@ -745,4 +746,4 @@ libraries = {
 [connection signal="toggled" from="Graphic/Options_Setting/FullScreen_CheckBox" to="Graphic/Options_Setting" method="_on_full_screen_check_box_toggled"]
 [connection signal="toggled" from="Graphic/Options_Setting/vsync_checkbox" to="Graphic/Options_Setting" method="_on_vsync_checkbox_toggled"]
 [connection signal="item_selected" from="Graphic/Options_Setting/Screen_Selector" to="Graphic/Options_Setting" method="_on_screen_selector_item_selected"]
-[connection signal="pressed" from="Graphic/Options_Setting/return" to="Graphic/Options_Setting" method="_on_return_pressed"]
+[connection signal="pressed" from="Graphic/Options_Setting/return" to="." method="_on_return_graphics_pressed"]
