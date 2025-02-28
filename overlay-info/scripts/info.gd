@@ -4,5 +4,3 @@ extends Control
 
 func _process(delta):
 	fps_label.text = "fps: " + str(1/delta)
-	print(delta)
-	print(1/delta)
