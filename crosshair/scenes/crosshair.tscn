@@ -24,4 +24,5 @@ offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(300, 300)
+mouse_filter = 2
 texture = ExtResource("1_xvgfe")

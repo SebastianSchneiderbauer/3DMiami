@@ -14,6 +14,7 @@ func _process(delta):
 	var player:CharacterBody3D = get_node("../../../player")
 	var cam:Camera3D = player.get_node("camera")
 	var crosshair:TextureRect = get_node("../../crosshair/TextureRect")
+	var show_crosshair:CheckButton = $"Options/ScaleBox4/show?"
 	
 	#sensi
 	sens_label.set_text(str(sens_slider.value))
@@ -26,3 +27,4 @@ func _process(delta):
 	#crosshair
 	crosshair.scale = Vector2(crosshair_slider.value,crosshair_slider.value)
 	crosshair_label.set_text(str(crosshair_slider.value))
+	crosshair.visible = show_crosshair.is_pressed()
