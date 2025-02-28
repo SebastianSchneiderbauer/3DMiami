@@ -1,9 +1,10 @@
 extends CharacterBody3D
 
-const gravity:Vector3 = Vector3(0,-9.8,0)
+const default_gravity:Vector3 = Vector3(0,-9.8,0)
+var used_gravity: Vector3 = default_gravity
 
-const SPEED:float = 5.0
-const JUMP_VELOCITY:float = 4.5
+const SPEED:float = 10.0
+const JUMP_VELOCITY:float = 6
 
 var direction:Vector3 = Vector3(0,0,0)
 var input_dir:Vector2
@@ -11,9 +12,18 @@ var input_dir:Vector2
 var mouse_delta:Vector2 = Vector2.ZERO
 var sensitivity:float = 0.1 # editable from outside
 
-var jumps: int = 2
-var maxJumps: int = 2
+var gravity_changer:float = 20 #ridiculously high, bc this without deltatime would be crazy
 
+var jumps: int = 2
+const maxJumps: int = 2
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_delta = event.relative
 func handle_mouse_look():
 	var rotation_x = -mouse_delta.y * sensitivity
 	var rotation_y = -mouse_delta.x * sensitivity
@@ -33,10 +43,18 @@ func basic_movement():
 		velocity.z = 0
 
 func jump_logic(delta:float):
+	#gravity increase while falling
+	if velocity.y < 0:
+		used_gravity.y -= gravity_changer*delta
+	else:
+		used_gravity = default_gravity
+	
 	if not is_on_floor():
-		velocity += gravity * delta
+		velocity += used_gravity * delta
 	else:
 		jumps = maxJumps
+	
+	print(used_gravity)
 	
 	# Handle jump
 	if Input.is_action_just_pressed("ui_accept"):
@@ -44,22 +62,11 @@ func jump_logic(delta:float):
 			jumps -= 1
 			velocity.y = JUMP_VELOCITY
 
-func _physics_process(delta):
+func _physics_process(delta): # "main"
 	basic_movement()
 	jump_logic(delta)
-	move_and_slide()
-
-	
 	
 	move_and_slide()
 
 func _process(delta):
 	handle_mouse_look()
-
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	pass
-
-func _input(event):
-	if event is InputEventMouseMotion:
-		mouse_delta = event.relative
