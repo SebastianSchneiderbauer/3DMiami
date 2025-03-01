@@ -118,7 +118,14 @@ func _physics_process(delta): # "main"
 	
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
+	
+	if is_on_wall() and velocity.y < 0:
+		velocity.y /= 5
+	
 	move_and_slide()
+	
+	if is_on_wall() and velocity.y < 0:
+		velocity.y *= 5
 
 func _process(delta):
 	handle_mouse_look()

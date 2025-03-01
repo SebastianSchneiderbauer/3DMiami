@@ -20,7 +20,7 @@ size = Vector3(5, 3, 1)
 size = Vector3(5, 3, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_almsb"]
-size = Vector3(32, 1, 48.2788)
+size = Vector3(50.6318, 1, 53.24)
 
 [node name="map" type="StaticBody3D"]
 collision_layer = 2
@@ -60,6 +60,15 @@ mesh = SubResource("BoxMesh_almsb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.14741, -19.346)
 shape = SubResource("BoxShape3D_l8r71")
 
+[node name="vaulttest(Mesh)" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.26985, 0.709449, 5.60875)
+material_override = SubResource("StandardMaterial3D_44ped")
+mesh = SubResource("BoxMesh_almsb")
+
+[node name="vaulttest(Collision)" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.26985, 0.709449, 5.60875)
+shape = SubResource("BoxShape3D_l8r71")
+
 [node name="DeathResetBorder" type="Area3D" parent="."]
 collision_layer = 8388608
 collision_mask = 8388608
@@ -67,7 +76,7 @@ script = ExtResource("2_44ped")
 reset_position = Vector3(0, 2, 0)
 
 [node name="deathResetBorder(Collision)" type="CollisionShape3D" parent="DeathResetBorder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -8.1394)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31592, -4, -5.65881)
 shape = SubResource("BoxShape3D_almsb")
 
 [connection signal="body_entered" from="DeathResetBorder" to="DeathResetBorder" method="_on_body_entered"]
