@@ -2,21 +2,24 @@ extends CharacterBody3D
 
 @onready var player:CharacterBody3D = $"../"
 @onready var wallchecker:RayCast3D = $wallchecker #checking for walls in the way, fixes vaulting threw ceilings
+@onready var clipdetector = $clipdetector #fix a bug where the vaulter clips into the ground, making the player be stuck in the ground
+
 @export var height:float
-@onready var t1 = $t1
-@onready var t2 = $t2
 
 func can_vault() -> bool:
 	wallchecker.global_position = global_position
 	wallchecker.global_position.y += 1
-	t1.global_position = wallchecker.global_position
 	
 	wallchecker.target_position = player.global_position
 	wallchecker.target_position.y += 1
-	t2.global_position = wallchecker.target_position
+	
+	clipdetector.force_raycast_update()
 	
 	wallchecker.force_raycast_update()
-	return not wallchecker.is_colliding() and (global_position.y-1) - player.global_position.y > 0.001
+	if not wallchecker.is_colliding() and (global_position.y-1) - player.global_position.y > 0.001 and clipdetector.is_colliding():
+		print("err")
+	
+	return not wallchecker.is_colliding() and (global_position.y-1) - player.global_position.y > 0.001 and not clipdetector.is_colliding()
 
 func _physics_process(delta):
 	global_position = player.global_position + player.direction*1

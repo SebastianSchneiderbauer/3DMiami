@@ -76,9 +76,9 @@ func jump_logic(delta:float):
 				extraVelocity += wallVector
 func vault_logic():
 	var vaulter:CharacterBody3D = $vaulter
+	var clipdetector:RayCast3D = $vaulter/clipdetector
 	
 	if vaulter.can_vault() and is_on_wall() and not vaulter.is_on_wall():
-		print("vault")
 		global_position = vaulter.global_position
 		global_position.y -= 1
 func move(): #custom move function for extra logic before and after calling move_and_slide()
@@ -129,11 +129,16 @@ func reduce_vector_length(v: Vector3, amount: float) -> Vector3:
 	var length = v.length()
 	var new_length = max(length - amount, 0) # Prevents negative length
 	return v.normalized() * new_length if length > 0 else Vector3.ZERO
+func debug():
+	if Input.is_action_just_pressed("debug1"):
+		camera.position.z = +3
 
 func _physics_process(delta): # "main"
 	basic_movement()
 	jump_logic(delta)
 	vault_logic()
+	
+	debug()
 	
 	move()
 
