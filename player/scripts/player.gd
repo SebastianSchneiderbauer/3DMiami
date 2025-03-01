@@ -77,7 +77,7 @@ func jump_logic(delta:float):
 func vault_logic():
 	var vaulter:CharacterBody3D = $vaulter
 	
-	if vaulter.can_vault() and is_on_wall():
+	if vaulter.can_vault() and is_on_wall() and not vaulter.is_on_wall():
 		print("vault")
 		global_position = vaulter.global_position
 		global_position.y -= 1
