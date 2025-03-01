@@ -62,7 +62,6 @@ func jump_logic(delta:float):
 	
 	# Handle jump
 	if Input.is_action_just_pressed("ui_accept"):
-		print(used_gravity)
 		if not is_on_wall():
 			if jumps > 0:
 				used_gravity = default_gravity
@@ -70,13 +69,13 @@ func jump_logic(delta:float):
 				velocity.y = JUMP_VELOCITY
 		else:
 			if walljumps > 0:
-				print("succes")
 				used_gravity = default_gravity
 				walljumps -= 1
 				var wallVector: Vector3 = get_shortest_wall_vector().normalized() * wallJumpForce
 				velocity.y = JUMP_VELOCITY
 				extraVelocity += wallVector
-				print(extraVelocity)
+
+#utility
 func get_shortest_wall_vector() -> Vector3:
 	var ray_count:int = 64
 	var max_distance:float = 1 #too high for safety reasons
@@ -108,21 +107,18 @@ func get_shortest_wall_vector() -> Vector3:
 				shortest_vector = direction * max_distance
 	
 	return shortest_vector
+func reduce_vector_length(v: Vector3, amount: float) -> Vector3:
+	var length = v.length()
+	var new_length = max(length - amount, 0) # Prevents negative length
+	return v.normalized() * new_length if length > 0 else Vector3.ZERO
 
 func _physics_process(delta): # "main"
 	basic_movement()
 	jump_logic(delta)
 	
-	#print(walljumps)
-	
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
 	move_and_slide()
-
-func reduce_vector_length(v: Vector3, amount: float) -> Vector3:
-	var length = v.length()
-	var new_length = max(length - amount, 0) # Prevents negative length
-	return v.normalized() * new_length if length > 0 else Vector3.ZERO
 
 func _process(delta):
 	handle_mouse_look()

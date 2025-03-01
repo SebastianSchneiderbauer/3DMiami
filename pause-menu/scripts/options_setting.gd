@@ -25,6 +25,7 @@ func _ready():
 	Add_Resolutions()
 	Check_Variables()
 	Get_Screens()
+	_on_scale_slider_value_changed(scale_slider.value)
 
 func Check_Variables():
 	var _window = get_window()
