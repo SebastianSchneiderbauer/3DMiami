@@ -20,5 +20,3 @@ func _physics_process(delta):
 	move_and_slide() #moving to aproximatly the ground
 	velocity = Vector3(0,-9.81,0)
 	move_and_slide() #moving to exactly the ground
-	
-	print(can_vault())

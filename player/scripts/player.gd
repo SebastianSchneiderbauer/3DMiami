@@ -74,6 +74,24 @@ func jump_logic(delta:float):
 				var wallVector: Vector3 = get_shortest_wall_vector().normalized() * wallJumpForce
 				velocity.y = JUMP_VELOCITY
 				extraVelocity += wallVector
+func vault_logic():
+	var vaulter:CharacterBody3D = $vaulter
+	
+	if vaulter.can_vault() and is_on_wall():
+		print("vault")
+		global_position = vaulter.global_position
+		global_position.y -= 1
+func move(): #custom move function for extra logic before and after calling move_and_slide()
+	velocity += extraVelocity  # Apply extra force
+	extraVelocity = reduce_vector_length(extraVelocity,1)
+	
+	if is_on_wall() and velocity.y < 0:
+		velocity.y /= 5
+	
+	move_and_slide()
+	
+	if is_on_wall() and velocity.y < 0:
+		velocity.y *= 5
 
 #utility
 func get_shortest_wall_vector() -> Vector3:
@@ -115,17 +133,9 @@ func reduce_vector_length(v: Vector3, amount: float) -> Vector3:
 func _physics_process(delta): # "main"
 	basic_movement()
 	jump_logic(delta)
+	vault_logic()
 	
-	velocity += extraVelocity  # Apply extra force
-	extraVelocity = reduce_vector_length(extraVelocity,1)
-	
-	if is_on_wall() and velocity.y < 0:
-		velocity.y /= 5
-	
-	move_and_slide()
-	
-	if is_on_wall() and velocity.y < 0:
-		velocity.y *= 5
+	move()
 
 func _process(delta):
 	handle_mouse_look()

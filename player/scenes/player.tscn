@@ -54,7 +54,7 @@ visible = false
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("2_8h4do")
-height = 0.5
+height = 0.35
 
 [node name="vault-mesh" type="MeshInstance3D" parent="vaulter"]
 mesh = SubResource("CylinderMesh_rclgo")
