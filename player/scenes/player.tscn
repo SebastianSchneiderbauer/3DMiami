@@ -1,8 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=6 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://player/scripts/player.gd" id="1_apn28"]
-[ext_resource type="Script" uid="uid://bi0edq6uow6l4" path="res://player/scripts/vaulter.gd" id="2_8h4do"]
-[ext_resource type="Texture2D" uid="uid://i54q6tk2wkrp" path="res://player/textures/transparent.png" id="2_t0cpu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_twk7w"]
 
@@ -16,19 +14,11 @@ material = SubResource("StandardMaterial3D_twk7w")
 radius = 0.1
 height = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h4do"]
-transparency = 1
-albedo_texture = ExtResource("2_t0cpu")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_rclgo"]
-material = SubResource("StandardMaterial3D_8h4do")
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_87uja"]
-
 [node name="player" type="CharacterBody3D"]
 collision_layer = 8388609
 collision_mask = 8388610
 script = ExtResource("1_apn28")
+vault_height = 1.25
 
 [node name="hitbox-uncrouched" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -48,25 +38,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.598, 0)
 cull_mask = 3
 fov = 90.0
 
-[node name="vaulter" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("2_8h4do")
-height = 0.35
-
-[node name="vault-mesh" type="MeshInstance3D" parent="vaulter"]
-mesh = SubResource("CylinderMesh_rclgo")
-
-[node name="vault-hitbox" type="CollisionShape3D" parent="vaulter"]
-shape = SubResource("CylinderShape3D_87uja")
-
-[node name="wallchecker" type="RayCast3D" parent="vaulter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="wallchecker" type="RayCast3D" parent="."]
 top_level = true
 collision_mask = 2
 
-[node name="clipdetector" type="RayCast3D" parent="vaulter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-target_position = Vector3(0, 2, 0)
+[node name="distancer" type="RayCast3D" parent="."]
+top_level = true
+target_position = Vector3(0, 0, 0)
 collision_mask = 2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842242, 0)
+omni_range = 64.98

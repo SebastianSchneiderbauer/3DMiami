@@ -22,6 +22,10 @@ var jumps: int = maxJumps
 var walljumps: int = maxWalljumps
 const wallJumpForce: float = -20 # negative to reverse the wallVector
 
+#vault
+@export var vault_height:float
+var vaultPoint:Vector3
+
 #basic shit
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -75,12 +79,10 @@ func jump_logic(delta:float):
 				velocity.y = JUMP_VELOCITY
 				extraVelocity += wallVector
 func vault_logic():
-	var vaulter:CharacterBody3D = $vaulter
-	var clipdetector:RayCast3D = $vaulter/clipdetector
-	
-	if vaulter.can_vault() and is_on_wall() and not vaulter.is_on_wall():
-		global_position = vaulter.global_position
-		global_position.y -= 1
+	if is_on_wall() and can_vault():
+		print("vault")
+		global_position = vaultPoint
+		global_position.y -= 0
 func move(): #custom move function for extra logic before and after calling move_and_slide()
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
@@ -129,6 +131,33 @@ func reduce_vector_length(v: Vector3, amount: float) -> Vector3:
 	var length = v.length()
 	var new_length = max(length - amount, 0) # Prevents negative length
 	return v.normalized() * new_length if length > 0 else Vector3.ZERO
+func can_vault() -> bool:
+	var wallchecker:RayCast3D = $wallchecker
+	var distancer:RayCast3D = $distancer
+	
+	var posi:Vector3 = global_position + direction*0.8
+	posi.y += vault_height
+	distancer.global_position = posi
+	distancer.target_position.y = -1 * (vault_height + 1)
+	
+	posi.y += 1
+	wallchecker.global_position = posi
+	
+	var transVector: Vector3 = global_position - posi
+	wallchecker.target_position = transVector
+	wallchecker.target_position.y += 1
+	
+	wallchecker.force_raycast_update()
+	distancer.force_raycast_update()
+	
+	vaultPoint = global_position
+	var info = $"../overlay/Info"
+	info.test = distancer.is_colliding()
+	
+	if info.test:
+		vaultPoint = distancer.get_collision_point()
+	
+	return not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and direction != Vector3.ZERO
 func debug():
 	if Input.is_action_just_pressed("debug1"):
 		camera.position.z = +3
