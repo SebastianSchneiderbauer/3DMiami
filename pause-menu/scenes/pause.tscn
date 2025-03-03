@@ -470,7 +470,7 @@ offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.164706)
+color = Color(0, 0, 0, 0.568627)
 
 [node name="Gameplay" parent="." instance=ExtResource("2_iv7ha")]
 visible = false
@@ -491,6 +491,7 @@ offset_left = -176.0
 offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
+button_pressed = true
 text = "show debug info"
 script = ExtResource("4_djb4f")
 

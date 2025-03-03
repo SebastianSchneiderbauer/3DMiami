@@ -7,6 +7,7 @@ var gravity_changer:float = 20 #ridiculously high, bc this without deltatime wou
 var speed:float = 10.0
 const JUMP_VELOCITY:float = 6
 
+
 var direction:Vector3 = Vector3(0,0,0)
 var input_dir:Vector2
 @onready var camera:Camera3D = $camera
@@ -31,6 +32,7 @@ var startPosition:Vector3
 var vaultVector:Vector3
 var lastDistance:float
 var vaultSpeed:float = 10
+var speedIncrease:float = 1.5
 
 #basic shit
 func _ready():
@@ -81,7 +83,7 @@ func jump_logic(delta:float):
 			if walljumps > 0:
 				used_gravity = default_gravity
 				walljumps -= 1
-				var wallVector: Vector3 = get_shortest_wall_vector().normalized() * wallJumpForce
+				var wallVector: Vector3 = get_shortest_wall_vector().normalized() * wallJumpForce * (speed/10)
 				velocity.y = JUMP_VELOCITY
 				extraVelocity += wallVector
 func vault_logic(delta:float):
@@ -102,12 +104,9 @@ func vault_logic(delta:float):
 		startPosition = global_position
 		vaultVector = (vaultPoint - startPosition).normalized()*vaultSpeed
 		lastDistance = 100 #just a high number
-		print(vaultPoint.y > startPosition.y)
-		print(vaultPoint.y - startPosition.y)
-		print(vaultVector)
 		storedVelocity = velocity
 		vaulting = true
-func move(): #custom move function for extra logic before and after calling move_and_slide()
+func move(delta): #custom move function for extra logic before and after calling move_and_slide()
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
 	
@@ -175,10 +174,8 @@ func can_vault() -> bool: #dont open me, just trust me
 	distancer.force_raycast_update()
 	
 	vaultPoint = global_position
-	var info = $"../overlay/Info"
-	info.test = distancer.is_colliding()
 	
-	if info.test:
+	if distancer.is_colliding():
 		vaultPoint = distancer.get_collision_point()
 	
 	return not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and direction != Vector3.ZERO
@@ -195,7 +192,7 @@ func _physics_process(delta): # "main"
 	
 	debug()
 	
-	move()
+	move(delta)
 
 func _process(delta):
 	handle_mouse_look()

@@ -83,7 +83,7 @@ layout_mode = 2
 min_value = 1.0
 max_value = 200.0
 step = 5.0
-value = 51.0
+value = 101.0
 ticks_on_borders = true
 
 [node name="ScaleLabel" type="Label" parent="Options_Setting/ScaleBox"]
