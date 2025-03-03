@@ -4,7 +4,7 @@ const default_gravity:Vector3 = Vector3(0,-9.8,0)
 var used_gravity: Vector3 = default_gravity
 var gravity_changer:float = 20 #ridiculously high, bc this without deltatime would be crazy
 
-const SPEED:float = 10.0
+var speed:float = 10.0
 const JUMP_VELOCITY:float = 6
 
 var direction:Vector3 = Vector3(0,0,0)
@@ -25,6 +25,12 @@ const wallJumpForce: float = -20 # negative to reverse the wallVector
 #vault
 @export var vault_height:float
 var vaultPoint:Vector3
+var vaulting: bool = false
+var storedVelocity:Vector3
+var startPosition:Vector3
+var vaultVector:Vector3
+var lastDistance:float
+var vaultSpeed:float = 10
 
 #basic shit
 func _ready():
@@ -46,8 +52,8 @@ func basic_movement():
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction != Vector3.ZERO:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
 		velocity.x = 0
 		velocity.z = 0
@@ -78,10 +84,29 @@ func jump_logic(delta:float):
 				var wallVector: Vector3 = get_shortest_wall_vector().normalized() * wallJumpForce
 				velocity.y = JUMP_VELOCITY
 				extraVelocity += wallVector
-func vault_logic():
-	if is_on_wall() and can_vault():
-		global_position = vaultPoint
-		global_position.y -= 0
+func vault_logic(delta:float):
+	if vaulting:
+		velocity = Vector3.ZERO
+		global_position += vaultVector * delta
+		
+		if (global_position - vaultPoint).length() > lastDistance:
+			vaulting = false
+			get_node("hitbox-uncrouched").disabled = false
+			#global_position = vaultPoint
+			velocity = storedVelocity
+		
+		lastDistance = (global_position - vaultPoint).length()
+		
+	elif is_on_wall() and can_vault():
+		get_node("hitbox-uncrouched").disabled = true
+		startPosition = global_position
+		vaultVector = (vaultPoint - startPosition).normalized()*vaultSpeed
+		lastDistance = 100 #just a high number
+		print(vaultPoint.y > startPosition.y)
+		print(vaultPoint.y - startPosition.y)
+		print(vaultVector)
+		storedVelocity = velocity
+		vaulting = true
 func move(): #custom move function for extra logic before and after calling move_and_slide()
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
@@ -166,7 +191,7 @@ func debug():
 func _physics_process(delta): # "main"
 	basic_movement()
 	jump_logic(delta)
-	vault_logic()
+	vault_logic(delta)
 	
 	debug()
 	
