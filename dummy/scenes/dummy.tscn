@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://bf8kikmkf0ytj"]
+
+[ext_resource type="Script" uid="uid://crvf7it34h14c" path="res://dummy/scripts/dummy.gd" id="1_ec5rh"]
+[ext_resource type="Texture2D" uid="uid://cxnjavqxdv4ij" path="res://dummy/textures/dummy.jpg" id="1_ltbf4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_65od5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ec5rh"]
+albedo_texture = ExtResource("1_ltbf4")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1qa1k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ec5rh"]
+
+[node name="dummy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_ec5rh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_65od5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_ec5rh")
+mesh = SubResource("CapsuleMesh_1qa1k")
+
+[node name="PlayerPushArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPushArea"]
+shape = SubResource("CapsuleShape3D_ec5rh")
+
+[connection signal="body_entered" from="PlayerPushArea" to="." method="_on_player_push_area_body_entered"]

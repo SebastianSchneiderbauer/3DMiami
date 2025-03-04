@@ -117,6 +117,12 @@ func move(delta): #custom move function for extra logic before and after calling
 	
 	if is_on_wall() and velocity.y < 0:
 		velocity.y *= 5
+	
+	#fix bug where we get stuck in a wall when vaulting at a strange angle, its snappy, but fuck the user its their fualt if they run into a wall like this
+	var inWallDetector: RayCast3D = $inWallDetector
+	inWallDetector.force_raycast_update()
+	if inWallDetector.is_colliding() and not vaulting:
+		global_position.y +=1
 
 #utility
 func get_shortest_wall_vector() -> Vector3:
