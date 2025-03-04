@@ -25,7 +25,7 @@ transform = Transform3D(0.606419, 0, 0.795146, 0, 1, 0, -0.795146, 0, 0.606419, 
 vault_height = 1.4
 
 [node name="dummy" parent="." instance=ExtResource("3_1qa1k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150537, 0.0466161, -0.380506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16564, 13.3093, 3.1312)
 
 [node name="overlay" type="CanvasLayer" parent="."]
 

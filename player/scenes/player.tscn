@@ -16,7 +16,7 @@ height = 0.4
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 8388609
-collision_mask = 8388610
+collision_mask = 2
 script = ExtResource("1_apn28")
 vault_height = 1.5
 
@@ -52,5 +52,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842242, 0)
 omni_range = 64.98
 
 [node name="inWallDetector" type="RayCast3D" parent="."]
-target_position = Vector3(0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 1, 0)
 collision_mask = 2

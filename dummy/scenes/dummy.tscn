@@ -13,7 +13,7 @@ albedo_texture = ExtResource("1_ltbf4")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ec5rh"]
 
 [node name="dummy" type="CharacterBody3D"]
-collision_layer = 4
+collision_layer = 8388612
 collision_mask = 7
 script = ExtResource("1_ec5rh")
 
