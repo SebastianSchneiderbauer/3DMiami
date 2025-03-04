@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://d22k2ss55xjem"]
+[gd_scene load_steps=14 format=3 uid="uid://d22k2ss55xjem"]
 
 [ext_resource type="Script" uid="uid://y8pkfxxfc2s3" path="res://pause-menu/scripts/pause.gd" id="1_0nhpn"]
 [ext_resource type="PackedScene" uid="uid://c4w8gxxk2e2kl" path="res://pause-menu/scenes/gameplay.tscn" id="2_iv7ha"]
 [ext_resource type="PackedScene" uid="uid://buq5uc2knvqn6" path="res://pause-menu/scenes/graphic.tscn" id="3_djb4f"]
 [ext_resource type="Script" uid="uid://7oqk5muouupk" path="res://pause-menu/scripts/debug.gd" id="4_djb4f"]
+[ext_resource type="PackedScene" uid="uid://xma4roxij2ty" path="res://pause-menu/scenes/controlls.tscn" id="4_pan4r"]
 
 [sub_resource type="Animation" id="Animation_sshc7"]
 length = 0.001
@@ -427,9 +428,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -120.0
-offset_top = -94.5
+offset_top = -102.5
 offset_right = 120.0
-offset_bottom = 94.5
+offset_bottom = 86.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -464,9 +465,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -136.0
-offset_top = -100.0
+offset_top = -108.0
 offset_right = 136.0
-offset_bottom = 108.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -477,6 +478,11 @@ visible = false
 layout_mode = 1
 
 [node name="Graphic" parent="." instance=ExtResource("3_djb4f")]
+visible = false
+layout_mode = 1
+
+[node name="Controlls" parent="." instance=ExtResource("4_pan4r")]
+visible = false
 layout_mode = 1
 
 [node name="debug" type="CheckButton" parent="."]

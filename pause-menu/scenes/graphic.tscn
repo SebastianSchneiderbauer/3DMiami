@@ -8,7 +8,6 @@
 font_size = 25
 
 [node name="Graphic" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,7 +132,7 @@ anchor_bottom = 0.5
 offset_left = -200.0
 offset_top = -140.0
 offset_right = 200.0
-offset_bottom = 140.0
+offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
