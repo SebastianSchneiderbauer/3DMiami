@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://d22k2ss55xjem"]
+[gd_scene load_steps=15 format=3 uid="uid://d22k2ss55xjem"]
 
 [ext_resource type="Script" uid="uid://y8pkfxxfc2s3" path="res://pause-menu/scripts/pause.gd" id="1_0nhpn"]
 [ext_resource type="PackedScene" uid="uid://c4w8gxxk2e2kl" path="res://pause-menu/scenes/gameplay.tscn" id="2_iv7ha"]
 [ext_resource type="PackedScene" uid="uid://buq5uc2knvqn6" path="res://pause-menu/scenes/graphic.tscn" id="3_djb4f"]
-[ext_resource type="Script" uid="uid://7oqk5muouupk" path="res://pause-menu/scripts/debug.gd" id="4_djb4f"]
 [ext_resource type="PackedScene" uid="uid://xma4roxij2ty" path="res://pause-menu/scenes/controlls.tscn" id="4_pan4r"]
 
 [sub_resource type="Animation" id="Animation_sshc7"]
@@ -59,22 +58,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("debug:visible")
+tracks/4/path = NodePath("Controlls:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Controlls:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -134,22 +121,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("debug:visible")
+tracks/4/path = NodePath("Controlls:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Controlls:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -209,22 +184,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("debug:visible")
+tracks/4/path = NodePath("Controlls:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Controlls:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -701,22 +664,6 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="debug" type="CheckButton" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -176.0
-offset_top = -31.0
-grow_horizontal = 0
-grow_vertical = 0
-button_pressed = true
-text = "show debug info"
-script = ExtResource("4_djb4f")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_djb4f")
@@ -726,4 +673,3 @@ libraries = {
 [connection signal="pressed" from="VBoxContainer/Gameplay" to="." method="_on_gameplay_pressed"]
 [connection signal="pressed" from="VBoxContainer/Graphics" to="." method="_on_graphics_pressed"]
 [connection signal="pressed" from="VBoxContainer/Controlls" to="." method="_on_controlls_pressed"]
-[connection signal="pressed" from="debug" to="debug" method="_on_pressed"]

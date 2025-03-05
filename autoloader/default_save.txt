@@ -1,0 +1,19 @@
+# Player Stats
+health=100
+speed=3.75
+is_alive=true
+
+# Player Position (Vector3)
+position=5.0,10.0,-2.5
+
+# Inventory (Array of Strings)
+inventory=sword,potion,shield
+
+# Collected Scores (Array of Numbers)
+scores=10,20,30,40
+
+# Player Names (Array of Strings)
+names=alice,bob,charlie
+
+# Miscellaneous
+nickname=Vex

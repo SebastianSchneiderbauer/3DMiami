@@ -93,6 +93,7 @@ func vault_logic(delta:float):
 		
 		if (global_position - vaultPoint).length() > lastDistance:
 			vaulting = false
+			jumps = maxJumps
 			get_node("hitbox-uncrouched").disabled = false
 			#global_position = vaultPoint
 			velocity = storedVelocity
@@ -190,6 +191,11 @@ func debug():
 		camera.position.z = +3
 	if Input.is_action_just_pressed("debug2"):
 		print(SaveManager.get_data("health"))
+	if Input.is_action_just_pressed("debug3"):
+		SaveManager.load_default_save_data()
+		SaveManager.save_game()
+	if Input.is_action_just_pressed("debug4"):
+		print(SaveManager.get_all_data())
 
 func _physics_process(delta): # "main"
 	basic_movement()
