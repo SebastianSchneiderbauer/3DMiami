@@ -189,7 +189,7 @@ func debug():
 	if Input.is_action_just_pressed("debug1"):
 		camera.position.z = +3
 	if Input.is_action_just_pressed("debug2"):
-		position.y += 100
+		print(SaveManager.get_data("health"))
 
 func _physics_process(delta): # "main"
 	basic_movement()

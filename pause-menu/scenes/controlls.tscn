@@ -2,10 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://br1balfv7y5ka" path="res://legacy/textures/8udcyj.jpg" id="1_0oqq0"]
 [ext_resource type="Script" uid="uid://c1u85ti3xi2aw" path="res://pause-menu/scripts/controlls.gd" id="1_mx43k"]
-[ext_resource type="Theme" uid="uid://b2yeu3yjomwxn" path="res://test.tres" id="2_3h1q6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_djb4f"]
 font_size = 25
+
+[sub_resource type="Theme" id="Theme_mx43k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_djb4f"]
 
@@ -82,7 +83,7 @@ offset_bottom = 284.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -3.14159
-theme = ExtResource("2_3h1q6")
+theme = SubResource("Theme_mx43k")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_djb4f")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gqngu")
 max_value = 1.0
@@ -139,6 +140,7 @@ offset_top = -37.0
 offset_bottom = -37.0
 
 [node name="Button" type="Button" parent="Options/Node2D/foreward"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 176.0
@@ -146,6 +148,7 @@ offset_bottom = 79.0
 text = "Move Foreward"
 
 [node name="Label" type="Label" parent="Options/Node2D/foreward"]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 48.0
 offset_right = 184.0
@@ -155,6 +158,7 @@ label_settings = SubResource("LabelSettings_cxmdo")
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="Options/Node2D/foreward"]
+layout_mode = 0
 offset_left = 184.0
 offset_top = 48.0
 offset_right = 352.0
@@ -168,6 +172,7 @@ offset_top = -1.0
 offset_bottom = -1.0
 
 [node name="Button" type="Button" parent="Options/Node2D/left"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 176.0
@@ -175,6 +180,7 @@ offset_bottom = 79.0
 text = "Move Left"
 
 [node name="Label" type="Label" parent="Options/Node2D/left"]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 48.0
 offset_right = 184.0
@@ -184,6 +190,7 @@ label_settings = SubResource("LabelSettings_cxmdo")
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="Options/Node2D/left"]
+layout_mode = 0
 offset_left = 184.0
 offset_top = 48.0
 offset_right = 352.0
@@ -197,6 +204,7 @@ offset_top = 35.0
 offset_bottom = 35.0
 
 [node name="Button" type="Button" parent="Options/Node2D/back"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 176.0
@@ -204,6 +212,7 @@ offset_bottom = 79.0
 text = "Move Back"
 
 [node name="Label" type="Label" parent="Options/Node2D/back"]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 48.0
 offset_right = 184.0
@@ -213,6 +222,7 @@ label_settings = SubResource("LabelSettings_cxmdo")
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="Options/Node2D/back"]
+layout_mode = 0
 offset_left = 184.0
 offset_top = 48.0
 offset_right = 352.0
@@ -226,6 +236,7 @@ offset_top = 71.0
 offset_bottom = 71.0
 
 [node name="Button" type="Button" parent="Options/Node2D/right"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 176.0
@@ -233,6 +244,7 @@ offset_bottom = 79.0
 text = "Move Right"
 
 [node name="Label" type="Label" parent="Options/Node2D/right"]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 48.0
 offset_right = 184.0
@@ -242,6 +254,7 @@ label_settings = SubResource("LabelSettings_cxmdo")
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="Options/Node2D/right"]
+layout_mode = 0
 offset_left = 184.0
 offset_top = 48.0
 offset_right = 352.0
@@ -255,6 +268,7 @@ offset_top = 107.0
 offset_bottom = 107.0
 
 [node name="Button" type="Button" parent="Options/Node2D/jump"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 176.0
@@ -262,6 +276,7 @@ offset_bottom = 79.0
 text = "Jump"
 
 [node name="Label" type="Label" parent="Options/Node2D/jump"]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 48.0
 offset_right = 184.0
@@ -271,6 +286,7 @@ label_settings = SubResource("LabelSettings_cxmdo")
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="Options/Node2D/jump"]
+layout_mode = 0
 offset_left = 184.0
 offset_top = 48.0
 offset_right = 352.0
@@ -284,6 +300,7 @@ offset_top = 143.0
 offset_bottom = 143.0
 
 [node name="Button" type="Button" parent="Options/Node2D/db1"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 176.0
@@ -291,6 +308,7 @@ offset_bottom = 79.0
 text = "Debug-1"
 
 [node name="Label" type="Label" parent="Options/Node2D/db1"]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 48.0
 offset_right = 184.0
@@ -300,6 +318,7 @@ label_settings = SubResource("LabelSettings_cxmdo")
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="Options/Node2D/db1"]
+layout_mode = 0
 offset_left = 184.0
 offset_top = 48.0
 offset_right = 352.0
@@ -313,6 +332,7 @@ offset_top = 179.0
 offset_bottom = 179.0
 
 [node name="Button" type="Button" parent="Options/Node2D/db2"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 176.0
@@ -320,6 +340,7 @@ offset_bottom = 79.0
 text = "Debug-2"
 
 [node name="Label" type="Label" parent="Options/Node2D/db2"]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 48.0
 offset_right = 184.0
@@ -329,6 +350,7 @@ label_settings = SubResource("LabelSettings_cxmdo")
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="Options/Node2D/db2"]
+layout_mode = 0
 offset_left = 184.0
 offset_top = 48.0
 offset_right = 352.0
@@ -342,6 +364,7 @@ offset_top = 215.0
 offset_bottom = 215.0
 
 [node name="Button" type="Button" parent="Options/Node2D/db3"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 176.0
@@ -349,6 +372,7 @@ offset_bottom = 79.0
 text = "Debug-3"
 
 [node name="Label" type="Label" parent="Options/Node2D/db3"]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 48.0
 offset_right = 184.0
@@ -358,6 +382,7 @@ label_settings = SubResource("LabelSettings_cxmdo")
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="Options/Node2D/db3"]
+layout_mode = 0
 offset_left = 184.0
 offset_top = 48.0
 offset_right = 352.0
@@ -371,6 +396,7 @@ offset_top = 251.0
 offset_bottom = 251.0
 
 [node name="Button" type="Button" parent="Options/Node2D/db4"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 176.0
@@ -378,6 +404,7 @@ offset_bottom = 79.0
 text = "Debug-4"
 
 [node name="Label" type="Label" parent="Options/Node2D/db4"]
+layout_mode = 0
 offset_left = 176.0
 offset_top = 48.0
 offset_right = 184.0
@@ -387,6 +414,7 @@ label_settings = SubResource("LabelSettings_cxmdo")
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="Options/Node2D/db4"]
+layout_mode = 0
 offset_left = 184.0
 offset_top = 48.0
 offset_right = 352.0
