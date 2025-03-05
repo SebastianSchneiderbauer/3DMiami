@@ -14,3 +14,5 @@ World building:
 		
 
 implement a system to save your settings and load them again. maybe as a overwrite to the normal reset?
+
+console?
