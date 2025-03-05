@@ -165,6 +165,6 @@ offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.568627)
+color = Color(0, 0, 0, 0.301961)
 
 [connection signal="pressed" from="Options/return" to="Options" method="_on_return_pressed"]

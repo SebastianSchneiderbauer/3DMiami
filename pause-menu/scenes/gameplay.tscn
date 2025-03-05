@@ -153,12 +153,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -145.5
+offset_top = -148.0
 offset_right = 200.0
-offset_bottom = 150.5
+offset_bottom = 145.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.568627)
+color = Color(0.184314, 0.184314, 0.184314, 1)
 
 [connection signal="pressed" from="Options/return" to="." method="_on_return_pressed"]

@@ -132,11 +132,11 @@ anchor_bottom = 0.5
 offset_left = -200.0
 offset_top = -140.0
 offset_right = 200.0
-offset_bottom = 132.0
+offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.568627)
+color = Color(0.184314, 0.184314, 0.184314, 1)
 
 [connection signal="item_selected" from="Options_Setting/Resolution_OptionButton" to="Options_Setting" method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="Options_Setting/Scaler" to="Options_Setting" method="_on_scaler_item_selected"]

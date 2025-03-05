@@ -30,3 +30,6 @@ func _on_graphics_pressed():
 
 func _on_return_graphics_pressed():
 	animationPlayer.play("base-show")
+
+func _on_controlls_pressed():
+	animationPlayer.play("controlls-show")
