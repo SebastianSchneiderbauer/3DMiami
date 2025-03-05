@@ -13,17 +13,17 @@ font_size = 25
 texture = ExtResource("1_0oqq0")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djb4f"]
-bg_color = Color(0, 0, 0, 0.2)
+bg_color = Color(0.118582, 0.118581, 0.118581, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="LabelSettings" id="LabelSettings_cxmdo"]
-line_spacing = 0.0
-font_size = 20
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxmdo"]
+bg_color = Color(0.158473, 0.158472, 0.158472, 1)
 
-[sub_resource type="Theme" id="Theme_0oqq0"]
+[sub_resource type="LabelSettings" id="LabelSettings_cxmdo"]
+font_size = 20
 
 [node name="Controlls" type="Control"]
 layout_mode = 3
@@ -97,7 +97,8 @@ offset_bottom = 416.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_djb4f")
 
-[node name="Options" type="Panel" parent="."]
+[node name="controllsBackground" type="Panel" parent="."]
+clip_children = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -110,51 +111,301 @@ offset_right = 168.0
 offset_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxmdo")
 
-[node name="Control" type="Control" parent="Options"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="bind1" type="HBoxContainer" parent="Options/Control"]
+[node name="Options" type="Panel" parent="."]
+clip_children = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -12.0
-offset_top = 56.0
-offset_right = 332.0
-offset_bottom = 96.0
+offset_left = -192.0
+offset_top = -92.0
+offset_right = 168.0
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxmdo")
 
-[node name="Button" type="Button" parent="Options/Control/bind1"]
-z_index = 1
-custom_minimum_size = Vector2(170, 0)
-layout_mode = 2
+[node name="Node2D" type="Node2D" parent="Options"]
+position = Vector2(0, -8)
+
+[node name="foreward" type="Control" parent="Options/Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -37.0
+offset_bottom = -37.0
+
+[node name="Button" type="Button" parent="Options/Node2D/foreward"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
 text = "Move Foreward"
 
-[node name="Label" type="Label" parent="Options/Control/bind1"]
-layout_mode = 2
-size_flags_stretch_ratio = 20.0
+[node name="Label" type="Label" parent="Options/Node2D/foreward"]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 76.0
 text = ":"
 label_settings = SubResource("LabelSettings_cxmdo")
+horizontal_alignment = 1
 
-[node name="Button2" type="Button" parent="Options/Control/bind1"]
-z_index = 1
-custom_minimum_size = Vector2(170, 0)
-layout_mode = 2
-theme = SubResource("Theme_0oqq0")
-text = "click to set"
+[node name="Button2" type="Button" parent="Options/Node2D/foreward"]
+offset_left = 184.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "eeeee"
+
+[node name="left" type="Control" parent="Options/Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -1.0
+offset_bottom = -1.0
+
+[node name="Button" type="Button" parent="Options/Node2D/left"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
+text = "Move Left"
+
+[node name="Label" type="Label" parent="Options/Node2D/left"]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 76.0
+text = ":"
+label_settings = SubResource("LabelSettings_cxmdo")
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Options/Node2D/left"]
+offset_left = 184.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "eeeee"
+
+[node name="back" type="Control" parent="Options/Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 35.0
+offset_bottom = 35.0
+
+[node name="Button" type="Button" parent="Options/Node2D/back"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
+text = "Move Back"
+
+[node name="Label" type="Label" parent="Options/Node2D/back"]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 76.0
+text = ":"
+label_settings = SubResource("LabelSettings_cxmdo")
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Options/Node2D/back"]
+offset_left = 184.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "eeeee"
+
+[node name="right" type="Control" parent="Options/Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 71.0
+offset_bottom = 71.0
+
+[node name="Button" type="Button" parent="Options/Node2D/right"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
+text = "Move Right"
+
+[node name="Label" type="Label" parent="Options/Node2D/right"]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 76.0
+text = ":"
+label_settings = SubResource("LabelSettings_cxmdo")
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Options/Node2D/right"]
+offset_left = 184.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "eeeee"
+
+[node name="jump" type="Control" parent="Options/Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 107.0
+offset_bottom = 107.0
+
+[node name="Button" type="Button" parent="Options/Node2D/jump"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
+text = "Jump"
+
+[node name="Label" type="Label" parent="Options/Node2D/jump"]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 76.0
+text = ":"
+label_settings = SubResource("LabelSettings_cxmdo")
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Options/Node2D/jump"]
+offset_left = 184.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "eeeee"
+
+[node name="db1" type="Control" parent="Options/Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 143.0
+offset_bottom = 143.0
+
+[node name="Button" type="Button" parent="Options/Node2D/db1"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
+text = "Debug-1"
+
+[node name="Label" type="Label" parent="Options/Node2D/db1"]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 76.0
+text = ":"
+label_settings = SubResource("LabelSettings_cxmdo")
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Options/Node2D/db1"]
+offset_left = 184.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "eeeee"
+
+[node name="db2" type="Control" parent="Options/Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 179.0
+offset_bottom = 179.0
+
+[node name="Button" type="Button" parent="Options/Node2D/db2"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
+text = "Debug-2"
+
+[node name="Label" type="Label" parent="Options/Node2D/db2"]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 76.0
+text = ":"
+label_settings = SubResource("LabelSettings_cxmdo")
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Options/Node2D/db2"]
+offset_left = 184.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "eeeee"
+
+[node name="db3" type="Control" parent="Options/Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 215.0
+offset_bottom = 215.0
+
+[node name="Button" type="Button" parent="Options/Node2D/db3"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
+text = "Debug-3"
+
+[node name="Label" type="Label" parent="Options/Node2D/db3"]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 76.0
+text = ":"
+label_settings = SubResource("LabelSettings_cxmdo")
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Options/Node2D/db3"]
+offset_left = 184.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "eeeee"
+
+[node name="db4" type="Control" parent="Options/Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 251.0
+offset_bottom = 251.0
+
+[node name="Button" type="Button" parent="Options/Node2D/db4"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 176.0
+offset_bottom = 79.0
+text = "Debug-4"
+
+[node name="Label" type="Label" parent="Options/Node2D/db4"]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 76.0
+text = ":"
+label_settings = SubResource("LabelSettings_cxmdo")
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Options/Node2D/db4"]
+offset_left = 184.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "eeeee"
 
 [node name="return" type="Button" parent="."]
-layout_mode = 0
-offset_left = 384.0
-offset_top = 424.0
-offset_right = 768.0
-offset_bottom = 455.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 100.0
+offset_right = 192.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "EXIT"
 
 [connection signal="pressed" from="return" to="." method="_on_return_pressed"]
