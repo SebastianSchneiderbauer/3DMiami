@@ -1,19 +1,22 @@
-# Player Stats
-health=100
-speed=3.75
-is_alive=true
+# controlls
+forewards=W (Physical)
+left=A (Physical)
+back=S (Physical)
+right=D (Physical)
+jump=Space (Physical)
+db1=U (Physical)
+db2=I (Physical)
+db3=O (Physical)
+db4=P (Physical)
 
-# Player Position (Vector3)
-position=5.0,10.0,-2.5
+# gameplay setting
+sensitivity=0.2
+fov=90
+crosshairScale=0.01
 
-# Inventory (Array of Strings)
-inventory=sword,potion,shield
-
-# Collected Scores (Array of Numbers)
-scores=10,20,30,40
-
-# Player Names (Array of Strings)
-names=alice,bob,charlie
-
-# Miscellaneous
-nickname=Vex
+# graphic settings
+scaler=0
+fsrStrength=0
+scalerStrength=101.0
+fullScreen=true
+VSYNC=true

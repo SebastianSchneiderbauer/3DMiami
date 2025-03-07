@@ -189,11 +189,14 @@ func can_vault() -> bool: #dont open me, just trust me
 func debug():
 	if Input.is_action_just_pressed("debug1"):
 		camera.position.z = +3
+	
 	if Input.is_action_just_pressed("debug2"):
-		print(SaveManager.get_data("health"))
+		print(SaveManager.get_data("fov"))
+	
 	if Input.is_action_just_pressed("debug3"):
 		SaveManager.load_default_save_data()
 		SaveManager.save_game()
+	
 	if Input.is_action_just_pressed("debug4"):
 		print(SaveManager.get_all_data())
 

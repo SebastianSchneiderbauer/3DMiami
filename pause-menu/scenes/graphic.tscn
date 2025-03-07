@@ -49,7 +49,6 @@ popup/item_2/text = "AMD FSR 2.2"
 popup/item_2/id = 2
 
 [node name="FSROptions" type="OptionButton" parent="Options_Setting"]
-visible = false
 layout_mode = 2
 selected = 0
 item_count = 8

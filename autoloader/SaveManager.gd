@@ -4,8 +4,12 @@ const SAVE_PATH := "user://save_data.txt"
 const DEFAULT_SAVE_PATH := "res://autoloader/default_save.txt"
 var save_data := {}
 
+signal save_data_update
+var loaded:bool = false
+
 func _ready():
 	load_game()
+	loaded = true
 
 func save_game():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -27,30 +31,7 @@ func load_game():
 			if parts.size() == 2:
 				var key = parts[0].strip_edges()
 				var value = parts[1].strip_edges()
-				
-				# Auto-detect numbers
-				if value.is_valid_int():
-					save_data[key] = value.to_int()
-				elif value.is_valid_float():
-					save_data[key] = value.to_float()
-				# Detect Vector3 and Number Arrays Separately
-				elif "," in value:
-					var elements = value.split(",")
-					# Check if all parts are numbers
-					var all_numbers = true
-					for element in elements:
-						if not element.is_valid_float():
-							all_numbers = false
-							break
-					if all_numbers:
-						if elements.size() == 3:  # Vector3 case
-							save_data[key] = Vector3(elements[0].to_float(), elements[1].to_float(), elements[2].to_float())
-						else:  # Number array case
-							save_data[key] = Array(elements).map(func(e): return e.to_float())  # Fix applied here
-					else:
-						save_data[key] = elements  # Regular string array
-				else:
-					save_data[key] = value
+				save_data[key] = parse_value(value)  # Use the same type detection
 	else:
 		print("No save file found. Loading defaults from default_save.txt.")
 		load_default_save_data()
@@ -79,6 +60,43 @@ func load_default_save_data():
 
 			var parts = line.split("=")
 			if parts.size() == 2:
-				save_data[parts[0].strip_edges()] = parts[1].strip_edges()
+				var key = parts[0].strip_edges()
+				var value = parts[1].strip_edges()
+				save_data[key] = parse_value(value)  # Ensure correct types
+
+		emit_signal("save_data_update")
 	else:
 		print("Warning: Default save file not found at ", DEFAULT_SAVE_PATH)
+
+# Helper function to ensure type detection is consistent
+func parse_value(value: String):
+	# Auto-detect boolean
+	if value.to_lower() == "true":
+		return true
+	elif value.to_lower() == "false":
+		return false
+	# Auto-detect numbers
+	elif value.is_valid_int():
+		return value.to_int()
+	elif value.is_valid_float():
+		return value.to_float()
+	# Detect Vector3 and Number Arrays Separately
+	elif "," in value:
+		var elements = value.split(",")
+
+		# Check if all parts are numbers
+		var all_numbers = true
+		for element in elements:
+			if not element.is_valid_float():
+				all_numbers = false
+				break
+		
+		if all_numbers:
+			if elements.size() == 3:  # Vector3 case
+				return Vector3(elements[0].to_float(), elements[1].to_float(), elements[2].to_float())
+			else:  # Number array case
+				return Array(elements).map(func(e): return e.to_float())
+		else:
+			return elements  # Regular string array
+	else:
+		return value  # Default to string
