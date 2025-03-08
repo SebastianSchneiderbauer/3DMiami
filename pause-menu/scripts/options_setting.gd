@@ -10,7 +10,6 @@ extends VBoxContainer
 @onready var scale_box = $ScaleBox
 @onready var scaler = $Scaler
 
-
 var loaded:bool = false
 
 var Resolutions: Dictionary = {"3840x2160":Vector2i(3840,2160),
@@ -37,11 +36,12 @@ func _process(delta):
 		scaler._select_int(SaveManager.get_data("scaler"))
 		_on_scaler_item_selected(SaveManager.get_data("scaler"))
 		
-		fsr_options._select_int(SaveManager.get_data("fsrStrength"))
-		_on_fsr_options_item_selected(SaveManager.get_data("fsrStrength"))
-		
-		scale_slider.value = SaveManager.get_data("fsrStrength")
-		_on_scale_slider_value_changed(SaveManager.get_data("fsrStrength"))
+		if SaveManager.get_data("scaler") == 1:
+			scale_slider.value = SaveManager.get_data("scalerStrength")
+			_on_scale_slider_value_changed(SaveManager.get_data("scalerStrength"))
+		elif SaveManager.get_data("scaler") == 2:
+			fsr_options._select_int(SaveManager.get_data("fsrStrength"))
+			_on_fsr_options_item_selected(SaveManager.get_data("fsrStrength"))
 		
 		full_screen_check_box.set_pressed(SaveManager.get_data("fullScreen"))
 		_on_full_screen_check_box_toggled(SaveManager.get_data("fullScreen"))
@@ -58,11 +58,12 @@ func _on_savedata_update():
 	scaler._select_int(SaveManager.get_data("scaler"))
 	_on_scaler_item_selected(SaveManager.get_data("scaler"))
 	
-	fsr_options._select_int(SaveManager.get_data("fsrStrength"))
-	_on_fsr_options_item_selected(SaveManager.get_data("fsrStrength"))
-	
-	scale_slider.value = SaveManager.get_data("fsrStrength")
-	_on_scale_slider_value_changed(SaveManager.get_data("fsrStrength"))
+	if SaveManager.get_data("scaler") == 1:
+		scale_slider.value = SaveManager.get_data("scalerStrength")
+		_on_scale_slider_value_changed(SaveManager.get_data("scalerStrength"))
+	elif SaveManager.get_data("scaler") == 2:
+		fsr_options._select_int(SaveManager.get_data("fsrStrength"))
+		_on_fsr_options_item_selected(SaveManager.get_data("fsrStrength"))
 	
 	full_screen_check_box.set_pressed(SaveManager.get_data("fullScreen"))
 	_on_full_screen_check_box_toggled(SaveManager.get_data("fullScreen"))
@@ -123,8 +124,9 @@ func _on_full_screen_check_box_toggled(toggled_on):
 		Centre_Window()
 
 func _on_scale_slider_value_changed(value):
+	print(value)
+	
 	var Resolution_Scale = value/100.00
-	#get_parent().get_parent().get_parent().get_parent().get_child(0).get_child(2).get_child(0).set_scaling_3d_scale(Resolution_Scale)
 	var Resolution_Text = str(round(get_window().get_size().x*Resolution_Scale))+"x"+str(round(get_window().get_size().y*Resolution_Scale))
 	
 	scale_label.set_text(str(value)+"% - "+ Resolution_Text)
@@ -187,28 +189,22 @@ func _on_screen_selector_item_selected(index):
 
 func _on_return_pressed():
 	if scaler.get_selected() != SaveManager.get_data("scaler"):
-		scaler._select_int(SaveManager.get_data("scaler"))
-		_on_scaler_item_selected(SaveManager.get_data("scaler"))
+		SaveManager.set_data("scaler", scaler.get_selected())
 	
 	if fsr_options.get_selected() != SaveManager.get_data("fsrStrength"):
-		fsr_options._select_int(SaveManager.get_data("fsrStrength"))
-		_on_fsr_options_item_selected(SaveManager.get_data("fsrStrength"))
+		SaveManager.set_data("fsrStrength", fsr_options.get_selected())
 	
-	if scale_slider.value != SaveManager.get_data("fsrStrength"):
-		scale_slider.value = SaveManager.get_data("fsrStrength")
-		_on_scale_slider_value_changed(SaveManager.get_data("fsrStrength"))
+	if scale_slider.value != SaveManager.get_data("scalerStrength"):
+		SaveManager.set_data("scalerStrength",scale_slider.value)
 	
 	if full_screen_check_box.is_pressed() != SaveManager.get_data("fullScreen"):
-		full_screen_check_box.set_pressed(SaveManager.get_data("fullScreen"))
-		_on_full_screen_check_box_toggled(SaveManager.get_data("fullScreen"))
+		SaveManager.set_data("fullScreen",full_screen_check_box.is_pressed())
 	
 	if vsync_checkbox.is_pressed() != SaveManager.get_data("VSYNC"):
-		vsync_checkbox.set_pressed(SaveManager.get_data("VSYNC"))
-		_on_vsync_checkbox_toggled(SaveManager.get_data("VSYNC"))
+		SaveManager.set_data("VSYNC",vsync_checkbox.is_pressed())
 	
 	if screen_selector.get_selected() != SaveManager.get_data("defaultScreen"):
-		screen_selector._select_int(SaveManager.get_data("defaultScreen"))
-		_on_screen_selector_item_selected(SaveManager.get_data("defaultScreen"))
+		SaveManager.set_data("defaultScreen", screen_selector.get_selected())
 	
 	SaveManager.save_game()
 	

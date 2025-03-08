@@ -15,9 +15,9 @@ fov=90
 crosshairScale=0.01
 
 # graphic settings
-scaler=0
-fsrStrength=0
-scalerStrength=101.0
+scaler=2
+fsrStrength=1
+scalerStrength=100.0
 fullScreen=false
 VSYNC=true
 defaultScreen=0
