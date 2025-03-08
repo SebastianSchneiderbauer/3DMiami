@@ -1,13 +1,16 @@
 extends Node
 
 const SAVE_PATH := "user://save_data.txt"
-const DEFAULT_SAVE_PATH := "res://autoloader/default_save.txt"
+const DEFAULT_SAVE_RES_PATH := "res://autoloader/default_save.txt"  # Read-only in EXE
+const DEFAULT_SAVE_USER_PATH := "user://default_save.txt"  # Readable & writable
 var save_data := {}
 
 signal save_data_update
 var loaded:bool = false
 
 func _ready():
+	ensure_default_save_exists()  # Ensure default save is copied to user://
+	load_default_save_data()
 	load_game()
 	loaded = true
 
@@ -32,6 +35,7 @@ func load_game():
 				var key = parts[0].strip_edges()
 				var value = parts[1].strip_edges()
 				save_data[key] = parse_value(value)  # Use the same type detection
+		print("Save file location:", ProjectSettings.globalize_path("user://save_data.txt"))
 	else:
 		print("No save file found. Loading defaults from default_save.txt.")
 		load_default_save_data()
@@ -48,8 +52,8 @@ func get_all_data():
 	return save_data  # Returns the entire save data dictionary for debugging
 
 func load_default_save_data():
-	if FileAccess.file_exists(DEFAULT_SAVE_PATH):
-		var file = FileAccess.open(DEFAULT_SAVE_PATH, FileAccess.READ)
+	if FileAccess.file_exists(DEFAULT_SAVE_USER_PATH):
+		var file = FileAccess.open(DEFAULT_SAVE_USER_PATH, FileAccess.READ)
 		save_data.clear()
 		while not file.eof_reached():
 			var line = file.get_line().strip_edges()
@@ -66,7 +70,20 @@ func load_default_save_data():
 
 		emit_signal("save_data_update")
 	else:
-		print("Warning: Default save file not found at ", DEFAULT_SAVE_PATH)
+		print("Warning: Default save file not found at ", DEFAULT_SAVE_USER_PATH)
+
+func ensure_default_save_exists():
+	""" Ensures a default save file exists in user:// by copying it from res:// on first run. """
+	if not FileAccess.file_exists(DEFAULT_SAVE_USER_PATH):
+		if FileAccess.file_exists(DEFAULT_SAVE_RES_PATH):
+			print("Copying default_save.txt to user:// for persistence...")
+			var res_file = FileAccess.open(DEFAULT_SAVE_RES_PATH, FileAccess.READ)
+			var user_file = FileAccess.open(DEFAULT_SAVE_USER_PATH, FileAccess.WRITE)
+			
+			while not res_file.eof_reached():
+				user_file.store_line(res_file.get_line())
+		else:
+			print("Warning: Default save file not found in res://!")
 
 # Helper function to ensure type detection is consistent
 func parse_value(value: String):
