@@ -35,6 +35,11 @@ var vaultSpeed:float = 10
 var speedIncrease:float = 1.5
 var preservedJump:bool = false
 
+#crouch
+var crouched:bool = false
+var crouchStart:Vector3 = Vector3(1,1,1)
+var crouchEnd:Vector3 = Vector3(0.5,0.5,0.5)
+
 #basic shit
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -120,6 +125,12 @@ func vault_logic(delta:float):
 		lastDistance = 100 #just a high number
 		storedVelocity = velocity
 		vaulting = true
+func crouch(delta:float):
+	crouched = Input.is_action_pressed("ctrl")
+	
+	var hitbox_uncrouched: CollisionShape3D = $"hitbox-uncrouched"
+	var mesh_uncrouched: MeshInstance3D = $"mesh-uncrouched"
+	
 func move(delta): #custom move function for extra logic before and after calling move_and_slide()
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
@@ -217,6 +228,7 @@ func _physics_process(delta): # "main"
 	basic_movement()
 	jump_logic(delta)
 	vault_logic(delta)
+	crouch(delta)
 	
 	debug()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=8 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://player/scripts/player.gd" id="1_apn28"]
 
@@ -14,6 +14,12 @@ material = SubResource("StandardMaterial3D_twk7w")
 radius = 0.1
 height = 0.4
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_apn28"]
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8h4do"]
+height = 1.0
+
 [node name="player" type="CharacterBody3D"]
 collision_layer = 8388609
 collision_mask = 2
@@ -24,17 +30,32 @@ vault_height = 1.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_twk7w")
 
-[node name="mesh" type="MeshInstance3D" parent="."]
+[node name="mesh-uncrouched" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 4
 mesh = SubResource("CapsuleMesh_apn28")
 
-[node name="eyes" type="MeshInstance3D" parent="."]
+[node name="eyes-uncrouched" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.0202722, 1.574, -0.38828)
 layers = 4
 mesh = SubResource("CapsuleMesh_t0cpu")
 
+[node name="hitbox_crouched" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_apn28")
+
+[node name="mesh-crouched" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+layers = 4
+mesh = SubResource("CapsuleMesh_8h4do")
+
+[node name="eyes-crouched" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.02, 0.8, -0.259713)
+layers = 4
+mesh = SubResource("CapsuleMesh_t0cpu")
+
 [node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.598, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 cull_mask = 3
 fov = 90.0
 
