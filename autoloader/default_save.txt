@@ -1,3 +1,8 @@
+# DO NOT touch this. At all. This is your ONLY WAY to revert to a normal save. 
+# If you want to "manipulate" your game, change the CURRENT save file. The name of it should be "save_data.txt" 
+# If you have no current save file, start the game once, it will create one.
+# Hope you are having fun with Project:REDLINE, greetings from HerrKleiderbauer :)
+
 # controlls
 forewards=W (Physical)
 left=A (Physical)
