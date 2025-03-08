@@ -33,6 +33,7 @@ var vaultVector:Vector3
 var lastDistance:float
 var vaultSpeed:float = 10
 var speedIncrease:float = 1.5
+var preservedJump:bool = false
 
 #basic shit
 func _ready():
@@ -60,6 +61,18 @@ func basic_movement():
 		velocity.x = 0
 		velocity.z = 0
 func jump_logic(delta:float):
+	#store jump inputs while vaulting
+	if vaulting and Input.is_action_just_pressed("ui_accept"):
+		if jumps > 0:
+			preservedJump = true
+	
+	if not vaulting and preservedJump:
+		used_gravity = default_gravity
+		jumps -= 1
+		velocity.y = JUMP_VELOCITY
+		
+		preservedJump = false
+	
 	#increase gravity while falling
 	if velocity.y < 0 and not is_on_wall():
 		used_gravity.y -= gravity_changer*delta

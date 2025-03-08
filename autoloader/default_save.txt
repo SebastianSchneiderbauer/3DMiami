@@ -16,7 +16,7 @@ db4=P (Physical)
 
 # gameplay setting
 sensitivity=0.2
-fov=90
+fov=100
 crosshairScale=0.01
 
 # graphic settings
