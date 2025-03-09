@@ -4,7 +4,9 @@ const default_gravity:Vector3 = Vector3(0,-9.8,0)
 var used_gravity: Vector3 = default_gravity
 var gravity_changer:float = 20 #ridiculously high, bc this without deltatime would be crazy
 
-var speed:float = 10.0
+var baseSpeed:float = 7.0
+var crouchSpeed:float = baseSpeed*1.4
+var speed:float = baseSpeed
 const JUMP_VELOCITY:float = 6
 
 
@@ -42,6 +44,8 @@ var crouchEnd:float = 0.8
 var inWallDetectorPosition:Vector3 = Vector3(0,0.5,0)
 var inWallDetectorTarget:Vector3 = Vector3(0,1,0)
 var slideDirection:Vector3
+var slideDuration:float = 0.4
+var slideTimer:float = 0
 
 #basic shit
 func _ready():
@@ -136,7 +140,8 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		slideDirection = direction
 		crouched = true
 	
-	if not Input.is_action_pressed("ctrl") and not uncrouch_detector.is_colliding() or Input.is_action_just_pressed("ui_accept"):
+	if slideTimer > slideDuration:
+		slideTimer = 0
 		crouched = false
 	
 	var hitbox_uncrouched: CollisionShape3D = $"hitbox-uncrouched"
@@ -156,12 +161,15 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 	eyes_crouched.visible = crouched
 	
 	if crouched:
+		speed = crouchSpeed
+		slideTimer += delta
 		in_wall_detector.position = inWallDetectorPosition*0.5
 		in_wall_detector.target_position = inWallDetectorTarget*0.5
 		camera.position.y -= delta*10
 		if camera.position.y < crouchEnd:
 			camera.position.y = crouchEnd
 	else:
+		speed = baseSpeed
 		in_wall_detector.position = inWallDetectorPosition
 		in_wall_detector.target_position = inWallDetectorTarget
 		camera.position.y += delta*10

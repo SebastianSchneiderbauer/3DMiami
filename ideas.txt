@@ -15,4 +15,8 @@ World building:
 
 implement a system to save your settings and load them again. maybe as a overwrite to the normal reset?
 
+i idea not suitable for this game, but for a actual "speedrun" game. increasing gravity as you fall (already in this game, reduces the jump feeling floaty), when going into a slide, you vertical velocity gets converted into speed that slowly decreases if you dont slide
+
+slide idea for this game: no speed stuff, cut the "parkour" aspect, focus on general movement. the slide is a one time button press that starts a slide that is uncanable. it would allow you to go threw enemys (aka you slide threw their feet) where you can maybe make them trip or something
+
 console?
