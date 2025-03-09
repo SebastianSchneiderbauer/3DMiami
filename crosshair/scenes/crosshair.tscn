@@ -31,25 +31,47 @@ mouse_filter = 2
 texture = ExtResource("1_xvgfe")
 
 [node name="HSlider" type="HSlider" parent="."]
-layout_mode = 0
-offset_left = 456.0
-offset_top = 344.0
-offset_right = 696.0
-offset_bottom = 360.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_icons/grabber = SubResource("CanvasTexture_xvgfe")
 max_value = 99.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 535.0
-offset_top = 348.0
-offset_right = 537.0
-offset_bottom = 356.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = 24.0
+offset_right = -39.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0, 1, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = 615.0
-offset_top = 348.0
-offset_right = 617.0
-offset_bottom = 356.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 39.0
+offset_top = 24.0
+offset_right = 41.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0, 1, 1)

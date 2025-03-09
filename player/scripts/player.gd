@@ -46,8 +46,9 @@ var inWallDetectorTarget:Vector3 = Vector3(0,1,0)
 var slideDirection:Vector3
 var partialSlideCount = 0
 var partialSlideMax = 3
-var slidePartialDuration:float = 0.5
+var slidePartialDuration:float = 0.4
 var slideTimer:float = 0
+var released:bool = true
 
 #basic shit
 func _ready():
@@ -138,13 +139,17 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 	var uncrouch_detector: RayCast3D = $uncrouchDetector
 	uncrouch_detector.force_raycast_update()
 	
-	if not crouched and Input.is_action_just_pressed("ctrl") and is_on_floor() and direction != Vector3.ZERO:
+	if not released and not Input.is_action_pressed("ctrl"):
+		released = true
+	
+	if not crouched and Input.is_action_pressed("ctrl") and is_on_floor() and direction != Vector3.ZERO and released:
+		released = false
 		slideDirection = direction
 		partialSlideCount += 1
 		crouched = true
 	
 	#cases in which we end the slide
-	if (slideTimer > slidePartialDuration and partialSlideCount >= partialSlideMax) or (not Input.is_action_pressed("ctrl") and slideTimer > slidePartialDuration):
+	if ((slideTimer > slidePartialDuration and partialSlideCount >= partialSlideMax) or (not Input.is_action_pressed("ctrl") and slideTimer > slidePartialDuration)) and not uncrouch_detector.is_colliding():
 		slideTimer = 0
 		partialSlideCount = 0
 		crouched = false
@@ -179,6 +184,7 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		in_wall_detector.position = inWallDetectorPosition*0.5
 		in_wall_detector.target_position = inWallDetectorTarget*0.5
 		camera.position.y -= delta*10
+		
 		if camera.position.y < crouchEnd:
 			camera.position.y = crouchEnd
 	else:
@@ -186,13 +192,17 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		in_wall_detector.position = inWallDetectorPosition
 		in_wall_detector.target_position = inWallDetectorTarget
 		camera.position.y += delta*10
+		
 		if camera.position.y > crouchStart:
 			camera.position.y = crouchStart
-func move(delta): #custom move function for extra logic before and after calling move_and_slide()
+	
 	if crouched:
 		velocity.x = slideDirection.x * speed
 		velocity.z = slideDirection.z * speed
-	
+		
+		direction.x = slideDirection.x
+		direction.y = slideDirection.y
+func move(delta): #custom move function for extra logic before and after calling move_and_slide()
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
 	
@@ -267,7 +277,7 @@ func can_vault() -> bool: #dont open me, just trust me
 	if distancer.is_colliding():
 		vaultPoint = distancer.get_collision_point()
 	
-	return not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and direction != Vector3.ZERO
+	return not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
 func debug():
 	if Input.is_action_just_pressed("debug1"):
 		camera.position.z = +3
@@ -285,8 +295,8 @@ func debug():
 func _physics_process(delta): # "main"
 	basic_movement()
 	jump_logic(delta)
-	vault_logic(delta)
 	crouch(delta)
+	vault_logic(delta)
 	
 	debug()
 	
