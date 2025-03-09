@@ -128,7 +128,7 @@ func vault_logic(delta:float):
 		lastDistance = 100 #just a high number
 		storedVelocity = velocity
 		vaulting = true
-func crouch(delta:float):
+func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the crouching animation so it counts
 	var uncrouch_detector: RayCast3D = $uncrouchDetector
 	uncrouch_detector.force_raycast_update()
 	
@@ -158,13 +158,13 @@ func crouch(delta:float):
 	if crouched:
 		in_wall_detector.position = inWallDetectorPosition*0.5
 		in_wall_detector.target_position = inWallDetectorTarget*0.5
-		camera.position.y -= delta*5
+		camera.position.y -= delta*10
 		if camera.position.y < crouchEnd:
 			camera.position.y = crouchEnd
 	else:
 		in_wall_detector.position = inWallDetectorPosition
 		in_wall_detector.target_position = inWallDetectorTarget
-		camera.position.y += delta*5
+		camera.position.y += delta*10
 		if camera.position.y > crouchStart:
 			camera.position.y = crouchStart
 func move(delta): #custom move function for extra logic before and after calling move_and_slide()
