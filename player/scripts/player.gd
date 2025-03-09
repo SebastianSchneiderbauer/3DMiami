@@ -44,7 +44,9 @@ var crouchEnd:float = 0.8
 var inWallDetectorPosition:Vector3 = Vector3(0,0.5,0)
 var inWallDetectorTarget:Vector3 = Vector3(0,1,0)
 var slideDirection:Vector3
-var slideDuration:float = 0.4
+var partialSlideCount = 0
+var partialSlideMax = 3
+var slidePartialDuration:float = 0.5
 var slideTimer:float = 0
 
 #basic shit
@@ -136,13 +138,24 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 	var uncrouch_detector: RayCast3D = $uncrouchDetector
 	uncrouch_detector.force_raycast_update()
 	
-	if not crouched and Input.is_action_pressed("ctrl") and is_on_floor() and direction != Vector3.ZERO:
+	if not crouched and Input.is_action_just_pressed("ctrl") and is_on_floor() and direction != Vector3.ZERO:
 		slideDirection = direction
+		partialSlideCount += 1
 		crouched = true
 	
-	if slideTimer > slideDuration:
+	#cases in which we end the slide
+	if (slideTimer > slidePartialDuration and partialSlideCount >= partialSlideMax) or (not Input.is_action_pressed("ctrl") and slideTimer > slidePartialDuration):
 		slideTimer = 0
+		partialSlideCount = 0
 		crouched = false
+	
+	if slideTimer > slidePartialDuration:
+		slideTimer = 0
+		partialSlideCount += 1
+	
+	#prototype of showing your "slide" energy
+	var slidability:HSlider = get_node("../overlay/crosshair/HSlider")
+	slidability.value = 99 - partialSlideCount*33 + (1 - slideTimer/slidePartialDuration)*33
 	
 	var hitbox_uncrouched: CollisionShape3D = $"hitbox-uncrouched"
 	var mesh_uncrouched: MeshInstance3D = $"mesh-uncrouched"

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdaq8exuytosd"]
+[gd_scene load_steps=3 format=3 uid="uid://cdaq8exuytosd"]
 
 [ext_resource type="Texture2D" uid="uid://cs23c050i3gt0" path="res://crosshair/textures/White_Circle.svg" id="1_xvgfe"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xvgfe"]
 
 [node name="crosshair" type="Control"]
 layout_mode = 3
@@ -23,6 +25,31 @@ offset_right = 300.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.02, 0.02)
 pivot_offset = Vector2(300, 300)
 mouse_filter = 2
 texture = ExtResource("1_xvgfe")
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 344.0
+offset_right = 696.0
+offset_bottom = 360.0
+theme_override_icons/grabber = SubResource("CanvasTexture_xvgfe")
+max_value = 99.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 348.0
+offset_right = 537.0
+offset_bottom = 356.0
+color = Color(1, 0, 1, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 615.0
+offset_top = 348.0
+offset_right = 617.0
+offset_bottom = 356.0
+color = Color(1, 0, 1, 1)
