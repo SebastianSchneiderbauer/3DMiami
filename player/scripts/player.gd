@@ -44,9 +44,7 @@ var crouchEnd:float = 0.8
 var inWallDetectorPosition:Vector3 = Vector3(0,0.5,0)
 var inWallDetectorTarget:Vector3 = Vector3(0,1,0)
 var slideDirection:Vector3
-var partialSlideCount = 0
-var partialSlideMax = 3
-var slidePartialDuration:float = 0.4
+var slideDuration:float = 0.4
 var slideTimer:float = 0
 var released:bool = true
 
@@ -142,25 +140,23 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 	if not released and not Input.is_action_pressed("ctrl"):
 		released = true
 	
-	if not crouched and Input.is_action_pressed("ctrl") and is_on_floor() and direction != Vector3.ZERO and released:
+	if not crouched and Input.is_action_pressed("ctrl") and is_on_floor() and released:
+		if direction == Vector3.ZERO:
+			var foreward:Vector3 = -camera.global_transform.basis.z
+			foreward.y = 0
+			direction = foreward.normalized()
+			print(direction)
+			print("wwwwww")
+		
 		released = false
 		slideDirection = direction
-		partialSlideCount += 1
+		slideTimer = 0
 		crouched = true
 	
 	#cases in which we end the slide
-	if ((slideTimer > slidePartialDuration and partialSlideCount >= partialSlideMax) or (not Input.is_action_pressed("ctrl") and slideTimer > slidePartialDuration)) and not uncrouch_detector.is_colliding():
+	if (slideTimer > slideDuration and not uncrouch_detector.is_colliding()):
 		slideTimer = 0
-		partialSlideCount = 0
 		crouched = false
-	
-	if slideTimer > slidePartialDuration:
-		slideTimer = 0
-		partialSlideCount += 1
-	
-	#prototype of showing your "slide" energy
-	var slidability:HSlider = get_node("../overlay/crosshair/HSlider")
-	slidability.value = 99 - partialSlideCount*33 + (1 - slideTimer/slidePartialDuration)*33
 	
 	var hitbox_uncrouched: CollisionShape3D = $"hitbox-uncrouched"
 	var mesh_uncrouched: MeshInstance3D = $"mesh-uncrouched"
