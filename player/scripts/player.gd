@@ -141,12 +141,10 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		released = true
 	
 	if not crouched and Input.is_action_pressed("ctrl") and is_on_floor() and released:
-		if direction == Vector3.ZERO:
+		if direction == Vector3.ZERO: #in case no input is present, take the one we are looking in
 			var foreward:Vector3 = -camera.global_transform.basis.z
 			foreward.y = 0
 			direction = foreward.normalized()
-			print(direction)
-			print("wwwwww")
 		
 		released = false
 		slideDirection = direction
@@ -175,14 +173,18 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 	eyes_crouched.visible = crouched
 	
 	if crouched:
+		if not vaulting:
+			slideTimer += delta
+		
 		speed = crouchSpeed
-		slideTimer += delta
 		in_wall_detector.position = inWallDetectorPosition*0.5
 		in_wall_detector.target_position = inWallDetectorTarget*0.5
 		camera.position.y -= delta*10
 		
 		if camera.position.y < crouchEnd:
 			camera.position.y = crouchEnd
+		else:
+			camera.rotation.x += delta*0.8
 	else:
 		speed = baseSpeed
 		in_wall_detector.position = inWallDetectorPosition
@@ -191,6 +193,8 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		
 		if camera.position.y > crouchStart:
 			camera.position.y = crouchStart
+		else:
+			camera.rotation.x -= delta*0.8
 	
 	if crouched:
 		velocity.x = slideDirection.x * speed
