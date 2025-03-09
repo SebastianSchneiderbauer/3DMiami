@@ -73,6 +73,15 @@ mesh = SubResource("BoxMesh_almsb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.26985, 0.709449, 5.60875)
 shape = SubResource("BoxShape3D_l8r71")
 
+[node name="vaulttest(Mesh)2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3322, 2.3886, 8.27763)
+material_override = SubResource("StandardMaterial3D_44ped")
+mesh = SubResource("BoxMesh_almsb")
+
+[node name="vaulttest(Collision)2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3322, 2.3886, 8.27763)
+shape = SubResource("BoxShape3D_l8r71")
+
 [node name="DeathResetBorder" type="Area3D" parent="."]
 collision_layer = 8388608
 collision_mask = 8388608

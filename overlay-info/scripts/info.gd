@@ -9,3 +9,4 @@ func _process(delta):
 	fps_label.text += "\nonfloor: " +str(player.is_on_wall())
 	fps_label.text += "\nglobalPosition: " + str(player.global_position)
 	fps_label.text += "\ndirection: " + str(player.direction)
+	fps_label.text += "\nvelocity: " + str(player.velocity)

@@ -37,8 +37,11 @@ var preservedJump:bool = false
 
 #crouch
 var crouched:bool = false
-var crouchStart:Vector3 = Vector3(1,1,1)
-var crouchEnd:Vector3 = Vector3(0.5,0.5,0.5)
+var crouchStart:float = 1.6
+var crouchEnd:float = 0.8
+var inWallDetectorPosition:Vector3 = Vector3(0,0.5,0)
+var inWallDetectorTarget:Vector3 = Vector3(0,1,0)
+var slideDirection:Vector3
 
 #basic shit
 func _ready():
@@ -126,22 +129,56 @@ func vault_logic(delta:float):
 		storedVelocity = velocity
 		vaulting = true
 func crouch(delta:float):
-	crouched = Input.is_action_pressed("ctrl")
+	var uncrouch_detector: RayCast3D = $uncrouchDetector
+	uncrouch_detector.force_raycast_update()
+	
+	if not crouched and Input.is_action_pressed("ctrl") and is_on_floor() and direction != Vector3.ZERO:
+		slideDirection = direction
+		crouched = true
+	
+	if not Input.is_action_pressed("ctrl") and not uncrouch_detector.is_colliding() or Input.is_action_just_pressed("ui_accept"):
+		crouched = false
 	
 	var hitbox_uncrouched: CollisionShape3D = $"hitbox-uncrouched"
 	var mesh_uncrouched: MeshInstance3D = $"mesh-uncrouched"
+	var eyes_uncrouched: MeshInstance3D = $"eyes-uncrouched"
+	var hitbox_crouched: CollisionShape3D = $hitbox_crouched
+	var mesh_crouched: MeshInstance3D = $"mesh-crouched"
+	var eyes_crouched: MeshInstance3D = $"eyes-crouched"
+	var camera: Camera3D = $camera
+	var in_wall_detector: RayCast3D = $inWallDetector
 	
+	hitbox_uncrouched.disabled = crouched
+	mesh_uncrouched.visible = not crouched
+	eyes_uncrouched.visible = not crouched
+	hitbox_crouched.disabled = not crouched
+	mesh_crouched.visible = crouched
+	eyes_crouched.visible = crouched
+	
+	if crouched:
+		in_wall_detector.position = inWallDetectorPosition*0.5
+		in_wall_detector.target_position = inWallDetectorTarget*0.5
+		camera.position.y -= delta*5
+		if camera.position.y < crouchEnd:
+			camera.position.y = crouchEnd
+	else:
+		in_wall_detector.position = inWallDetectorPosition
+		in_wall_detector.target_position = inWallDetectorTarget
+		camera.position.y += delta*5
+		if camera.position.y > crouchStart:
+			camera.position.y = crouchStart
 func move(delta): #custom move function for extra logic before and after calling move_and_slide()
+	if crouched:
+		velocity.x = slideDirection.x * speed
+		velocity.z = slideDirection.z * speed
+	
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
 	
-	if is_on_wall() and velocity.y < 0:
-		velocity.y /= 5
+	if is_on_wall() and velocity.y < 0 and not Input.is_action_pressed("ctrl"):
+		velocity.y = used_gravity.y/7
 	
 	move_and_slide()
-	
-	if is_on_wall() and velocity.y < 0:
-		velocity.y *= 5
 	
 	#fix bug where we get stuck in a wall when vaulting at a strange angle, its snappy, but fuck the user its their fualt if they run into a wall like this
 	var inWallDetector: RayCast3D = $inWallDetector
