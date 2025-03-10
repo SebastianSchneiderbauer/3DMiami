@@ -1,16 +1,25 @@
 extends Node
 
 const SAVE_PATH := "user://save_data.txt"
-const DEFAULT_SAVE_RES_PATH := "res://autoloader/default_save.txt"  # Read-only in EXE
-const DEFAULT_SAVE_USER_PATH := "user://default_save.txt"  # Readable & writable
 var save_data := {}
 
 signal save_data_update
 var loaded:bool = false
 
+# Default values (Embedded for portability)
+var default_values := {
+	"sensitivity": 0.2,
+	"fov": 100,
+	"crosshairScale": 0.01,
+	"scaler": 2,
+	"fsrStrength": 1,
+	"scalerStrength": 100.0,
+	"fullScreen": false,
+	"VSYNC": true,
+	"defaultScreen": 0
+}
+
 func _ready():
-	ensure_default_save_exists()  # Ensure default save is copied to user://
-	load_default_save_data()
 	load_game()
 	loaded = true
 
@@ -35,11 +44,21 @@ func load_game():
 				var key = parts[0].strip_edges()
 				var value = parts[1].strip_edges()
 				save_data[key] = parse_value(value)  # Use the same type detection
-		print("Save file location:", ProjectSettings.globalize_path("user://save_data.txt"))
 	else:
-		print("No save file found. Loading defaults from default_save.txt.")
-		load_default_save_data()
+		print("No save file found. Loading defaults.")
+		reset_to_defaults()  # Use embedded defaults
 		save_game()
+
+func reset_to_defaults():
+	save_data = default_values.duplicate()  # Copy fresh default values
+	save_game()
+	emit_signal("save_data_update")
+
+func reset_property_to_default(property_name: String):
+	if default_values.has(property_name):
+		save_data[property_name] = default_values[property_name]
+		save_game()
+		emit_signal("save_data_update")
 
 func set_data(property_name: String, value):
 	save_data[property_name] = value
@@ -48,42 +67,12 @@ func set_data(property_name: String, value):
 func get_data(property_name: String):
 	return save_data.get(property_name, null)
 
+func get_default_value(property_name: String):
+	""" Returns the default value for a given property from default_values. """
+	return default_values.get(property_name, null)
+
 func get_all_data():
 	return save_data  # Returns the entire save data dictionary for debugging
-
-func load_default_save_data():
-	if FileAccess.file_exists(DEFAULT_SAVE_USER_PATH):
-		var file = FileAccess.open(DEFAULT_SAVE_USER_PATH, FileAccess.READ)
-		save_data.clear()
-		while not file.eof_reached():
-			var line = file.get_line().strip_edges()
-
-			# Ignore comments and empty lines in default save file
-			if line.is_empty() or line.begins_with("#"):
-				continue
-
-			var parts = line.split("=")
-			if parts.size() == 2:
-				var key = parts[0].strip_edges()
-				var value = parts[1].strip_edges()
-				save_data[key] = parse_value(value)  # Ensure correct types
-
-		emit_signal("save_data_update")
-	else:
-		print("Warning: Default save file not found at ", DEFAULT_SAVE_USER_PATH)
-
-func ensure_default_save_exists():
-	""" Ensures a default save file exists in user:// by copying it from res:// on first run. """
-	if not FileAccess.file_exists(DEFAULT_SAVE_USER_PATH):
-		if FileAccess.file_exists(DEFAULT_SAVE_RES_PATH):
-			print("Copying default_save.txt to user:// for persistence...")
-			var res_file = FileAccess.open(DEFAULT_SAVE_RES_PATH, FileAccess.READ)
-			var user_file = FileAccess.open(DEFAULT_SAVE_USER_PATH, FileAccess.WRITE)
-			
-			while not res_file.eof_reached():
-				user_file.store_line(res_file.get_line())
-		else:
-			print("Warning: Default save file not found in res://!")
 
 # Helper function to ensure type detection is consistent
 func parse_value(value: String):

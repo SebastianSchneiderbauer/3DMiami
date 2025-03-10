@@ -286,7 +286,7 @@ func debug():
 		print(SaveManager.get_data("fov"))
 	
 	if Input.is_action_just_pressed("debug3"):
-		SaveManager.load_default_save_data()
+		SaveManager.reset_to_defaults()
 		SaveManager.save_game()
 	
 	if Input.is_action_just_pressed("debug4"):
