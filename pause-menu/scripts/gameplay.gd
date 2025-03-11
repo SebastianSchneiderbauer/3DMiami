@@ -44,6 +44,9 @@ func _process(delta):
 		crosshair_slider.value = SaveManager.get_data("crosshairScale")
 		loaded = true
 	
+	if Input.is_action_pressed("ui_cancel") and visible:
+		_on_return_pressed()
+	
 	#sensi
 	sens_label.set_text(str(sens_slider.value))
 	player.sensitivity = sens_slider.value

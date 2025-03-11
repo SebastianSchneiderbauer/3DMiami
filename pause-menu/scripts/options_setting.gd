@@ -32,6 +32,9 @@ func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)
 
 func _process(delta):
+	if Input.is_action_pressed("ui_cancel") and visible:
+		_on_return_pressed()
+	
 	if SaveManager.loaded and not loaded:
 		scaler._select_int(SaveManager.get_data("scaler"))
 		_on_scaler_item_selected(SaveManager.get_data("scaler"))

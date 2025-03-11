@@ -7,6 +7,9 @@ var diff = end - start
 @onready var v_slider:VSlider = $VSlider
 
 func _process(delta):
+	if Input.is_action_pressed("ui_cancel") and visible:
+		_on_return_pressed()
+	
 	if visible:
 		if Input.is_action_just_pressed("mouseWheelUp"):
 			v_slider.value -= v_slider.step*1000*delta
