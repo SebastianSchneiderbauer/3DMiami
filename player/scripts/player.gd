@@ -74,6 +74,10 @@ func basic_movement():
 		velocity.x = 0
 		velocity.z = 0
 func jump_logic(delta:float):
+	#abort if we are sliding/crouching (aka the exact same thing, reading this in a few years will be fun (: )
+	if crouched:
+		return
+	
 	#store jump inputs while vaulting
 	if vaulting and Input.is_action_just_pressed("ui_accept"):
 		if jumps > 0:
@@ -147,12 +151,12 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 			direction = foreward.normalized()
 		
 		released = false
-		slideDirection = direction
+		slideDirection = direction*1.2
 		slideTimer = 0
 		crouched = true
 	
 	#cases in which we end the slide
-	if (slideTimer > slideDuration and not uncrouch_detector.is_colliding()) and is_on_floor():
+	if (slideTimer > slideDuration and not uncrouch_detector.is_colliding()):
 		slideTimer = 0
 		crouched = false
 	
@@ -185,6 +189,10 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 			camera.position.y = crouchEnd
 		else:
 			camera.rotation.x += delta*0.8
+		
+		velocity.x = slideDirection.x * speed
+		velocity.z = slideDirection.z * speed
+		direction = slideDirection
 	else:
 		speed = baseSpeed
 		in_wall_detector.position = inWallDetectorPosition
@@ -195,17 +203,6 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 			camera.position.y = crouchStart
 		else:
 			camera.rotation.x -= delta*0.8
-	
-	if crouched:
-		if not is_on_floor():
-			velocity.x += slideDirection.x * speed
-			velocity.z += slideDirection.z * speed
-		else:
-			velocity.x = slideDirection.x * speed
-			velocity.z = slideDirection.z * speed
-		
-		direction.x = slideDirection.x
-		direction.y = slideDirection.y
 func move(delta): #custom move function for extra logic before and after calling move_and_slide()
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
@@ -262,7 +259,7 @@ func can_vault() -> bool: #dont open me, just trust me
 	var wallchecker:RayCast3D = $wallchecker
 	var distancer:RayCast3D = $distancer
 	
-	var posi:Vector3 = global_position + direction*0.8
+	var posi:Vector3 = global_position + direction
 	posi.y += vault_height
 	distancer.global_position = posi
 	distancer.target_position.y = -1 * (vault_height + 1)
@@ -280,6 +277,8 @@ func can_vault() -> bool: #dont open me, just trust me
 	
 	if distancer.is_colliding():
 		vaultPoint = distancer.get_collision_point()
+	
+	get_node("deb1").global_position = distancer.global_position
 	
 	return not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
 func debug():

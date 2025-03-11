@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=9 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://player/scripts/player.gd" id="1_apn28"]
 
@@ -19,6 +19,9 @@ height = 1.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8h4do"]
 height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_apn28"]
+size = Vector3(0.1, 0.1, 0.1)
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 8388609
@@ -80,3 +83,6 @@ collision_mask = 2
 [node name="flashlight?" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842242, 0)
 omni_range = 64.98
+
+[node name="deb1" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_apn28")
