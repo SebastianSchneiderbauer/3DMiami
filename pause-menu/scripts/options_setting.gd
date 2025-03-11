@@ -22,8 +22,7 @@ var Resolutions: Dictionary = {"3840x2160":Vector2i(3840,2160),
 								"1280x720":Vector2i(1280,720),
 								"1024x600":Vector2i(1024,600),
 								"800x600": Vector2i(800,600)}
-								
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	Add_Resolutions()
 	Check_Variables()
@@ -33,7 +32,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("ui_cancel") and visible:
-		_on_return_pressed()
+		get_parent().hide()
 	
 	if SaveManager.loaded and not loaded:
 		scaler._select_int(SaveManager.get_data("scaler"))

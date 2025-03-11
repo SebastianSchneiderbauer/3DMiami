@@ -152,7 +152,7 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		crouched = true
 	
 	#cases in which we end the slide
-	if (slideTimer > slideDuration and not uncrouch_detector.is_colliding()):
+	if (slideTimer > slideDuration and not uncrouch_detector.is_colliding()) and is_on_floor():
 		slideTimer = 0
 		crouched = false
 	
@@ -197,8 +197,12 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 			camera.rotation.x -= delta*0.8
 	
 	if crouched:
-		velocity.x = slideDirection.x * speed
-		velocity.z = slideDirection.z * speed
+		if not is_on_floor():
+			velocity.x += slideDirection.x * speed
+			velocity.z += slideDirection.z * speed
+		else:
+			velocity.x = slideDirection.x * speed
+			velocity.z = slideDirection.z * speed
 		
 		direction.x = slideDirection.x
 		direction.y = slideDirection.y
@@ -301,6 +305,5 @@ func _physics_process(delta): # "main"
 	debug()
 	
 	move(delta)
-
 func _process(delta):
 	handle_mouse_look()

@@ -8,7 +8,7 @@ var diff = end - start
 
 func _process(delta):
 	if Input.is_action_pressed("ui_cancel") and visible:
-		_on_return_pressed()
+		hide()
 	
 	if visible:
 		if Input.is_action_just_pressed("mouseWheelUp"):

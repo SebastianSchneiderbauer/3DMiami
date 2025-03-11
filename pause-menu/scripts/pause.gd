@@ -1,18 +1,24 @@
 extends Control
 
 var paused:bool = false
+var inSubMenu:bool = false
 @onready var animationPlayer:AnimationPlayer = $AnimationPlayer
 
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
-		paused = not paused
+func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		if inSubMenu:
+			inSubMenu = false
+		else:
+			paused = not paused
 		
 		get_tree().paused = paused
 		if(paused):
-			animationPlayer.play("base-show")
+			get_node("VBoxContainer").show()
+			get_node("ColorRect").show()
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
-			animationPlayer.play("base-hide")
+			get_node("VBoxContainer").hide()
+			get_node("ColorRect").hide()
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_resume_pressed():
@@ -24,9 +30,12 @@ func _on_resume_pressed():
 
 func _on_gameplay_pressed():
 	animationPlayer.play("gameplay-show")
+	inSubMenu = true
 
 func _on_graphics_pressed():
 	animationPlayer.play("graphic-show")
+	inSubMenu = true
 
 func _on_controlls_pressed():
 	animationPlayer.play("controlls-show")
+	inSubMenu = true
