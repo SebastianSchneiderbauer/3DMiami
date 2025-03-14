@@ -116,6 +116,7 @@ func jump_logic(delta:float):
 				var wallVector: Vector3 = get_shortest_wall_vector().normalized() * wallJumpForce * (speed/10)
 				velocity.y = JUMP_VELOCITY
 				extraVelocity += wallVector
+				# print(wallVector)
 func vault_logic(delta:float):
 	if vaulting:
 		velocity = Vector3.ZERO
@@ -277,8 +278,6 @@ func can_vault() -> bool: #dont open me, just trust me
 	
 	if distancer.is_colliding():
 		vaultPoint = distancer.get_collision_point()
-	
-	get_node("deb1").global_position = distancer.global_position
 	
 	return not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
 func debug():
