@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://d22k2ss55xjem"]
 
-[ext_resource type="Script" uid="uid://y8pkfxxfc2s3" path="res://pause-menu/scripts/pause.gd" id="1_0nhpn"]
-[ext_resource type="PackedScene" uid="uid://c4w8gxxk2e2kl" path="res://pause-menu/scenes/gameplay.tscn" id="2_iv7ha"]
-[ext_resource type="PackedScene" uid="uid://buq5uc2knvqn6" path="res://pause-menu/scenes/graphic.tscn" id="3_djb4f"]
-[ext_resource type="PackedScene" uid="uid://xma4roxij2ty" path="res://pause-menu/scenes/controlls.tscn" id="4_pan4r"]
+[ext_resource type="Script" uid="uid://y8pkfxxfc2s3" path="res://ui/pause-menu/scripts/pause.gd" id="1_0nhpn"]
+[ext_resource type="PackedScene" uid="uid://c4w8gxxk2e2kl" path="res://ui/pause-menu/scenes/gameplay.tscn" id="2_iv7ha"]
+[ext_resource type="PackedScene" uid="uid://buq5uc2knvqn6" path="res://ui/pause-menu/scenes/graphic.tscn" id="3_djb4f"]
+[ext_resource type="PackedScene" uid="uid://xma4roxij2ty" path="res://ui/pause-menu/scenes/controlls.tscn" id="4_pan4r"]
 
 [sub_resource type="Animation" id="Animation_sshc7"]
 length = 0.001
@@ -574,15 +574,15 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_djb4f"]
 _data = {
-"RESET": SubResource("Animation_sshc7"),
-"base-hide": SubResource("Animation_d8bnt"),
-"base-show": SubResource("Animation_iv7ha"),
-"controlls-hide": SubResource("Animation_w3a16"),
-"controlls-show": SubResource("Animation_wbx6g"),
-"gameplay-hide": SubResource("Animation_gqngu"),
-"gameplay-show": SubResource("Animation_pan4r"),
-"graphic-hide": SubResource("Animation_hrb25"),
-"graphic-show": SubResource("Animation_wdy4y")
+&"RESET": SubResource("Animation_sshc7"),
+&"base-hide": SubResource("Animation_d8bnt"),
+&"base-show": SubResource("Animation_iv7ha"),
+&"controlls-hide": SubResource("Animation_w3a16"),
+&"controlls-show": SubResource("Animation_wbx6g"),
+&"gameplay-hide": SubResource("Animation_gqngu"),
+&"gameplay-show": SubResource("Animation_pan4r"),
+&"graphic-hide": SubResource("Animation_hrb25"),
+&"graphic-show": SubResource("Animation_wdy4y")
 }
 
 [node name="Pause" type="Control"]
@@ -667,7 +667,7 @@ layout_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
 libraries = {
-"": SubResource("AnimationLibrary_djb4f")
+&"": SubResource("AnimationLibrary_djb4f")
 }
 
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]

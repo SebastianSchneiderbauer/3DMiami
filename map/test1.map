@@ -1,3 +1,5 @@
+// Game: Godot
+// Format: Standard
 // entity 0
 {
 "classname" "worldspawn"
@@ -13,6 +15,6 @@
 }
 // entity 1
 {
-"classname" "player"
-"origin" "8 -8 16"
+"classname" "player_player"
+"origin" "-8 -8 16"
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://buq5uc2knvqn6"]
 
-[ext_resource type="Script" uid="uid://t0qm0o65h4bw" path="res://pause-menu/scripts/options_setting.gd" id="1_7ashe"]
+[ext_resource type="Script" uid="uid://t0qm0o65h4bw" path="res://ui/pause-menu/scripts/options_setting.gd" id="1_7ashe"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gqngu"]
 font_size = 25
@@ -46,6 +46,7 @@ layout_mode = 2
 selected = 1
 item_count = 3
 popup/item_0/text = "SCALER"
+popup/item_0/id = 0
 popup/item_0/disabled = true
 popup/item_0/separator = true
 popup/item_1/text = "BILINEAR"
@@ -59,6 +60,7 @@ layout_mode = 2
 selected = 0
 item_count = 8
 popup/item_0/text = "FSR Options"
+popup/item_0/id = 0
 popup/item_0/disabled = true
 popup/item_0/separator = true
 popup/item_1/text = "Literal Potato"

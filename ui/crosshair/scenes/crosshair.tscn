@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdaq8exuytosd"]
 
-[ext_resource type="Texture2D" uid="uid://cs23c050i3gt0" path="res://crosshair/textures/White_Circle.svg" id="1_xvgfe"]
+[ext_resource type="Texture2D" uid="uid://cs23c050i3gt0" path="res://ui/crosshair/textures/White_Circle.svg" id="1_xvgfe"]
 
 [node name="crosshair" type="Control"]
 layout_mode = 3
