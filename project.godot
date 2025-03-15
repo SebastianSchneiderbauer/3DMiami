@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="3DMiami"
-run/main_scene="uid://b0m4r88nagwh5"
+run/main_scene="res://world/scenes/world.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,7 @@ SaveManager="*res://autoloader/SaveManager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
 
 [file_customization]
 

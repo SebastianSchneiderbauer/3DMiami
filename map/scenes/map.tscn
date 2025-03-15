@@ -100,7 +100,6 @@ shape = SubResource("BoxShape3D_almsb")
 
 [node name="V1" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.544171, 0, 0.838975, 0, 1, 0, -0.838975, 0, -0.544171, -13.9846, 0.552925, -17.0394)
-gi_lightmap_texel_scale = 10.0
 mesh = ExtResource("3_almsb")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="V1"]
