@@ -12,7 +12,7 @@
 
 @SolidClass = area : "Area" []
 
-@PointClass base(Angle) size(-16 -16 -16, 16 16 16) color(0 255 0) = player : "Player" []
+@PointClass base(Angle) size(-8 -8 0, 8 8 32) color(0 255 0) = player : "Player" []
 
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
 	range(float) : "Range" : 10

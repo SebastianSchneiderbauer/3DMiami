@@ -14,5 +14,5 @@
 // entity 1
 {
 "classname" "player"
-"origin" "8 8 16"
+"origin" "0 0 16"
 }

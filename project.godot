@@ -27,6 +27,7 @@ enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
 
 folder_colors={
 "res://autoloader/": "purple",
+"res://entities/": "green",
 "res://legacy/": "gray"
 }
 
