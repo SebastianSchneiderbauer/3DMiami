@@ -32,7 +32,7 @@ folder_colors={
 "res://legacy/": "gray",
 "res://map/": "orange",
 "res://textures/": "green",
-"res://ui/": "yellow",
+"res://ui/": "purple",
 "res://world/": "orange"
 }
 

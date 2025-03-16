@@ -8,12 +8,13 @@ var loaded:bool = false
 @onready var fov_label:Label = $Options/ScaleBox2/FOVLabel
 @onready var crosshair_slider:HSlider = $Options/ScaleBox3/crosshairSlider
 @onready var crosshair_label:Label = $Options/ScaleBox3/crosshairLabel
-@onready var player:CharacterBody3D = get_node("../../../player")
+@onready var player:CharacterBody3D = get_node("../../../")
 @onready var cam:Camera3D = player.get_node("camera")
 @onready var crosshair:TextureRect = get_node("../../crosshair/TextureRect")
 @onready var show_crosshair:CheckButton = $"Options/ScaleBox4/show?"
 
 func _ready():
+	print(player)
 	SaveManager.save_data_update.connect(_on_savedata_update)
 
 func _on_savedata_update():

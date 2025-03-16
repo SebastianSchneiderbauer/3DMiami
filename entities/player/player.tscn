@@ -1,6 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=11 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="1_apn28"]
+[ext_resource type="PackedScene" uid="uid://d1acb3ydgpw1b" path="res://ui/overlay-info/scenes/info.tscn" id="2_bls4j"]
+[ext_resource type="PackedScene" uid="uid://d22k2ss55xjem" path="res://ui/pause-menu/scenes/pause.tscn" id="3_fkugw"]
+[ext_resource type="PackedScene" uid="uid://cdaq8exuytosd" path="res://ui/crosshair/scenes/crosshair.tscn" id="4_8fjmc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_twk7w"]
 
@@ -80,3 +83,14 @@ collision_mask = 2
 [node name="flashlight?" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842242, 0)
 omni_range = 64.98
+
+[node name="overlay" type="CanvasLayer" parent="."]
+
+[node name="Info" parent="overlay" instance=ExtResource("2_bls4j")]
+
+[node name="Pause" parent="overlay" instance=ExtResource("3_fkugw")]
+process_mode = 3
+
+[node name="crosshair" parent="overlay" instance=ExtResource("4_8fjmc")]
+z_index = -4
+mouse_filter = 2

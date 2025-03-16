@@ -1,7 +1,7 @@
 extends Control
 
 @onready var fps_label:Label = $fps
-@onready var player:CharacterBody3D = get_node("../../player")
+@onready var player:CharacterBody3D = get_node("../../")
 
 func _process(delta):
 	#fps_label.text = "ctrl pressed: " + str(Input.is_action_pressed("ctrl"))
