@@ -74,16 +74,16 @@ func basic_movement():
 		velocity.x = 0
 		velocity.z = 0
 func jump_logic(delta:float):
+	#store jump inputs while vaulting
+	if (vaulting or crouched) and Input.is_action_just_pressed("ui_accept"):
+		if jumps > 0:
+			preservedJump = true
+	
 	#abort if we are sliding/crouching (aka the exact same thing, reading this in a few years will be fun (: )
 	if crouched:
 		return
 	
-	#store jump inputs while vaulting
-	if vaulting and Input.is_action_just_pressed("ui_accept"):
-		if jumps > 0:
-			preservedJump = true
-	
-	if not vaulting and preservedJump:
+	if not vaulting and not crouched and preservedJump:
 		used_gravity = default_gravity
 		jumps -= 1
 		velocity.y = JUMP_VELOCITY
@@ -284,8 +284,8 @@ func debug():
 	if Input.is_action_just_pressed("debug1"):
 		camera.position.z = +3
 	
-	if Input.is_action_just_pressed("debug2"):
-		print(SaveManager.get_data("fov"))
+	if Input.is_action_pressed("debug2"):
+		velocity.y = 5
 	
 	if Input.is_action_just_pressed("debug3"):
 		SaveManager.reset_to_defaults()
