@@ -3,7 +3,6 @@
 // entity 0
 {
 "classname" "worldspawn"
-"_tb_textures" "textures"
 // brush 0
 {
 ( -48 -64 -16 ) ( -48 -63 -16 ) ( -48 -64 -15 ) __TB_empty 0 0 0 1 1

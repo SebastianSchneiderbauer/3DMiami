@@ -79,5 +79,4 @@ collision_mask = 2
 
 [node name="flashlight?" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842242, 0)
-visible = false
 omni_range = 64.98
