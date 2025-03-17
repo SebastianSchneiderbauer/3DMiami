@@ -255,8 +255,8 @@ func reduce_vector_length(v: Vector3, amount: float) -> Vector3:
 	var length = v.length()
 	var new_length = max(length - amount, 0) # Prevents negative length
 	return v.normalized() * new_length if length > 0 else Vector3.ZERO
-func can_vault() -> bool: #dont open me, just trust me
-	#retarded aah code
+func can_vault() -> bool: #dont open me, just trust me, like fr, you will regret this
+	# this is the clusterfuck that is created when you just try fixing a bug by fucking around untill it works...
 	var wallchecker:RayCast3D = $wallchecker
 	var distancer:RayCast3D = $distancer
 	var canVault1:bool = false
@@ -309,16 +309,6 @@ func can_vault() -> bool: #dont open me, just trust me
 	
 	if canVault2:
 		vaultPoint = vaultPoint2
-	
-	#debug
-	var TEST1 = $"../../MeshInstance3D"
-	TEST1.global_position = vaultPoint1
-	var TEST2 = $"../../MeshInstance3D2"
-	TEST2.global_position = vaultPoint2
-	
-	print(canVault1)
-	print(canVault2)
-	print("------")
 	
 	return canVault1 or canVault2
 func debug():
