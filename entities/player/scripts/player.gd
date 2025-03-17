@@ -259,7 +259,10 @@ func can_vault() -> bool: #dont open me, just trust me
 	#retarded aah code
 	var wallchecker:RayCast3D = $wallchecker
 	var distancer:RayCast3D = $distancer
-	var canVaultBefore:bool = false
+	var canVault1:bool = false
+	var canVault2:bool = false
+	var vaultPoint1:Vector3 = Vector3.ZERO
+	var vaultPoint2:Vector3 = Vector3.ZERO
 	
 	var posi:Vector3 = global_position + direction*0.6
 	posi.y += vault_height
@@ -274,16 +277,15 @@ func can_vault() -> bool: #dont open me, just trust me
 	
 	wallchecker.force_raycast_update()
 	distancer.force_raycast_update()
-	
-	vaultPoint = global_position
-	
+
 	if distancer.is_colliding():
-		vaultPoint = distancer.get_collision_point()
+		vaultPoint1 = distancer.get_collision_point()
 	
-	canVaultBefore = not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
-	# first check commensed, now for the long check
+	canVault1 = not wallchecker.is_colliding() and (vaultPoint1.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
 	
-	posi = global_position + direction
+	#second try
+	
+	posi = global_position + direction*1.5
 	posi.y += vault_height
 	distancer.global_position = posi
 	distancer.target_position.y = -1 * (vault_height + 1)
@@ -296,11 +298,29 @@ func can_vault() -> bool: #dont open me, just trust me
 	
 	wallchecker.force_raycast_update()
 	distancer.force_raycast_update()
-	
+
 	if distancer.is_colliding():
-		vaultPoint = distancer.get_collision_point()
+		vaultPoint2 = distancer.get_collision_point()
 	
-	return canVaultBefore or (not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched))
+	canVault2 = not wallchecker.is_colliding() and (vaultPoint2.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
+	
+	if canVault1:
+		vaultPoint = vaultPoint1
+	
+	if canVault2:
+		vaultPoint = vaultPoint2
+	
+	#debug
+	var TEST1 = $"../../MeshInstance3D"
+	TEST1.global_position = vaultPoint1
+	var TEST2 = $"../../MeshInstance3D2"
+	TEST2.global_position = vaultPoint2
+	
+	print(canVault1)
+	print(canVault2)
+	print("------")
+	
+	return canVault1 or canVault2
 func debug():
 	if Input.is_action_just_pressed("debug1"):
 		camera.position.z = +3
