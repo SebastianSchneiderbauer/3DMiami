@@ -259,8 +259,9 @@ func can_vault() -> bool: #dont open me, just trust me
 	#retarded aah code
 	var wallchecker:RayCast3D = $wallchecker
 	var distancer:RayCast3D = $distancer
+	var canVaultBefore:bool = false
 	
-	var posi:Vector3 = global_position + direction
+	var posi:Vector3 = global_position + direction*0.6
 	posi.y += vault_height
 	distancer.global_position = posi
 	distancer.target_position.y = -1 * (vault_height + 1)
@@ -279,7 +280,27 @@ func can_vault() -> bool: #dont open me, just trust me
 	if distancer.is_colliding():
 		vaultPoint = distancer.get_collision_point()
 	
-	return not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
+	canVaultBefore = not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
+	# first check commensed, now for the long check
+	
+	posi = global_position + direction
+	posi.y += vault_height
+	distancer.global_position = posi
+	distancer.target_position.y = -1 * (vault_height + 1)
+	
+	posi.y += 1
+	wallchecker.global_position = posi
+	transVector = global_position - posi #translate because raycasts are stupid
+	wallchecker.target_position = transVector
+	wallchecker.target_position.y += 1
+	
+	wallchecker.force_raycast_update()
+	distancer.force_raycast_update()
+	
+	if distancer.is_colliding():
+		vaultPoint = distancer.get_collision_point()
+	
+	return canVaultBefore or (not wallchecker.is_colliding() and (vaultPoint.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched))
 func debug():
 	if Input.is_action_just_pressed("debug1"):
 		camera.position.z = +3
