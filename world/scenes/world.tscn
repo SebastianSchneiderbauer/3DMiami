@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=4 uid="uid://b0m4r88nagwh5"]
+[gd_scene load_steps=15 format=4 uid="uid://b0m4r88nagwh5"]
 
 [ext_resource type="Script" uid="uid://8cvv37d6bhs8" path="res://world/scenes/tb_loader.gd" id="1_1qa1k"]
 [ext_resource type="Texture2D" uid="uid://faxftef6un3q" path="res://textures/tst.png" id="2_65od5"]
 [ext_resource type="PackedScene" uid="uid://2xraxqbjr6q3" path="res://entities/player/player.tscn" id="2_op7cj"]
 [ext_resource type="Script" uid="uid://binictd8u7jhl" path="res://map/scripts/death_reset_border.gd" id="4_jvmqm"]
 [ext_resource type="Texture2D" uid="uid://112lslahbt2u" path="res://textures/__TB_empty.png" id="5_576h8"]
-[ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="7_0sksf"]
 
 [sub_resource type="Environment" id="Environment_v1eft"]
 fog_density = 0.0
@@ -87,11 +86,8 @@ mesh = SubResource("ArrayMesh_576h8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/entity_0_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_0sksf")
 
-[node name="player" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("2_op7cj")]
+[node name="player" parent="TBLoader" instance=ExtResource("2_op7cj")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 3.5, 15, 8.5)
-collision_layer = 8388610
-script = ExtResource("7_0sksf")
-vault_height = 1.5
 
 [node name="@OmniLight3D@35989" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.25, 18, 8.5)

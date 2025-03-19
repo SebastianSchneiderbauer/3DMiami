@@ -33,6 +33,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("ui_cancel") and visible:
 		get_parent().hide()
+		_on_return_pressed()
 	
 	if SaveManager.loaded and not loaded:
 		scaler._select_int(SaveManager.get_data("scaler"))

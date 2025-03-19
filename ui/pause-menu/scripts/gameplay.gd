@@ -47,6 +47,7 @@ func _process(delta):
 	
 	if Input.is_action_pressed("ui_cancel") and visible:
 		hide()
+		_on_return_pressed()
 	
 	#sensi
 	sens_label.set_text(str(sens_slider.value))
