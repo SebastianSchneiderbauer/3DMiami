@@ -24,8 +24,7 @@ height = 1.0
 height = 1.0
 
 [node name="player" type="CharacterBody3D"]
-collision_layer = 8388609
-collision_mask = 2
+collision_layer = 8388610
 script = ExtResource("1_apn28")
 vault_height = 1.5
 
@@ -64,24 +63,21 @@ fov = 90.0
 
 [node name="wallchecker" type="RayCast3D" parent="."]
 top_level = true
-collision_mask = 2
 
 [node name="distancer" type="RayCast3D" parent="."]
 top_level = true
 target_position = Vector3(0, 0, 0)
-collision_mask = 2
 
 [node name="inWallDetector" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 target_position = Vector3(0, 1, 0)
-collision_mask = 2
 
 [node name="uncrouchDetector" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
-collision_mask = 2
 
 [node name="flashlight?" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842242, 0)
+visible = false
 omni_range = 64.98
 
 [node name="overlay" type="CanvasLayer" parent="."]
