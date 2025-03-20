@@ -32,7 +32,7 @@ var vaulting: bool = false
 var storedVelocity:Vector3
 var startPosition:Vector3
 var vaultVector:Vector3
-var lastDistance:float
+var vaultDirection:Vector3
 var vaultSpeed:float = 10
 var speedIncrease:float = 1.5
 var preservedJump:bool = false
@@ -122,20 +122,20 @@ func vault_logic(delta:float):
 		velocity = Vector3.ZERO
 		global_position += vaultVector * delta
 		
-		if (global_position - vaultPoint).length() > lastDistance:
+		if tranform_into_direction_vector(global_position - vaultPoint) != vaultDirection:
 			vaulting = false
 			jumps = maxJumps
 			get_node("hitbox-uncrouched").disabled = false
 			#global_position = vaultPoint
 			velocity = storedVelocity
 		
-		lastDistance = (global_position - vaultPoint).length()
+		vaultDirection = tranform_into_direction_vector(global_position - vaultPoint)
 		
 	elif is_on_wall() and can_vault():
 		get_node("hitbox-uncrouched").disabled = true
 		startPosition = global_position
 		vaultVector = (vaultPoint - startPosition).normalized()*vaultSpeed
-		lastDistance = 100 #just a high number
+		vaultDirection = tranform_into_direction_vector(global_position - vaultPoint)
 		storedVelocity = velocity
 		vaulting = true
 func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the crouching animation so it counts
@@ -311,6 +311,15 @@ func can_vault() -> bool: #dont open me, just trust me, like fr, you will regret
 		vaultPoint = vaultPoint2
 	
 	return canVault1 or canVault2
+func tranform_into_direction_vector(vector:Vector3):
+	var return_value := Vector3(1,1,1)
+	if(vector.x < 0):
+		return_value.x = -1
+	if(vector.y < 0):
+		return_value.y = -1
+	if(vector.z < 0):
+		return_value.z = -1
+	return return_value
 func debug():
 	if Input.is_action_just_pressed("debug1"):
 		camera.position.z = +3

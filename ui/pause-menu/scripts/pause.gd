@@ -15,7 +15,6 @@ func _process(delta):
 		
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	print(inSubMenu)
 	if paused and not inSubMenu:
 		get_node("VBoxContainer").show()
 		get_node("ColorRect").show()
