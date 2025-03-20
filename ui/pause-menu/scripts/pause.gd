@@ -6,20 +6,24 @@ var inSubMenu:bool = false
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
+		print(inSubMenu)
 		if inSubMenu:
 			inSubMenu = false
 		else:
 			paused = not paused
 		
 		get_tree().paused = paused
-		if(paused):
-			get_node("VBoxContainer").show()
-			get_node("ColorRect").show()
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			get_node("VBoxContainer").hide()
-			get_node("ColorRect").hide()
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if(paused):
+		print("show")
+		get_node("VBoxContainer").show()
+		get_node("ColorRect").show()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		print("hide")
+		get_node("VBoxContainer").hide()
+		get_node("ColorRect").hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_resume_pressed():
 	paused = false
