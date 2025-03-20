@@ -24,3 +24,5 @@ func _process(delta):
 func _on_return_pressed():
 	var animationPlayer:AnimationPlayer = get_node("../AnimationPlayer")
 	animationPlayer.play("base-show")
+	
+	get_node("../").inSubMenu = false

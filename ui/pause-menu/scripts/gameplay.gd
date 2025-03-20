@@ -35,6 +35,7 @@ func _on_return_pressed():
 	
 	SaveManager.save_game()
 	
+	get_node("../").inSubMenu = false
 	var ani:AnimationPlayer = get_node("../AnimationPlayer")
 	ani.play("base-show")
 

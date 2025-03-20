@@ -79,8 +79,8 @@ func jump_logic(delta:float):
 		if jumps > 0:
 			preservedJump = true
 	
-	#abort if we are sliding/crouching (aka the exact same thing, reading this in a few years will be fun (: )
-	if crouched:
+	#abort if we are sliding/crouching (aka the exact same thing, reading this in a few years will be fun (: ), but only if we are over the slide duration, aka in a fucking vent where you want to go down or something
+	if crouched and slideTimer < slideDuration:
 		return
 	
 	if not vaulting and not crouched and preservedJump:
@@ -103,7 +103,7 @@ func jump_logic(delta:float):
 		walljumps = maxWalljumps
 	
 	# Handle jump
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and not crouched:
 		if not is_on_wall():
 			if jumps > 0:
 				used_gravity = default_gravity
@@ -237,7 +237,7 @@ func get_shortest_wall_vector() -> Vector3:
 		var query:PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.new()
 		query.from = origin
 		query.to = ray_target
-		query.collision_mask = 2  #walls on collision layer 2
+		query.collision_mask = 1  #walls on collision layer 1
 		
 		var result = space_state.intersect_ray(query)
 		
