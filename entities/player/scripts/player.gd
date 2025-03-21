@@ -9,6 +9,9 @@ var crouchSpeed:float = baseSpeed*1.4
 var speed:float = baseSpeed
 const JUMP_VELOCITY:float = 6
 
+var lastVelocityY:float = 0
+var storeFrames:int = 1
+var storeFrameCounter:int = 0
 
 var direction:Vector3 = Vector3(0,0,0)
 var input_dir:Vector2
@@ -151,6 +154,7 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 			foreward.y = 0
 			direction = foreward.normalized()
 		
+		print(lastVelocityY)
 		released = false
 		slideDirection = direction*1.2
 		slideTimer = 0
@@ -218,6 +222,12 @@ func move(delta): #custom move function for extra logic before and after calling
 	inWallDetector.force_raycast_update()
 	if inWallDetector.is_colliding() and not vaulting:
 		global_position.y +=1
+	
+	if velocity.y != 0 or storeFrameCounter == storeFrames:
+		lastVelocityY = velocity.y
+		storeFrameCounter = 0
+	elif velocity.y == 0:
+		storeFrameCounter += 1
 
 #utility
 func get_shortest_wall_vector() -> Vector3:
@@ -333,6 +343,22 @@ func debug():
 	
 	if Input.is_action_just_pressed("debug4"):
 		print(SaveManager.get_all_data())
+	
+	if Input.is_action_just_pressed("1"):
+		global_position = Vector3(-39.5, 10.5, 50)
+func scaleMultiplier(value:float, base:float, multiplier:float): #example usecase: you scale jumps height by another property, however you want the effect of the multiplication just to be half as noticable. then you use this method with multipleir 0.5
+	#error case where we are <= than the base
+	if value == base and base == 0:
+		value = 1
+	
+	if value <= base:
+		return 1
+	
+	if base == 0:
+		base = 1
+	var result:float = (value / base)
+	
+	return result
 
 func _physics_process(delta): # "main"
 	basic_movement()
