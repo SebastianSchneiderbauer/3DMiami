@@ -110,52 +110,52 @@ mesh = SubResource("ArrayMesh_576h8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/entity_0_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_0sksf")
 
-[node name="@OmniLight3D@42219" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44040" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -39, 16.25, 2)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42220" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44041" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -39, 16.25, 10)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42221" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44042" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -39, 16.25, 6)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42222" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44043" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -45, 15.25, 2)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42223" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44044" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -45, 15.25, 10)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42224" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44045" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -45, 15.25, 6)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42225" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44046" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -45, 15.25, 13)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42226" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44047" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -45, 15.25, 19)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42227" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44048" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -40.75, 13.25, 28)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42228" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44049" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -45, 13.25, 21.25)
 light_bake_mode = 1
 omni_range = 10.0
@@ -167,97 +167,97 @@ wall_min_slide_angle = 0.0
 script = ExtResource("4_1qa1k")
 vault_height = 1.5
 
-[node name="@OmniLight3D@42253" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44074" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.25, 18, 8.5)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42254" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44075" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, 19, 1.25)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42255" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44076" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.75, 24, 8.5)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42256" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44077" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -39.25, 13.75, 24.75)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42257" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44078" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -39.25, 13.75, 31.25)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42258" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44079" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -32.75, 13.75, 24.75)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42259" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44080" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -32.75, 13.75, 31.25)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42260" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44081" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -37.75, 15.75, 17.75)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42261" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44082" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -34.25, 15.75, 17.75)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42262" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44083" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -36, 9.375, 23.25)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42263" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44084" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -36, 6.75, 24.25)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42264" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44085" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -31.25, 9.25, 28.25)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42265" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44086" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -27, 9.25, 20)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42266" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44087" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.75, 9.25, 15.75)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42267" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44088" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.5, 9.25, 20)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42268" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44089" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.25, 9.25, 28.25)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42269" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44090" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.75, 9.25, 40.75)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42270" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44091" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -27, 9.25, 36.5)
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@42271" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@44092" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.5, 9.25, 36.5)
 light_bake_mode = 1
 omni_range = 10.0
@@ -283,46 +283,6 @@ mesh = SubResource("ArrayMesh_dfa8h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/platform-00/entity_32_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_6nv2u")
-
-[node name="@OmniLight3D@42276" type="OmniLight3D" parent="TBLoader"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.75, 3.25, 21.25)
-light_bake_mode = 1
-omni_range = 10.0
-
-[node name="@OmniLight3D@42277" type="OmniLight3D" parent="TBLoader"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.75, 3.25, 35.25)
-light_bake_mode = 1
-omni_range = 10.0
-
-[node name="@OmniLight3D@42278" type="OmniLight3D" parent="TBLoader"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.25, 3.25, 32.5)
-light_bake_mode = 1
-omni_range = 10.0
-
-[node name="@OmniLight3D@42279" type="OmniLight3D" parent="TBLoader"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.25, 3.25, 24)
-light_bake_mode = 1
-omni_range = 10.0
-
-[node name="@OmniLight3D@42280" type="OmniLight3D" parent="TBLoader"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.75, 3.25, 38.75)
-light_bake_mode = 1
-omni_range = 10.0
-
-[node name="@OmniLight3D@42281" type="OmniLight3D" parent="TBLoader"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.75, 3.25, 17.75)
-light_bake_mode = 1
-omni_range = 10.0
-
-[node name="@OmniLight3D@42282" type="OmniLight3D" parent="TBLoader"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.75, 3.25, 21.5)
-light_bake_mode = 1
-omni_range = 10.0
-
-[node name="@OmniLight3D@42283" type="OmniLight3D" parent="TBLoader"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.75, 3.25, 35)
-light_bake_mode = 1
-omni_range = 10.0
 
 [node name="DeathResetBorder" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0655, 4.40567, 27.2116)
