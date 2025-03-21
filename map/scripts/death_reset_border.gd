@@ -5,5 +5,5 @@ extends Area3D
 @export var stop_at_1:bool = true
 
 func _on_body_entered(body):
-	body.position = reset_position
+	body.global_position = reset_position
 	

@@ -154,9 +154,8 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 			foreward.y = 0
 			direction = foreward.normalized()
 		
-		print(lastVelocityY)
 		released = false
-		slideDirection = direction*1.2
+		slideDirection = direction * scaleMultiplier(-lastVelocityY,0,0.2)
 		slideTimer = 0
 		crouched = true
 	
@@ -197,6 +196,7 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		
 		velocity.x = slideDirection.x * speed
 		velocity.z = slideDirection.z * speed
+		
 		direction = slideDirection
 	else:
 		speed = baseSpeed
@@ -356,7 +356,11 @@ func scaleMultiplier(value:float, base:float, multiplier:float): #example usecas
 	
 	if base == 0:
 		base = 1
-	var result:float = (value / base)
+	
+	var result:float = (value / base) * multiplier
+	
+	if result < base:
+		result = base
 	
 	return result
 

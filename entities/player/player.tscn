@@ -25,6 +25,7 @@ height = 1.0
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 8388610
+wall_min_slide_angle = 0.0
 script = ExtResource("1_apn28")
 vault_height = 1.5
 
