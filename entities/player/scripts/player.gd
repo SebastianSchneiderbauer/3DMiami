@@ -345,7 +345,10 @@ func debug():
 		print(SaveManager.get_all_data())
 	
 	if Input.is_action_just_pressed("1"):
-		global_position = Vector3(-39.5, 10.5, 50)
+		global_position = Vector3(-39.5, 59.5, 50)
+	
+	if Input.is_action_just_pressed("2"):
+		global_position = Vector3(-32, 53, 53)
 func scaleMultiplier(value:float, base:float, multiplier:float): #example usecase: you scale jumps height by another property, however you want the effect of the multiplication just to be half as noticable. then you use this method with multipleir 0.5
 	#error case where we are <= than the base
 	if value == base and base == 0:
