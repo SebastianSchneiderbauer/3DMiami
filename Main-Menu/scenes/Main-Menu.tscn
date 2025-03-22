@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3oep5ot0siul"]
+
+[ext_resource type="Script" uid="uid://ycsnnqso6o5h" path="res://Main-Menu/scenes/button.gd" id="1_np5m4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0r80p"]
+font_size = 100
+
+[node name="Main-menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.5
+offset_right = 95.5
+offset_bottom = 137.0
+grow_horizontal = 2
+text = "HI :)"
+label_settings = SubResource("LabelSettings_0r80p")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -116.0
+offset_right = 168.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "start"
+script = ExtResource("1_np5m4")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
