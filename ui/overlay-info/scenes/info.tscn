@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://drnp7l184b0pk" path="res://ui/overlay-info/scripts/info.gd" id="1_k6pn2"]
 
 [node name="Info" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

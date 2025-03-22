@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://8cvv37d6bhs8" path="res://world-00/scenes/tb_loader.gd" id="1_1qa1k"]
 [ext_resource type="Texture2D" uid="uid://faxftef6un3q" path="res://textures/tst.png" id="2_65od5"]
 [ext_resource type="PackedScene" uid="uid://2xraxqbjr6q3" path="res://entities/player/player.tscn" id="2_op7cj"]
-[ext_resource type="Script" path="res://map/scripts/death_reset_border.gd" id="4_jvmqm"]
+[ext_resource type="Script" uid="uid://buw75cbe0f8vb" path="res://world-00/scripts/db-tp.gd" id="5_2jeja"]
 [ext_resource type="Texture2D" uid="uid://112lslahbt2u" path="res://textures/__TB_empty.png" id="5_576h8"]
 
 [sub_resource type="Environment" id="Environment_v1eft"]
@@ -281,10 +281,10 @@ shape = SubResource("ConcavePolygonShape3D_6nv2u")
 
 [node name="DeathResetBorder" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0655, 4.40567, 27.2116)
-collision_layer = 8388608
+collision_layer = 8388610
 collision_mask = 8388608
-script = ExtResource("4_jvmqm")
-reset_position = Vector3(-1, 64.6, 34)
+script = ExtResource("5_2jeja")
+reset = Vector3(-2, 64.5, 34)
 
 [node name="deathResetBorder(Collision)" type="CollisionShape3D" parent="DeathResetBorder"]
 transform = Transform3D(0.705946, -7.17133e-11, -0.708266, 5.06666e-11, 1, -5.07513e-11, 0.708266, -5.99242e-14, 0.705946, -20.6825, -4, 6.85034)

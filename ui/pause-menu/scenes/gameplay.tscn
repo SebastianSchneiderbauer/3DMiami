@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4w8gxxk2e2kl"]
+[gd_scene load_steps=5 format=3 uid="uid://c4w8gxxk2e2kl"]
 
 [ext_resource type="Script" uid="uid://bhhta57falg4s" path="res://ui/pause-menu/scripts/gameplay.gd" id="1_l2vqg"]
 
@@ -9,10 +9,6 @@ font_size = 25
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_iv7ha"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_djb4f"]
-line_spacing = -3.0
-font_size = 13
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -85,7 +81,7 @@ uppercase = true
 layout_mode = 2
 
 [node name="FOVSlider" type="HSlider" parent="Options/ScaleBox2"]
-custom_minimum_size = Vector2(340, 0)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 min_value = 11.0
 max_value = 169.0
@@ -130,15 +126,43 @@ horizontal_alignment = 3
 layout_mode = 2
 
 [node name="show?" type="CheckButton" parent="Options/ScaleBox4"]
+custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 button_pressed = true
 text = "show crosshair"
 
-[node name="Label" type="Label" parent="Options/ScaleBox4"]
+[node name="fpsLimit?" type="CheckButton" parent="Options/ScaleBox4"]
+custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
-text = "maybe you wanna use Crosshair X
-or something ¯\\_(ツ)_/¯ idk"
-label_settings = SubResource("LabelSettings_djb4f")
+button_pressed = true
+text = "limit fps"
+
+[node name="fps-header" type="Label" parent="Options"]
+z_index = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "DPS CAP"
+label_settings = SubResource("LabelSettings_sshc7")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ScaleBox5" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="ScaleSlider" type="HSlider" parent="Options/ScaleBox5"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+min_value = 5.0
+max_value = 1000.0
+step = 5.0
+value = 5.0
+ticks_on_borders = true
+
+[node name="ScaleLabel" type="Label" parent="Options/ScaleBox5"]
+layout_mode = 2
+text = "ERR"
+label_settings = SubResource("LabelSettings_iv7ha")
+horizontal_alignment = 3
 
 [node name="return" type="Button" parent="Options"]
 layout_mode = 2
@@ -153,9 +177,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -148.0
+offset_top = -177.0
 offset_right = 200.0
-offset_bottom = 145.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

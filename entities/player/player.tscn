@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=12 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="1_apn28"]
 [ext_resource type="PackedScene" uid="uid://d1acb3ydgpw1b" path="res://ui/overlay-info/scenes/info.tscn" id="2_bls4j"]
+[ext_resource type="Script" uid="uid://bu1paiktd1fix" path="res://entities/player/scripts/camera.gd" id="2_fkugw"]
 [ext_resource type="PackedScene" uid="uid://d22k2ss55xjem" path="res://ui/pause-menu/scenes/pause.tscn" id="3_fkugw"]
 [ext_resource type="PackedScene" uid="uid://cdaq8exuytosd" path="res://ui/crosshair/scenes/crosshair.tscn" id="4_8fjmc"]
 
@@ -61,6 +62,7 @@ mesh = SubResource("CapsuleMesh_t0cpu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 cull_mask = 3
 fov = 90.0
+script = ExtResource("2_fkugw")
 
 [node name="wallchecker" type="RayCast3D" parent="."]
 top_level = true

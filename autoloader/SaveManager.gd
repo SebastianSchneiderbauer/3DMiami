@@ -10,12 +10,15 @@ var loaded:bool = false
 var default_values := {
 	"sensitivity": 0.2,
 	"fov": 100,
+	"showCrosshair": true,
 	"crosshairScale": 0.01,
 	"scaler": 2,
 	"fsrStrength": 1,
 	"scalerStrength": 100.0,
 	"fullScreen": false,
 	"VSYNC": true,
+	"capFPS": true,
+	"FPScap": 100,
 	"defaultScreen": 0
 }
 
@@ -65,7 +68,12 @@ func set_data(property_name: String, value):
 	save_game()
 
 func get_data(property_name: String):
-	return save_data.get(property_name, null)
+	var result = save_data.get(property_name, null)
+	if result == null:
+		return 0
+		print("!! NULL VALUE !!")
+	else:
+		return result
 
 func get_default_value(property_name: String):
 	""" Returns the default value for a given property from default_values. """
