@@ -1,17 +1,42 @@
 extends Camera3D
 
-var framecounter:int
-var resetPoint:int #the highest Occurency, aka at what point can we reset the counter to not go too high
-
-var shakeTimer:float
 var shakeTime:float
 var shakeStrength:float
-var shakeOccurency:int = 1 #change the value every x´th frame
+var shaking:bool
 
-var zoomtimer:float
 var zoomtime:float
 var zoomStrength:float
-var zoomOccurency:int = 1
+var zooming:bool
+
+var hOffset:float
+var vOffset:float
+
+func startShake(duration:float,strength:float):
+	shakeTime = duration
+	shakeStrength = strength
 
 func _physics_process(delta: float) -> void:
-	framecounter += 1;
+	if shakeTime > 0:
+		shaking = true
+		shakeTime -= delta
+		shake()
+	else:
+		shaking = false
+		h_offset = 0
+		v_offset = 0
+		hOffset = 0
+		vOffset = 0
+	
+	if zoomtime > 0:
+		zoomtime -= delta
+
+func shake():
+	h_offset -= hOffset
+	v_offset -= vOffset
+	h_offset = randf_range(-shakeStrength,shakeStrength)
+	v_offset = randf_range(-shakeStrength,shakeStrength)
+	h_offset += hOffset
+	v_offset += vOffset
+
+func zoom():
+	pass

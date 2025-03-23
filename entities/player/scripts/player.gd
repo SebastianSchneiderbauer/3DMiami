@@ -349,6 +349,9 @@ func debug():
 	
 	if Input.is_action_just_pressed("2"):
 		global_position = Vector3(-32, 53, 53)
+	
+	if Input.is_action_just_pressed("0"):
+		camera.startShake(1,1)
 func scaleMultiplier(value:float, base:float, multiplier:float): #example usecase: you scale jumps height by another property, however you want the effect of the multiplication just to be half as noticable. then you use this method with multipleir 0.5
 	#error case where we are <= than the base
 	if value == base and base == 0:
