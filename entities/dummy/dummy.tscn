@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://bf8kikmkf0ytj"]
 
 [ext_resource type="Script" uid="uid://crvf7it34h14c" path="res://entities/dummy/scripts/dummy.gd" id="1_ec5rh"]
-[ext_resource type="Texture2D" uid="uid://cxnjavqxdv4ij" path="res://entities/dummy/textures/dummy.jpg" id="1_ltbf4"]
+[ext_resource type="Texture2D" uid="uid://dujxyux4o5bf5" path="res://entities/dummy/textures/test-kadse.png" id="2_vlfdi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_65od5"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ec5rh"]
-albedo_texture = ExtResource("1_ltbf4")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlfdi"]
+albedo_texture = ExtResource("2_vlfdi")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1qa1k"]
 
@@ -22,8 +22,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_65od5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = SubResource("StandardMaterial3D_ec5rh")
+transform = Transform3D(0.952129, 0, 0.305695, 0, 1, 0, -0.305695, 0, 0.952129, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_vlfdi")
 mesh = SubResource("CapsuleMesh_1qa1k")
 
 [node name="PlayerPushArea" type="Area3D" parent="."]
