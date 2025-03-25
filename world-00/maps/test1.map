@@ -1156,6 +1156,12 @@
 }
 // entity 31
 {
+"classname" "dummy_dummy"
+"origin" "480 -308 16"
+"angles" "0 -90 0"
+}
+// entity 32
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "barriers"
@@ -1171,7 +1177,7 @@
 ( 152 -576 248 ) ( 152 -576 249 ) ( 152 -575 248 ) tst 0 -8 0 1 1
 }
 }
-// entity 32
+// entity 33
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -1284,51 +1290,10 @@
 ( 336 -304 56 ) ( 336 -304 57 ) ( 336 -303 56 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 33
-{
-"classname" "light"
-"origin" "340 -348 52"
-"_tb_layer" "2"
-}
 // entity 34
 {
-"classname" "light"
-"origin" "564 -348 52"
-"_tb_layer" "2"
-}
-// entity 35
-{
-"classname" "light"
-"origin" "520 -244 52"
-"_tb_layer" "2"
-}
-// entity 36
-{
-"classname" "light"
-"origin" "384 -244 52"
-"_tb_layer" "2"
-}
-// entity 37
-{
-"classname" "light"
-"origin" "620 -348 52"
-"_tb_layer" "2"
-}
-// entity 38
-{
-"classname" "light"
-"origin" "284 -348 52"
-"_tb_layer" "2"
-}
-// entity 39
-{
-"classname" "light"
-"origin" "344 -204 52"
-"_tb_layer" "2"
-}
-// entity 40
-{
-"classname" "light"
-"origin" "560 -204 52"
+"classname" "dummy_dummy"
+"origin" "424 -308 16"
+"angles" "0 -90 0"
 "_tb_layer" "2"
 }

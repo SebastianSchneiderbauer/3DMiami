@@ -51,6 +51,10 @@ var slideDuration:float = 0.4
 var slideTimer:float = 0
 var released:bool = true
 
+# air dash
+var airdashTarget:Vector3 = Vector3.ZERO
+var enemyDistance:float = INF #does not track distance to the enemy, its used for enemys to store their distance to the collision point, basicly measuring if they are the closest
+
 #basic shit
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -208,7 +212,7 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 			camera.position.y = crouchStart
 		else:
 			camera.rotation.x -= delta*0.8
-func move(delta): #custom move function for extra logic before and after calling move_and_slide()
+func move(delta:float): #custom move function for extra logic before and after calling move_and_slide()
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
 	
@@ -228,6 +232,23 @@ func move(delta): #custom move function for extra logic before and after calling
 		storeFrameCounter = 0
 	elif velocity.y == 0:
 		storeFrameCounter += 1
+func airDash(delta:float):
+	var smallestInstance: CharacterBody3D = null #stores the instance of the "closest"
+	var smallestDistance: float = INF
+	
+	for hit in get_airdash_hits_from_camera():
+		var area = hit.collider
+		if area.name == "air-dash-detection-area":
+			var distance = area.get_parent().getDist(hit.position)
+			if distance < smallestDistance:
+				smallestDistance = distance
+				smallestInstance = area.get_parent()
+	
+	if smallestInstance != null:
+		#do dash if wanted, this is for debug purposes
+		print(smallestInstance.target_name)
+		return
+
 
 #utility
 func get_shortest_wall_vector() -> Vector3:
@@ -369,13 +390,43 @@ func scaleMultiplier(value:float, base:float, multiplier:float): #example usecas
 		result = base
 	
 	return result
+func get_airdash_hits_from_camera(ray_length := 100.0) -> Array:
+	var from = camera.global_transform.origin
+	var direction = -camera.global_transform.basis.z
+	var to = from + direction * ray_length
+	
+	var results: Array = []
+	var exclude: Array = []
+	var space_state = get_world_3d().direct_space_state
+	var max_hits = 32
+	var step_offset = 0.01
+	var current_from = from
+	
+	while results.size() < max_hits:
+		var params := PhysicsRayQueryParameters3D.new()
+		params.from = current_from
+		params.to = to
+		params.exclude = exclude
+		params.collision_mask = 1 << 23 # TargetArea layer
+		params.collide_with_areas = true
+		params.collide_with_bodies = false
+		
+		var hit = space_state.intersect_ray(params)
+		if hit.is_empty():
+			break
+		
+		results.append(hit)
+		exclude.append(hit.collider)
+		current_from = hit.position + direction * step_offset
+	
+	return results
 
 func _physics_process(delta): # "main"
 	basic_movement()
 	jump_logic(delta)
 	crouch(delta)
 	vault_logic(delta)
-	
+	airDash(delta)
 	debug()
 	
 	move(delta)

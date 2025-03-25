@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bf8kikmkf0ytj"]
+[gd_scene load_steps=8 format=3 uid="uid://bf8kikmkf0ytj"]
 
 [ext_resource type="Script" uid="uid://crvf7it34h14c" path="res://entities/dummy/scripts/dummy.gd" id="1_ec5rh"]
 [ext_resource type="Texture2D" uid="uid://dujxyux4o5bf5" path="res://entities/dummy/textures/test-kadse.png" id="2_vlfdi"]
@@ -10,10 +10,17 @@ albedo_texture = ExtResource("2_vlfdi")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1qa1k"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ec5rh"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vlfdi"]
+height = 0.1
+radius = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1mvqt"]
+top_radius = 1.5
+bottom_radius = 1.5
+height = 0.1
 
 [node name="dummy" type="CharacterBody3D"]
-collision_layer = 8388612
+collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_ec5rh")
 
@@ -22,14 +29,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_65od5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.952129, 0, 0.305695, 0, 1, 0, -0.305695, 0, 0.952129, 0, 1, 0)
+transform = Transform3D(-0.903851, 0, -0.427847, 0, 1, 0, 0.427847, 0, -0.903851, 0, 1, 0)
 material_override = SubResource("StandardMaterial3D_vlfdi")
 mesh = SubResource("CapsuleMesh_1qa1k")
 
-[node name="PlayerPushArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="air-dash-detection-area" type="Area3D" parent="."]
+collision_layer = 8388608
+collision_mask = 8388608
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPushArea"]
-shape = SubResource("CapsuleShape3D_ec5rh")
+[node name="air-dash-detection" type="CollisionShape3D" parent="air-dash-detection-area"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.000355363, 1.00457, 0.000894785)
+shape = SubResource("CylinderShape3D_vlfdi")
 
-[connection signal="body_entered" from="PlayerPushArea" to="." method="_on_player_push_area_body_entered"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="air-dash-detection-area"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+mesh = SubResource("CylinderMesh_1mvqt")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
