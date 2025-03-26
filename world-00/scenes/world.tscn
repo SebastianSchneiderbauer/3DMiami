@@ -1,13 +1,11 @@
-[gd_scene load_steps=21 format=4 uid="uid://b0m4r88nagwh5"]
+[gd_scene load_steps=19 format=4 uid="uid://b0m4r88nagwh5"]
 
 [ext_resource type="Script" uid="uid://8cvv37d6bhs8" path="res://world-00/scripts/tb_loader.gd" id="1_1qa1k"]
 [ext_resource type="Texture2D" uid="uid://faxftef6un3q" path="res://textures/tst.png" id="2_65od5"]
 [ext_resource type="PackedScene" uid="uid://2xraxqbjr6q3" path="res://entities/player/player.tscn" id="2_op7cj"]
-[ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="4_04duo"]
 [ext_resource type="Script" uid="uid://buw75cbe0f8vb" path="res://world-00/scripts/db-tp.gd" id="5_2jeja"]
 [ext_resource type="PackedScene" uid="uid://bf8kikmkf0ytj" path="res://entities/dummy/dummy.tscn" id="5_04duo"]
 [ext_resource type="Texture2D" uid="uid://112lslahbt2u" path="res://textures/__TB_empty.png" id="5_576h8"]
-[ext_resource type="Script" uid="uid://crvf7it34h14c" path="res://entities/dummy/scripts/dummy.gd" id="6_8eyds"]
 
 [sub_resource type="Environment" id="Environment_v1eft"]
 fog_density = 0.0
@@ -162,12 +160,8 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -45, 1
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="player" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("2_op7cj")]
+[node name="player" parent="TBLoader" instance=ExtResource("2_op7cj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.5, 15, 8.5)
-collision_layer = 2
-wall_min_slide_angle = 0.0
-script = ExtResource("4_04duo")
-vault_height = 1.5
 
 [node name="@OmniLight3D@53424" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.25, 18, 8.5)
@@ -264,11 +258,8 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.5,
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="dummy" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="dummy" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.25, 1, 30)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 target_name = "right"
 
 [node name="barriers" type="Node3D" parent="TBLoader"]
@@ -293,11 +284,8 @@ mesh = SubResource("ArrayMesh_n76ml")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/platform-00/entity_33_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_tisc7")
 
-[node name="@CharacterBody3D@53447" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@53447" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.25, 1, 26.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 target_name = "left"
 
 [node name="DeathResetBorder" type="Area3D" parent="."]
@@ -329,6 +317,4 @@ size = Vector3(26.3863, 17, 26.5739)
 shape = 2
 material = SubResource("FogMaterial_jvmqm")
 
-[connection signal="mouse_entered" from="TBLoader/dummy" to="TBLoader/dummy" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@53447" to="TBLoader/@CharacterBody3D@53447" method="_on_mouse_entered"]
 [connection signal="body_entered" from="DeathResetBorder" to="DeathResetBorder" method="_on_body_entered"]

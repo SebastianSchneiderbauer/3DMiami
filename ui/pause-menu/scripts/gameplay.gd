@@ -35,13 +35,15 @@ func _on_return_pressed():
 	if SaveManager.get_data("fov") != fov_slider.value:
 		SaveManager.set_data("fov", fov_slider.value)
 	
-	if SaveManager.get_data("showCrosshair") != show_crosshair.is_pressed():
+	print(bool(SaveManager.get_data("showCrosshair")))
+	print(show_crosshair.is_pressed())
+	if bool(SaveManager.get_data("showCrosshair")) != show_crosshair.is_pressed():
 		SaveManager.set_data("showCrosshair", show_crosshair.is_pressed())
 	
 	if SaveManager.get_data("crosshairScale") != crosshair_slider.value:
 		SaveManager.set_data("crosshairScale", crosshair_slider.value)
 	
-	if SaveManager.get_data("capFPS") != fps_limit_.is_pressed():
+	if bool(SaveManager.get_data("capFPS")) != fps_limit_.is_pressed():
 		SaveManager.set_data("capFPS", fps_limit_.is_pressed())
 	
 	if SaveManager.get_data("FPScap") != scale_slider.value:
