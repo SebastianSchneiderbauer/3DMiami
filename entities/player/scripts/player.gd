@@ -55,6 +55,9 @@ var released:bool = true
 var airdashTarget:Vector3 = Vector3.ZERO
 var enemyDistance:float = INF #does not track distance to the enemy, its used for enemys to store their distance to the collision point, basicly measuring if they are the closest
 
+# focus
+var focused:bool = false
+
 #basic shit
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -234,6 +237,11 @@ func move(delta:float): #custom move function for extra logic before and after c
 		storeFrameCounter += 1
 var lastInstance: CharacterBody3D = null
 func airDash(delta:float):
+	if not focused:
+		if lastInstance != null:
+			lastInstance.get_node("selectHighlight").hide()
+		return
+	
 	var smallestInstance: CharacterBody3D = null #stores the instance of the "closest"
 	var smallestDistance: float = INF
 	
@@ -253,6 +261,19 @@ func airDash(delta:float):
 		#do dash if wanted, this is for debug purposes
 		smallestInstance.get_node("selectHighlight").show()
 		return
+func focus(delta:float):
+	focused = Input.is_action_pressed("mouseclick-r")
+	
+	if focused:
+		if Engine.time_scale - (Engine.time_scale/2)*delta*10 < 0.5 or Engine.time_scale == 0.5:
+			Engine.time_scale = 0.5
+		else:
+			Engine.time_scale -= (Engine.time_scale/2)*delta*10
+	else:
+		if Engine.time_scale + (Engine.time_scale*2)*delta*100 > 1 or Engine.time_scale == 1:
+			Engine.time_scale = 1
+		else:
+			Engine.time_scale += (Engine.time_scale*2)*delta*100
 
 
 #utility
@@ -432,6 +453,7 @@ func _physics_process(delta): # "main"
 	crouch(delta)
 	vault_logic(delta)
 	airDash(delta)
+	focus(delta)
 	debug()
 	
 	move(delta)
