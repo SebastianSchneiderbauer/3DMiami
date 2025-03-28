@@ -54,6 +54,7 @@ var released:bool = true
 # air dash
 var airdashTarget:Vector3 = Vector3.ZERO
 var enemyDistance:float = INF #does not track distance to the enemy, its used for enemys to store their distance to the collision point, basicly measuring if they are the closest
+var airdashing:bool = false
 
 # focus
 var focused:bool = false
@@ -67,13 +68,16 @@ func _input(event):
 		mouse_delta = event.relative
 
 #movement/cam methods
-func handle_mouse_look():
-	var rotation_x = -mouse_delta.y * sensitivity
-	var rotation_y = -mouse_delta.x * sensitivity
+func handle_mouse_look(delta:float):
+	var rotation_x = -mouse_delta.y * sensitivity * delta * 100
+	var rotation_y = -mouse_delta.x * sensitivity * delta * 100
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x + rotation_x, -90, 90)
 	rotation_degrees.y += rotation_y
 	mouse_delta = Vector2.ZERO
 func basic_movement():
+	if airdashing:
+		return
+	
 	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -84,6 +88,8 @@ func basic_movement():
 		velocity.x = 0
 		velocity.z = 0
 func jump_logic(delta:float):
+	if airdashing:
+		return
 	#store jump inputs while vaulting
 	if (vaulting or crouched) and Input.is_action_just_pressed("ui_accept"):
 		if jumps > 0:
@@ -165,7 +171,7 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		slideDirection = direction * scaleMultiplier(-lastVelocityY,0,0.2)
 		if lastVelocityY != 0:
 			camera.startShake(0.05,0.2 * scaleMultiplier(-lastVelocityY,0,0.2))
-		camera.startZoom(slideDuration,1)
+		camera.startZoom(slideDuration,10,1)
 		
 		slideTimer = 0
 		crouched = true
@@ -261,17 +267,22 @@ func airDash(delta:float):
 	
 	if smallestInstance != null:
 		lastInstance = smallestInstance
-		#do dash if wanted, this is for debug purposes
 		smallestInstance.get_node("selectHighlight").show()
+		
+		if Input.is_action_just_pressed("mouseclick-l"):
+			var toEnemy := smallestInstance.global_position - global_position
+			var distance := toEnemy.length()
+			print("Dash triggered")
+		
 		return
 func focus(delta:float):
 	focused = Input.is_action_pressed("mouseclick-r")
 	
 	if focused:
-		if Engine.time_scale - (Engine.time_scale/2)*delta*10 < 0.5 or Engine.time_scale == 0.5:
-			Engine.time_scale = 0.5
+		if Engine.time_scale - (Engine.time_scale/1.5)*delta*10 < 0.3 or Engine.time_scale == 0.3:
+			Engine.time_scale = 0.3
 		else:
-			Engine.time_scale -= (Engine.time_scale/2)*delta*10
+			Engine.time_scale -= (Engine.time_scale/1.5)*delta*10
 	else:
 		if Engine.time_scale + (Engine.time_scale*2)*delta*100 > 1 or Engine.time_scale == 1:
 			Engine.time_scale = 1
@@ -401,7 +412,7 @@ func debug():
 		global_position = Vector3(-32, 53, 53)
 	
 	if Input.is_action_just_pressed("0"):
-		camera.startZoom(1,-1)
+		camera.startZoom(1,40,1)
 func scaleMultiplier(value:float, base:float, multiplier:float): #example usecase: you scale jumps height by another property, however you want the effect of the multiplication just to be half as noticable. then you use this method with multipleir 0.5
 	#error case where we are <= than the base
 	if value == base and base == 0:
@@ -451,14 +462,14 @@ func get_airdash_hits_from_camera(ray_length := 100.0) -> Array:
 	return results
 
 func _physics_process(delta): # "main"
+	focus(delta) #is a part that everything could use, so delay by 1 frame would be suboptimal
 	basic_movement()
 	jump_logic(delta)
 	crouch(delta)
 	vault_logic(delta)
 	airDash(delta)
-	focus(delta)
 	debug()
 	
 	move(delta)
 func _process(delta):
-	handle_mouse_look()
+	handle_mouse_look(delta)

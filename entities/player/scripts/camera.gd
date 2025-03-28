@@ -9,14 +9,16 @@ var zooming:bool
 
 var baseZoom:float
 var zoomDirection:float
+var zoomStrenth:float
 var extraZoom:float = 0
 
 var hOffset:float
 var vOffset:float
 
-func startZoom(duration:float, strength:float):
+func startZoom(duration:float, strength:float, direction:int):
 	zoomtime = duration
-	zoomDirection = strength
+	zoomStrenth = strength
+	zoomDirection = direction
 
 func startShake(duration:float,strength:float):
 	shakeTime = duration
@@ -52,13 +54,13 @@ func shake():
 
 func zoom(delta):
 	if zooming:
-		if extraZoom < 10 and (extraZoom + 10*delta*20) < 10:
-			extraZoom += 10*delta*20
+		if extraZoom < zoomStrenth and (extraZoom + zoomStrenth*delta*20) < zoomStrenth:
+			extraZoom += zoomStrenth*delta*20
 		else:
-			extraZoom = 10
+			extraZoom = zoomStrenth
 	else:
-		if extraZoom > 0 and (extraZoom - 10*delta*20) > 0:
-			extraZoom -= 10*delta*20
+		if extraZoom > 0 and (extraZoom - zoomStrenth*delta*20) > 0:
+			extraZoom -= zoomStrenth*delta*20
 		else:
 			extraZoom = 0
 	
