@@ -5,11 +5,18 @@ var shakeStrength:float
 var shaking:bool
 
 var zoomtime:float
-var zoomStrength:float
 var zooming:bool
+
+var baseZoom:float
+var zoomDirection:float
+var extraZoom:float = 0
 
 var hOffset:float
 var vOffset:float
+
+func startZoom(duration:float, strength:float):
+	zoomtime = duration
+	zoomDirection = strength
 
 func startShake(duration:float,strength:float):
 	shakeTime = duration
@@ -28,7 +35,12 @@ func _physics_process(delta: float) -> void:
 		vOffset = 0
 	
 	if zoomtime > 0:
+		zooming = true
 		zoomtime -= delta
+	else:
+		zooming = false
+	
+	zoom(delta)
 
 func shake():
 	h_offset -= hOffset
@@ -38,5 +50,16 @@ func shake():
 	h_offset += hOffset
 	v_offset += vOffset
 
-func zoom():
-	pass
+func zoom(delta):
+	if zooming:
+		if extraZoom < 10 and (extraZoom + 10*delta*20) < 10:
+			extraZoom += 10*delta*20
+		else:
+			extraZoom = 10
+	else:
+		if extraZoom > 0 and (extraZoom - 10*delta*20) > 0:
+			extraZoom -= 10*delta*20
+		else:
+			extraZoom = 0
+	
+	fov = baseZoom + extraZoom**zoomDirection

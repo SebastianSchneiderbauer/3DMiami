@@ -163,6 +163,10 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		
 		released = false
 		slideDirection = direction * scaleMultiplier(-lastVelocityY,0,0.2)
+		if lastVelocityY != 0:
+			camera.startShake(0.05,0.2 * scaleMultiplier(-lastVelocityY,0,0.2))
+		camera.startZoom(slideDuration,1)
+		
 		slideTimer = 0
 		crouched = true
 	
@@ -188,8 +192,7 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 	eyes_crouched.visible = crouched
 	
 	if crouched:
-		if not vaulting:
-			slideTimer += delta
+		slideTimer += delta
 		
 		speed = crouchSpeed
 		in_wall_detector.position = inWallDetectorPosition*0.5
@@ -398,7 +401,7 @@ func debug():
 		global_position = Vector3(-32, 53, 53)
 	
 	if Input.is_action_just_pressed("0"):
-		camera.startShake(1,1)
+		camera.startZoom(1,-1)
 func scaleMultiplier(value:float, base:float, multiplier:float): #example usecase: you scale jumps height by another property, however you want the effect of the multiplication just to be half as noticable. then you use this method with multipleir 0.5
 	#error case where we are <= than the base
 	if value == base and base == 0:

@@ -77,7 +77,8 @@ func _process(delta):
 		
 		#fov
 		fov_label.set_text(str(int(fov_slider.value)))
-		cam.set_fov(fov_slider.value)
+		cam.baseZoom = fov_slider.value
+		cam.fov = cam.baseZoom + cam.extraZoom
 		
 		#crosshair
 		crosshair.scale = Vector2(crosshair_slider.value,crosshair_slider.value)
