@@ -232,6 +232,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 		storeFrameCounter = 0
 	elif velocity.y == 0:
 		storeFrameCounter += 1
+var lastInstance: CharacterBody3D = null
 func airDash(delta:float):
 	var smallestInstance: CharacterBody3D = null #stores the instance of the "closest"
 	var smallestDistance: float = INF
@@ -244,9 +245,13 @@ func airDash(delta:float):
 				smallestDistance = distance
 				smallestInstance = area.get_parent()
 	
+	if lastInstance != null:
+		lastInstance.get_node("selectHighlight").hide()
+	
 	if smallestInstance != null:
+		lastInstance = smallestInstance
 		#do dash if wanted, this is for debug purposes
-		print(smallestInstance.target_name)
+		smallestInstance.get_node("selectHighlight").show()
 		return
 
 

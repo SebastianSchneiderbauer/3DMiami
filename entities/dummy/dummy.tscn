@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf8kikmkf0ytj"]
+[gd_scene load_steps=10 format=3 uid="uid://bf8kikmkf0ytj"]
 
 [ext_resource type="Script" uid="uid://crvf7it34h14c" path="res://entities/dummy/scripts/dummy.gd" id="1_ec5rh"]
+[ext_resource type="Shader" uid="uid://dn6mku2q48j75" path="res://entities/dummy/shaders/dummy-select-shader.gdshader" id="2_1mvqt"]
 [ext_resource type="Texture2D" uid="uid://dujxyux4o5bf5" path="res://entities/dummy/textures/test-kadse.png" id="2_vlfdi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_65od5"]
@@ -9,6 +10,13 @@
 albedo_texture = ExtResource("2_vlfdi")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1qa1k"]
+material = SubResource("StandardMaterial3D_vlfdi")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1mvqt"]
+render_priority = 0
+shader = ExtResource("2_1mvqt")
+shader_parameter/outline_color = Color(1, 0, 0, 1)
+shader_parameter/outline_width = 5.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vlfdi"]
 height = 0.1
@@ -30,10 +38,17 @@ shape = SubResource("CapsuleShape3D_65od5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.903851, 0, -0.427847, 0, 1, 0, 0.427847, 0, -0.903851, 0, 1, 0)
-material_override = SubResource("StandardMaterial3D_vlfdi")
+mesh = SubResource("CapsuleMesh_1qa1k")
+
+[node name="selectHighlight" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.903851, 0, -0.427847, 0, 1, 0, 0.427847, 0, -0.903851, 0, 1, 0)
+visible = false
+layers = 1048575
+material_overlay = SubResource("ShaderMaterial_1mvqt")
 mesh = SubResource("CapsuleMesh_1qa1k")
 
 [node name="air-dash-detection-area" type="Area3D" parent="."]
+visible = false
 collision_layer = 8388608
 collision_mask = 8388608
 

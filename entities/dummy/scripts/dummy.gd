@@ -4,6 +4,9 @@ extends CharacterBody3D
 
 @onready var player = get_parent().get_node("player")
 
+var selected:bool = false
+var highlightMax: int = 5
+
 const default_gravity:Vector3 = Vector3(0,-9.8,0)
 var used_gravity: Vector3 = default_gravity
 var gravity_changer:float = 20 #ridiculously high, bc this without deltatime would be crazy
@@ -26,6 +29,7 @@ func turnAirdashDetectionToPlayer():
 	$"air-dash-detection-area".global_transform = Transform3D(target_rotation, $"air-dash-detection-area".global_transform.origin)
 
 func _physics_process(delta: float) -> void:
+	selected = false
 	var mesh_instance_3d: MeshInstance3D = $"air-dash-detection-area/MeshInstance3D"
 	mesh_instance_3d.show
 	movement(delta)
