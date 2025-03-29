@@ -8,6 +8,7 @@ var baseSpeed:float = 7.0
 var crouchSpeed:float = baseSpeed*1.4
 var speed:float = baseSpeed
 const JUMP_VELOCITY:float = 6
+const airDashSpeedMultiplier:float = 5
 
 var lastVelocityY:float = 0
 var storeFrames:int = 1
@@ -224,27 +225,6 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 			camera.position.y = crouchStart
 		else:
 			camera.rotation.x -= delta*0.8
-func move(delta:float): #custom move function for extra logic before and after calling move_and_slide()
-	velocity += extraVelocity  # Apply extra force
-	extraVelocity = reduce_vector_length(extraVelocity,1)
-	
-	if is_on_wall() and velocity.y < 0 and not Input.is_action_pressed("ctrl"):
-		velocity.y = used_gravity.y/7
-	
-	move_and_slide()
-	
-	#fix bug where we get stuck in a wall when vaulting at a strange angle, its snappy, but fuck the user its their fualt if they run into a wall like this
-	var inWallDetector: RayCast3D = $inWallDetector
-	inWallDetector.force_raycast_update()
-	if inWallDetector.is_colliding() and not vaulting:
-		global_position.y +=1
-	
-	if velocity.y != 0 or storeFrameCounter == storeFrames:
-		lastVelocityY = velocity.y
-		storeFrameCounter = 0
-	elif velocity.y == 0:
-		storeFrameCounter += 1
-var lastInstance: CharacterBody3D = null
 func airDash(delta:float):
 	if not focused:
 		if lastInstance != null:
@@ -270,14 +250,16 @@ func airDash(delta:float):
 		smallestInstance.get_node("selectHighlight").show()
 		
 		if Input.is_action_just_pressed("mouseclick-l"):
-			var toEnemy := smallestInstance.global_position - global_position
-			var distance := toEnemy.length()
-			print("Dash triggered")
+			airdashTarget = smallestInstance.global_position
+			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
+			airdashing = true
 		
 		return
 func focus(delta:float):
 	focused = Input.is_action_pressed("mouseclick-r")
 	
+	return
+	#we could turn this on later just does not feel right + exploitable
 	if focused:
 		if Engine.time_scale - (Engine.time_scale/1.5)*delta*10 < 0.3 or Engine.time_scale == 0.3:
 			Engine.time_scale = 0.3
@@ -288,6 +270,41 @@ func focus(delta:float):
 			Engine.time_scale = 1
 		else:
 			Engine.time_scale += (Engine.time_scale*2)*delta*100
+func move(delta:float): #custom move function for extra logic before and after calling move_and_slide()
+	velocity += extraVelocity  # Apply extra force
+	extraVelocity = reduce_vector_length(extraVelocity,1)
+	
+	if is_on_wall() and velocity.y < 0 and not Input.is_action_pressed("ctrl") and not airdashing:
+		velocity.y = used_gravity.y/7
+	
+	if airdashing:
+		get_node("hitbox-uncrouched").set_disabled(true)
+		get_node("hitbox_crouched").set_disabled(true)
+		
+		if ((airdashTarget - global_position).length() < 0.1*airDashSpeedMultiplier):
+			airdashing = false
+		else:
+			focused = false
+			Engine.time_scale = 1
+			velocity = (airdashTarget - global_position).normalized()*baseSpeed*airDashSpeedMultiplier
+	else:
+		get_node("hitbox-uncrouched").set_disabled(false)
+		get_node("hitbox_crouched").set_disabled(false)
+	
+	move_and_slide()
+	
+	#fix bug where we get stuck in a wall when vaulting at a strange angle, its snappy, but fuck the user its their fualt if they run into a wall like this
+	var inWallDetector: RayCast3D = $inWallDetector
+	inWallDetector.force_raycast_update()
+	if inWallDetector.is_colliding() and not vaulting:
+		global_position.y +=1
+	
+	if velocity.y != 0 or storeFrameCounter == storeFrames:
+		lastVelocityY = velocity.y
+		storeFrameCounter = 0
+	elif velocity.y == 0:
+		storeFrameCounter += 1
+var lastInstance: CharacterBody3D = null
 
 
 #utility

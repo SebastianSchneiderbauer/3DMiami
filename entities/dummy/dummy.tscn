@@ -20,11 +20,11 @@ shader_parameter/outline_width = 5.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vlfdi"]
 height = 0.1
-radius = 1.5
+radius = 3.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1mvqt"]
-top_radius = 1.5
-bottom_radius = 1.5
+top_radius = 3.0
+bottom_radius = 3.0
 height = 0.1
 
 [node name="dummy" type="CharacterBody3D"]
