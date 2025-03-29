@@ -54,13 +54,13 @@ func shake():
 
 func zoom(delta):
 	if zooming:
-		if extraZoom < zoomStrenth and (extraZoom + zoomStrenth*delta*20) < zoomStrenth:
-			extraZoom += zoomStrenth*delta*20
+		if extraZoom < zoomStrenth and (extraZoom + zoomStrenth*delta*40) < zoomStrenth:
+			extraZoom += zoomStrenth*delta*40
 		else:
 			extraZoom = zoomStrenth
 	else:
-		if extraZoom > 0 and (extraZoom - zoomStrenth*delta*20) > 0:
-			extraZoom -= zoomStrenth*delta*20
+		if extraZoom > 0 and (extraZoom - zoomStrenth*delta*40) > 0:
+			extraZoom -= zoomStrenth*delta*40
 		else:
 			extraZoom = 0
 	

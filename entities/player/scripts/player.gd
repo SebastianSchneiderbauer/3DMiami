@@ -8,7 +8,7 @@ var baseSpeed:float = 7.0
 var crouchSpeed:float = baseSpeed*1.4
 var speed:float = baseSpeed
 const JUMP_VELOCITY:float = 6
-const airDashSpeedMultiplier:float = 5
+const airDashSpeedMultiplier:float = 7
 
 var lastVelocityY:float = 0
 var storeFrames:int = 1
@@ -56,6 +56,7 @@ var released:bool = true
 var airdashTarget:Vector3 = Vector3.ZERO
 var enemyDistance:float = INF #does not track distance to the enemy, its used for enemys to store their distance to the collision point, basicly measuring if they are the closest
 var airdashing:bool = false
+var airjumpTriggered:bool = false
 
 # focus
 var focused:bool = false
@@ -252,12 +253,14 @@ func airDash(delta:float):
 		if Input.is_action_just_pressed("mouseclick-l"):
 			airdashTarget = smallestInstance.global_position
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
+			#camera.startShake((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),0.2)
+			camera.startShake(0.1,0.2)
 			airdashing = true
+			airjumpTriggered = false
 		
 		return
 func focus(delta:float):
 	focused = Input.is_action_pressed("mouseclick-r")
-	
 	return
 	#we could turn this on later just does not feel right + exploitable
 	if focused:
@@ -282,11 +285,22 @@ func move(delta:float): #custom move function for extra logic before and after c
 		get_node("hitbox_crouched").set_disabled(true)
 		
 		if ((airdashTarget - global_position).length() < 0.1*airDashSpeedMultiplier):
+			camera.startShake(0.1,0.3)
+			global_position.y = airdashTarget.y
+			velocity.y = 0
+			extraVelocity.y = 0 
 			airdashing = false
 		else:
 			focused = false
 			Engine.time_scale = 1
 			velocity = (airdashTarget - global_position).normalized()*baseSpeed*airDashSpeedMultiplier
+			
+			if not airjumpTriggered:
+				extraVelocity.y += 30
+				airjumpTriggered = true
+			
+			velocity += extraVelocity
+			print(extraVelocity)
 	else:
 		get_node("hitbox-uncrouched").set_disabled(false)
 		get_node("hitbox_crouched").set_disabled(false)
@@ -428,8 +442,8 @@ func debug():
 	if Input.is_action_just_pressed("2"):
 		global_position = Vector3(-32, 53, 53)
 	
-	if Input.is_action_just_pressed("0"):
-		camera.startZoom(1,40,1)
+	if Input.is_action_just_pressed("3"):
+		global_position = Vector3(-24, 91.5, 27.5)
 func scaleMultiplier(value:float, base:float, multiplier:float): #example usecase: you scale jumps height by another property, however you want the effect of the multiplication just to be half as noticable. then you use this method with multipleir 0.5
 	#error case where we are <= than the base
 	if value == base and base == 0:
