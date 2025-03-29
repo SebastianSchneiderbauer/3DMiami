@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bf8kikmkf0ytj"]
+[gd_scene load_steps=11 format=3 uid="uid://bf8kikmkf0ytj"]
 
 [ext_resource type="Script" uid="uid://crvf7it34h14c" path="res://entities/dummy/scripts/dummy.gd" id="1_ec5rh"]
 [ext_resource type="Shader" uid="uid://dn6mku2q48j75" path="res://entities/dummy/shaders/dummy-select-shader.gdshader" id="2_1mvqt"]
@@ -26,6 +26,8 @@ radius = 3.0
 top_radius = 3.0
 bottom_radius = 3.0
 height = 0.1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1mvqt"]
 
 [node name="dummy" type="CharacterBody3D"]
 collision_layer = 4
@@ -59,5 +61,18 @@ shape = SubResource("CylinderShape3D_vlfdi")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="air-dash-detection-area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
 mesh = SubResource("CylinderMesh_1mvqt")
+
+[node name="instant-detection" type="Area3D" parent="."]
+visible = false
+collision_layer = 8388608
+collision_mask = 8388608
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="instant-detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_65od5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="instant-detection"]
+transform = Transform3D(-0.996681, 0, 0.0813991, 0, 1, 0, -0.0813991, 0, -0.996681, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_1mvqt")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

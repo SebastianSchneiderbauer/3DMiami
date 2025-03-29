@@ -242,6 +242,10 @@ func airDash(delta:float):
 			if distance < smallestDistance:
 				smallestDistance = distance
 				smallestInstance = area.get_parent()
+		elif area.name == "instant-detection":
+			smallestDistance = area.get_parent().getDist(hit.position)
+			smallestInstance = area.get_parent()
+			break
 	
 	if lastInstance != null:
 		lastInstance.get_node("selectHighlight").hide()
@@ -490,6 +494,7 @@ func get_airdash_hits_from_camera(ray_length := 100.0) -> Array:
 		exclude.append(hit.collider)
 		current_from = hit.position + direction * step_offset
 	
+	print(results.size())
 	return results
 
 func _physics_process(delta): # "main"
