@@ -257,7 +257,6 @@ func airDash(delta:float):
 		if Input.is_action_just_pressed("mouseclick-l"):
 			airdashTarget = smallestInstance.global_position
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
-			#camera.startShake((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),0.2)
 			camera.startShake(0.1,0.2)
 			airdashing = true
 			airjumpTriggered = false
@@ -300,11 +299,10 @@ func move(delta:float): #custom move function for extra logic before and after c
 			velocity = (airdashTarget - global_position).normalized()*baseSpeed*airDashSpeedMultiplier
 			
 			if not airjumpTriggered:
-				extraVelocity.y += 30
+				extraVelocity.y += 40
 				airjumpTriggered = true
 			
 			velocity += extraVelocity
-			print(extraVelocity)
 	else:
 		get_node("hitbox-uncrouched").set_disabled(false)
 		get_node("hitbox_crouched").set_disabled(false)
@@ -494,7 +492,6 @@ func get_airdash_hits_from_camera(ray_length := 100.0) -> Array:
 		exclude.append(hit.collider)
 		current_from = hit.position + direction * step_offset
 	
-	print(results.size())
 	return results
 
 func _physics_process(delta): # "main"
