@@ -283,6 +283,8 @@ func move(delta:float): #custom move function for extra logic before and after c
 	if is_on_wall() and velocity.y < 0 and not Input.is_action_pressed("ctrl") and not airdashing:
 		velocity.y = used_gravity.y/7
 	
+	camera.airdashEffect = airdashing
+	get_node("SubViewportContainer/SubViewport/airdash").emitting = airdashing
 	if airdashing:
 		get_node("hitbox-uncrouched").set_disabled(true)
 		get_node("hitbox_crouched").set_disabled(true)
@@ -293,6 +295,9 @@ func move(delta:float): #custom move function for extra logic before and after c
 			velocity.y = 0
 			extraVelocity.y = 0 
 			airdashing = false
+			
+			get_node("hitbox-uncrouched").set_disabled(false)
+			get_node("hitbox_crouched").set_disabled(false)
 		else:
 			focused = false
 			Engine.time_scale = 1
@@ -303,9 +308,6 @@ func move(delta:float): #custom move function for extra logic before and after c
 				airjumpTriggered = true
 			
 			velocity += extraVelocity
-	else:
-		get_node("hitbox-uncrouched").set_disabled(false)
-		get_node("hitbox_crouched").set_disabled(false)
 	
 	move_and_slide()
 	

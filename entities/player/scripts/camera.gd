@@ -15,6 +15,11 @@ var extraZoom:float = 0
 var hOffset:float
 var vOffset:float
 
+var airdashEffect:bool = false
+
+func _ready() -> void:
+	get_node("../SubViewportContainer").visible = airdashEffect
+
 func startZoom(duration:float, strength:float, direction:int):
 	zoomtime = duration
 	zoomStrenth = strength
@@ -25,6 +30,9 @@ func startShake(duration:float,strength:float):
 	shakeStrength = strength
 
 func _physics_process(delta: float) -> void:
+	#en/disable airdash effect
+	get_node("../SubViewportContainer").visible = airdashEffect
+	
 	if shakeTime > 0:
 		shaking = true
 		shakeTime -= delta

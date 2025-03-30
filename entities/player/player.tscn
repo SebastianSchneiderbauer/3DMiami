@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=18 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="1_apn28"]
 [ext_resource type="PackedScene" uid="uid://d1acb3ydgpw1b" path="res://ui/overlay-info/scenes/info.tscn" id="2_bls4j"]
 [ext_resource type="Script" uid="uid://bu1paiktd1fix" path="res://entities/player/scripts/camera.gd" id="2_fkugw"]
 [ext_resource type="PackedScene" uid="uid://d22k2ss55xjem" path="res://ui/pause-menu/scenes/pause.tscn" id="3_fkugw"]
 [ext_resource type="PackedScene" uid="uid://cdaq8exuytosd" path="res://ui/crosshair/scenes/crosshair.tscn" id="4_8fjmc"]
+[ext_resource type="Texture2D" uid="uid://b1ixeii5fmehj" path="res://entities/player/textures/dash.png" id="6_8fjmc"]
+[ext_resource type="Shader" uid="uid://bsvvxxmusqghy" path="res://entities/player/shaders/transparency.gdshader" id="6_qiwj3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_twk7w"]
 
@@ -22,6 +24,27 @@ height = 0.4
 height = 1.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8h4do"]
+height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26q78"]
+shader = ExtResource("6_qiwj3")
+shader_parameter/alpha = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fkugw"]
+direction = Vector3(0, -1, 0)
+spread = 40.0
+initial_velocity_min = 7.0
+initial_velocity_max = 7.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qiwj3"]
+no_depth_test = true
+shading_mode = 0
+albedo_texture = ExtResource("6_8fjmc")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_26q78"]
+material = SubResource("StandardMaterial3D_qiwj3")
+radius = 0.01
 height = 1.0
 
 [node name="player" type="CharacterBody3D"]
@@ -59,7 +82,7 @@ layers = 4
 mesh = SubResource("CapsuleMesh_t0cpu")
 
 [node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(0.999999, -0.00121418, -0.000452634, 0.00121328, 0.999997, -0.00198901, 0.000455047, 0.00198846, 0.999998, 0, 1.6, 0)
 cull_mask = 3
 fov = 90.0
 script = ExtResource("2_fkugw")
@@ -96,3 +119,35 @@ metadata/_edit_use_anchors_ = true
 z_index = -4
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_26q78")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+cull_mask = 524288
+
+[node name="airdash" type="GPUParticles3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 8.23383e-06, -1.78783e-05, 1.78783e-05, 0.000190931, 1, 8.23383e-06, -1, 0.000190931, 0, 1.6, -1.5)
+layers = 524288
+gi_lightmap_texel_scale = 100.0
+emitting = false
+amount = 30
+lifetime = 0.3
+fixed_fps = 100
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_fkugw")
+draw_pass_1 = SubResource("CapsuleMesh_26q78")
