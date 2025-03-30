@@ -239,7 +239,7 @@ func airDash(delta:float):
 		var area = hit.collider
 		if area.name == "air-dash-detection-area":
 			var distance = area.get_parent().getDist(hit.position)
-			if distance < smallestDistance:
+			if distance < smallestDistance and distance != INF:
 				smallestDistance = distance
 				smallestInstance = area.get_parent()
 		elif area.name == "instant-detection":

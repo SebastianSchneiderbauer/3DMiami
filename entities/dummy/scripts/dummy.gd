@@ -36,6 +36,21 @@ func _physics_process(delta: float) -> void:
 	turnAirdashDetectionToPlayer()
 
 func getDist(hitPosition: Vector3):
+	var space_state = get_world_3d().direct_space_state
+	
+	var from = global_transform.origin
+	var to = player.global_transform.origin
+	from.y +=2
+	to.y +=2
+	
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.collision_mask = 1  # only collide with layer 1
+	query.exclude = [self]
+	
+	var result = space_state.intersect_ray(query)
+	if result:
+		return INF
+	
 	var midPosition := global_position
 	midPosition.y += 1
 	return (hitPosition - midPosition).length()
