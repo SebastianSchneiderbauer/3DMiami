@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=19 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="1_apn28"]
 [ext_resource type="PackedScene" uid="uid://d1acb3ydgpw1b" path="res://ui/overlay-info/scenes/info.tscn" id="2_bls4j"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cdaq8exuytosd" path="res://ui/crosshair/scenes/crosshair.tscn" id="4_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://b1ixeii5fmehj" path="res://entities/player/textures/dash.png" id="6_8fjmc"]
 [ext_resource type="Shader" uid="uid://bsvvxxmusqghy" path="res://entities/player/shaders/transparency.gdshader" id="6_qiwj3"]
+[ext_resource type="Script" uid="uid://daaofh21obc1c" path="res://entities/player/scripts/overlay_scaling.gd" id="7_26q78"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_twk7w"]
 
@@ -132,8 +133,10 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
+scaling_3d_scale = 0.25
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
+script = ExtResource("7_26q78")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)

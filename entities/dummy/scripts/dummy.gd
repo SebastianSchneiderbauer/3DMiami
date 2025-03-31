@@ -111,7 +111,6 @@ func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)
 
 func _on_savedata_update():
-	print("update")
 	var type:int = SaveManager.get_data("scaler")
 	var strength:float
 	
