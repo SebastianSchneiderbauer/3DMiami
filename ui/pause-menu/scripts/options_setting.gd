@@ -11,6 +11,7 @@ extends VBoxContainer
 @onready var scaler = $Scaler
 
 var loaded:bool = false
+var noLoad:bool = false
 
 var Resolutions: Dictionary = {"3840x2160":Vector2i(3840,2160),
 								"2560x1440":Vector2i(2560,1080),
@@ -32,7 +33,6 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("ui_cancel") and visible:
-		get_parent().hide()
 		_on_return_pressed()
 	
 	if SaveManager.loaded and not loaded:
@@ -58,6 +58,10 @@ func _process(delta):
 		loaded = true
 
 func _on_savedata_update():
+	if noLoad:
+		noLoad = false
+		return
+	
 	scaler._select_int(SaveManager.get_data("scaler"))
 	_on_scaler_item_selected(SaveManager.get_data("scaler"))
 	
@@ -208,6 +212,8 @@ func _on_return_pressed():
 	
 	if screen_selector.get_selected() != SaveManager.get_data("defaultScreen"):
 		SaveManager.set_data("defaultScreen", screen_selector.get_selected())
+	
+	#noLoad = true
 	
 	SaveManager.save_game()
 	

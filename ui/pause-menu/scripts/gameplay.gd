@@ -16,10 +16,17 @@ var loaded:bool = false
 @onready var fps_limit_: CheckButton = $"Options/ScaleBox4/fpsLimit?"
 @onready var scale_label: Label = $Options/ScaleBox5/ScaleLabel
 
+var noLoad:bool = false
+
 func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)
 
 func _on_savedata_update():
+	print(noLoad)
+	if noLoad:
+		noLoad = false
+		return
+	
 	sens_slider.value = SaveManager.get_data("sensitivity")
 	fov_slider.value = SaveManager.get_data("fov")
 	show_crosshair.set_pressed(SaveManager.get_data("showCrosshair"))
@@ -35,8 +42,6 @@ func _on_return_pressed():
 	if SaveManager.get_data("fov") != fov_slider.value:
 		SaveManager.set_data("fov", fov_slider.value)
 	
-	print(bool(SaveManager.get_data("showCrosshair")))
-	print(show_crosshair.is_pressed())
 	if bool(SaveManager.get_data("showCrosshair")) != show_crosshair.is_pressed():
 		SaveManager.set_data("showCrosshair", show_crosshair.is_pressed())
 	
@@ -48,7 +53,8 @@ func _on_return_pressed():
 	
 	if SaveManager.get_data("FPScap") != scale_slider.value:
 		SaveManager.set_data("FPScap", scale_slider.value)
-
+	
+	noLoad = true
 	
 	SaveManager.save_game()
 	
@@ -67,7 +73,6 @@ func _process(delta):
 		loaded = true
 	
 	if Input.is_action_pressed("ui_cancel") and visible:
-		hide()
 		_on_return_pressed()
 	
 	if player is CharacterBody3D: #we need to load screen stuff in the menu, so this is evading errors
