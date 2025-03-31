@@ -41,15 +41,21 @@ func _physics_process(delta: float) -> void:
 
 func updateOutline(_strength:float):
 	var strength = _strength
-	var underOneMUltiplier = 1
+	var underOneMultiplier = 1
 	
-	if strength < 1:
-		underOneMUltiplier = 20 - 19*strength
+	#hardcode bc fuck expandability
+	if strength < 0.12:
+		underOneMultiplier = 2
+	
+	if strength < 0.07:
+		underOneMultiplier = 3
+	
+	if strength < 0.05:
+		underOneMultiplier = 20
 	
 	var shader_mat := $selectHighlight.material_overlay as ShaderMaterial
 	if shader_mat:
-		shader_mat.set_shader_parameter("outline_width", outline_width*strength*underOneMUltiplier)
-		print(outline_width*strength)
+		shader_mat.set_shader_parameter("outline_width", outline_width*strength*underOneMultiplier)
 
 func _process(delta):
 	if SaveManager.loaded and not loaded:
@@ -100,3 +106,18 @@ func get_fsr_value(index:int):
 			83.0
 		7:
 			125.00
+
+func _ready():
+	SaveManager.save_data_update.connect(_on_savedata_update)
+
+func _on_savedata_update():
+	print("update")
+	var type:int = SaveManager.get_data("scaler")
+	var strength:float
+	
+	if type == 1:
+		strength = SaveManager.get_data("scalerStrength")/100
+	else:
+		strength = get_fsr_value(SaveManager.get_data("fsrStrength"))/100
+	
+	updateOutline(strength)

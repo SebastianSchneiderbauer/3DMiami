@@ -30,6 +30,8 @@ func save_game():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	for key in save_data.keys():
 		file.store_line(key + "=" + str(save_data[key]))
+	
+	emit_signal("save_data_update")
 
 func load_game():
 	if FileAccess.file_exists(SAVE_PATH):
@@ -55,13 +57,11 @@ func load_game():
 func reset_to_defaults():
 	save_data = default_values.duplicate()  # Copy fresh default values
 	save_game()
-	emit_signal("save_data_update")
 
 func reset_property_to_default(property_name: String):
 	if default_values.has(property_name):
 		save_data[property_name] = default_values[property_name]
 		save_game()
-		emit_signal("save_data_update")
 
 func set_data(property_name: String, value):
 	save_data[property_name] = value
