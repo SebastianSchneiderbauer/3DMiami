@@ -32,7 +32,8 @@ func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)
 
 func _process(delta):
-	if Input.is_action_pressed("ui_cancel") and visible:
+	if Input.is_action_just_pressed("ui_cancel") and get_parent().visible:
+		print("graphic")
 		_on_return_pressed()
 	
 	if SaveManager.loaded and not loaded:
@@ -75,9 +76,11 @@ func _on_savedata_update():
 	full_screen_check_box.set_pressed(SaveManager.get_data("fullScreen"))
 	_on_full_screen_check_box_toggled(SaveManager.get_data("fullScreen"))
 	
-	vsync_checkbox.set_pressed(SaveManager.get_data("VSYNC"))
-	_on_vsync_checkbox_toggled(SaveManager.get_data("VSYNC"))
+	if vsync_checkbox.is_pressed() != SaveManager.get_data("VSYNC"): #prevent screen flicker
+		vsync_checkbox.set_pressed(SaveManager.get_data("VSYNC"))
+		_on_vsync_checkbox_toggled(SaveManager.get_data("VSYNC"))
 	
+	return
 	screen_selector._select_int(SaveManager.get_data("defaultScreen"))
 	_on_screen_selector_item_selected(SaveManager.get_data("defaultScreen"))
 
@@ -131,8 +134,6 @@ func _on_full_screen_check_box_toggled(toggled_on):
 		Centre_Window()
 
 func _on_scale_slider_value_changed(value):
-	print(value)
-	
 	var Resolution_Scale = value/100.00
 	var Resolution_Text = str(round(get_window().get_size().x*Resolution_Scale))+"x"+str(round(get_window().get_size().y*Resolution_Scale))
 	
@@ -213,7 +214,7 @@ func _on_return_pressed():
 	if screen_selector.get_selected() != SaveManager.get_data("defaultScreen"):
 		SaveManager.set_data("defaultScreen", screen_selector.get_selected())
 	
-	#noLoad = true
+	noLoad = true
 	
 	SaveManager.save_game()
 	

@@ -22,7 +22,6 @@ func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)
 
 func _on_savedata_update():
-	print(noLoad)
 	if noLoad:
 		noLoad = false
 		return
@@ -72,7 +71,8 @@ func _process(delta):
 		scale_slider.value = SaveManager.get_data("FPScap")
 		loaded = true
 	
-	if Input.is_action_pressed("ui_cancel") and visible:
+	if Input.is_action_just_pressed("ui_cancel") and visible:
+		print("gameplay")
 		_on_return_pressed()
 	
 	if player is CharacterBody3D: #we need to load screen stuff in the menu, so this is evading errors
