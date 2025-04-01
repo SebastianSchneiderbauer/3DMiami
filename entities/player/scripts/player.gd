@@ -283,8 +283,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 	if is_on_wall() and velocity.y < 0 and not Input.is_action_pressed("ctrl") and not airdashing:
 		velocity.y = used_gravity.y/7
 	
-	camera.airdashEffect = airdashing
-	get_node("SubViewportContainer/SubViewport/airdash").emitting = airdashing
+	get_node("SubViewportContainer/SubViewport/airdash").emitting = airdashing or crouched
 	if airdashing:
 		get_node("hitbox-uncrouched").set_disabled(true)
 		get_node("hitbox_crouched").set_disabled(true)
