@@ -285,9 +285,6 @@ func move(delta:float): #custom move function for extra logic before and after c
 	
 	get_node("SubViewportContainer/SubViewport/airdash").emitting = airdashing or crouched
 	if airdashing:
-		get_node("hitbox-uncrouched").set_disabled(true)
-		get_node("hitbox_crouched").set_disabled(true)
-		
 		if ((airdashTarget - global_position).length() < 0.1*airDashSpeedMultiplier):
 			camera.startShake(0.1,0.3)
 			global_position.y = airdashTarget.y
@@ -295,8 +292,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 			extraVelocity.y = 0 
 			airdashing = false
 			
-			get_node("hitbox-uncrouched").set_disabled(false)
-			get_node("hitbox_crouched").set_disabled(false)
+			set_collision_mask_value(1, true)
 		else:
 			focused = false
 			Engine.time_scale = 1
@@ -308,12 +304,15 @@ func move(delta:float): #custom move function for extra logic before and after c
 			
 			velocity += extraVelocity
 	
+	if airdashing and (get_node("hitbox-uncrouched").disabled or get_node("hitbox_crouched").disabled):
+		set_collision_mask_value(1, false)
+	
 	move_and_slide()
 	
 	#fix bug where we get stuck in a wall when vaulting at a strange angle, its snappy, but fuck the user its their fualt if they run into a wall like this
 	var inWallDetector: RayCast3D = $inWallDetector
 	inWallDetector.force_raycast_update()
-	if inWallDetector.is_colliding() and not vaulting:
+	if inWallDetector.is_colliding() and not vaulting and not airdashing:
 		global_position.y +=1
 	
 	if velocity.y != 0 or storeFrameCounter == storeFrames:
