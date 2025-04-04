@@ -71,8 +71,8 @@ func _input(event):
 
 #movement/cam methods
 func handle_mouse_look(delta:float):
-	var rotation_x = -mouse_delta.y * sensitivity * delta * 100
-	var rotation_y = -mouse_delta.x * sensitivity * delta * 100
+	var rotation_x = -mouse_delta.y * sensitivity# * delta * 100
+	var rotation_y = -mouse_delta.x * sensitivity# * delta * 100
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x + rotation_x, -90, 90)
 	rotation_degrees.y += rotation_y
 	mouse_delta = Vector2.ZERO
