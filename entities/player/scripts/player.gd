@@ -4,11 +4,11 @@ const default_gravity:Vector3 = Vector3(0,-9.8,0)
 var used_gravity: Vector3 = default_gravity
 var gravity_changer:float = 20 #ridiculously high, bc this without deltatime would be crazy
 
-var baseSpeed:float = 7.0
+var baseSpeed:float = 8.0
 var crouchSpeed:float = baseSpeed*1.4
 var speed:float = baseSpeed
 const JUMP_VELOCITY:float = 6
-const airDashSpeedMultiplier:float = 7
+const airDashSpeedMultiplier:float = 6
 
 var lastVelocityY:float = 0
 var storeFrames:int = 1
