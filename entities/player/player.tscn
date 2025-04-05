@@ -104,11 +104,6 @@ target_position = Vector3(0, 1, 0)
 [node name="uncrouchDetector" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
 
-[node name="flashlight?" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842242, 0)
-visible = false
-omni_range = 64.98
-
 [node name="Screen-overlay" type="CanvasLayer" parent="."]
 
 [node name="Info" parent="Screen-overlay" instance=ExtResource("2_bls4j")]

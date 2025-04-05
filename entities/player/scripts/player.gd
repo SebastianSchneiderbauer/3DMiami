@@ -51,7 +51,7 @@ var crouchStart:float = 1.6
 var crouchEnd:float = 0.8
 var inWallDetectorPosition:Vector3 = Vector3(0,0.5,0)
 var inWallDetectorTarget:Vector3 = Vector3(0,1,0)
-var slideDirection:Vector3
+var slideDirection:Vector3 = Vector3(0,1,0)
 var slideDuration:float = 0.4
 var slideTimer:float = 0
 var released:bool = true
@@ -126,7 +126,7 @@ func jump_logic(delta:float):
 	
 	# Handle jump
 	if Input.is_action_just_pressed("ui_accept") and not crouched:
-		if not is_on_wall():
+		if not is_on_wall_only():
 			if jumps > 0:
 				used_gravity = default_gravity
 				jumps -= 1
@@ -156,7 +156,7 @@ func vault_logic(delta:float):
 	elif is_on_wall() and can_vault():
 		get_node("hitbox-uncrouched").disabled = true
 		startPosition = global_position
-		vaultVector = (vaultPoint - startPosition).normalized()*vaultSpeed
+		vaultVector = (vaultPoint - startPosition).normalized() * speed * slideDirection.length()
 		vaultDirection = tranform_into_direction_vector(global_position - vaultPoint)
 		storedVelocity = velocity
 		vaulting = true
@@ -283,7 +283,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
 	
-	if is_on_wall() and velocity.y < 0 and not Input.is_action_pressed("ctrl") and not airdashing:
+	if is_on_wall() and velocity.y < 0 and not Input.is_action_pressed("ctrl") and not airdashing and not vaulting:
 		velocity.y = used_gravity.y/7
 	
 	get_node("SubViewportContainer/SubViewport/airdash").emitting = airdashing or crouched
@@ -366,40 +366,18 @@ func can_vault() -> bool: #dont open me, just trust me, like fr, you will regret
 	# this is the clusterfuck that is created when you just try fixing a bug by fucking around untill it works...
 	var wallchecker:RayCast3D = $wallchecker
 	var distancer:RayCast3D = $distancer
-	var canVault1:bool = false
 	var canVault2:bool = false
 	var vaultPoint1:Vector3 = Vector3.ZERO
 	var vaultPoint2:Vector3 = Vector3.ZERO
 	
-	var posi:Vector3 = global_position + direction*0.6
+	var posi = global_position + direction*1.5
 	posi.y += vault_height
 	distancer.global_position = posi
 	distancer.target_position.y = -1 * (vault_height + 1)
 	
 	posi.y += 1
 	wallchecker.global_position = posi
-	var transVector: Vector3 = global_position - posi #translate because raycasts are stupid
-	wallchecker.target_position = transVector
-	wallchecker.target_position.y += 1
-	
-	wallchecker.force_raycast_update()
-	distancer.force_raycast_update()
-
-	if distancer.is_colliding():
-		vaultPoint1 = distancer.get_collision_point()
-	
-	canVault1 = not wallchecker.is_colliding() and (vaultPoint1.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
-	
-	#second try
-	
-	posi = global_position + direction*1.5
-	posi.y += vault_height
-	distancer.global_position = posi
-	distancer.target_position.y = -1 * (vault_height + 1)
-	
-	posi.y += 1
-	wallchecker.global_position = posi
-	transVector = global_position - posi #translate because raycasts are stupid
+	var transVector = global_position - posi #translate because raycasts are stupid
 	wallchecker.target_position = transVector
 	wallchecker.target_position.y += 1
 	
@@ -409,15 +387,12 @@ func can_vault() -> bool: #dont open me, just trust me, like fr, you will regret
 	if distancer.is_colliding():
 		vaultPoint2 = distancer.get_collision_point()
 	
-	canVault2 = not wallchecker.is_colliding() and (vaultPoint2.y - global_position.y) > 0 and (direction != Vector3.ZERO or crouched)
-	
-	if canVault1:
-		vaultPoint = vaultPoint1
+	canVault2 = not wallchecker.is_colliding() and (vaultPoint2.y - global_position.y) > 0.1 and (direction != Vector3.ZERO or crouched)
 	
 	if canVault2:
 		vaultPoint = vaultPoint2
 	
-	return canVault1 or canVault2
+	return canVault2
 func tranform_into_direction_vector(vector:Vector3):
 	var return_value := Vector3(1,1,1)
 	if(vector.x < 0):

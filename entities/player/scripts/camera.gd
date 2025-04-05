@@ -67,4 +67,4 @@ func zoom(delta):
 		else:
 			extraZoom = 0
 	
-	fov = baseZoom + extraZoom**zoomDirection
+	fov = baseZoom + extraZoom*zoomDirection

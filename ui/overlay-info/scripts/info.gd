@@ -12,4 +12,6 @@ func _process(delta):
 	fps_label.text += "\ndirection: " + str(player.direction)
 	fps_label.text += "\nvelocity: " + str(player.velocity)
 	fps_label.text += "\nextra-velocity: " + str(player.extraVelocity)
-	fps_label.text += "\nspeed: " + str(Engine.time_scale)
+	fps_label.text += "\vaultimachitui: " + str(player.can_vault())
+	fps_label.text += "\vwall: " + str(player.is_on_wall())
+	
