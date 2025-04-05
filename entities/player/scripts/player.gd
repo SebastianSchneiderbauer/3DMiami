@@ -22,6 +22,10 @@ var sensitivity:float = 0.1 # editable from outside
 
 var extraVelocity:Vector3 = Vector3.ZERO # adding extra velocity like a shockwave, wallsjumps, etc.
 
+# sound effects
+@onready var walk: AudioStreamPlayer3D = $walk
+var walktimer: float = 0
+
 #jump stuff
 const maxJumps: int = 2
 const maxWalljumps: int = 3
@@ -264,7 +268,6 @@ func airDash(delta:float):
 		return
 func focus(delta:float):
 	focused = Input.is_action_pressed("mouseclick-r")
-	return
 	#we could turn this on later just does not feel right + exploitable
 	if focused:
 		if Engine.time_scale - (Engine.time_scale/1.5)*delta*10 < 0.3 or Engine.time_scale == 0.3:
@@ -494,6 +497,18 @@ func get_airdash_hits_from_camera(ray_length := 100.0) -> Array:
 	
 	return results
 
+func play_looping_sounds(delta:float):
+	#walk sound
+	if direction != Vector3.ZERO and is_on_floor() and not crouched:
+		var walk_ocurrancy: float = 0.27
+		var walk_sound_effect: AudioStreamPlayer3D = $"walk-normal"
+		walktimer += delta
+		if walktimer > walk_ocurrancy:
+			walk_sound_effect.play_pitched_sound()
+			walktimer = 0
+	else:
+		walktimer = 0.27 # instant play when walking
+
 func _physics_process(delta): # "main"
 	focus(delta) #is a part that everything could use, so delay by 1 frame would be suboptimal
 	basic_movement()
@@ -502,6 +517,8 @@ func _physics_process(delta): # "main"
 	vault_logic(delta)
 	airDash(delta)
 	debug()
+
+	play_looping_sounds(delta)
 	
 	move(delta)
 func _process(delta):

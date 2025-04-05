@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=21 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="1_apn28"]
 [ext_resource type="PackedScene" uid="uid://d1acb3ydgpw1b" path="res://ui/overlay-info/scenes/info.tscn" id="2_bls4j"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b1ixeii5fmehj" path="res://entities/player/textures/dash.png" id="6_8fjmc"]
 [ext_resource type="Shader" uid="uid://bsvvxxmusqghy" path="res://entities/player/shaders/transparency.gdshader" id="6_qiwj3"]
 [ext_resource type="Script" uid="uid://daaofh21obc1c" path="res://entities/player/scripts/overlay_scaling.gd" id="7_26q78"]
+[ext_resource type="AudioStream" uid="uid://cwhlhhqorts4c" path="res://entities/player/sounds/footstep.MP3" id="9_bectd"]
+[ext_resource type="Script" uid="uid://m34605hh1vnw" path="res://entities/player/scripts/walk_sound_pitcher.gd" id="10_wvtmh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_twk7w"]
 
@@ -107,17 +109,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.842242, 0)
 visible = false
 omni_range = 64.98
 
-[node name="overlay" type="CanvasLayer" parent="."]
+[node name="Screen-overlay" type="CanvasLayer" parent="."]
 
-[node name="Info" parent="overlay" instance=ExtResource("2_bls4j")]
+[node name="Info" parent="Screen-overlay" instance=ExtResource("2_bls4j")]
 metadata/_edit_use_anchors_ = true
 
-[node name="crosshair" parent="overlay" instance=ExtResource("4_8fjmc")]
+[node name="crosshair" parent="Screen-overlay" instance=ExtResource("4_8fjmc")]
 z_index = -4
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Pause" parent="overlay" instance=ExtResource("3_fkugw")]
+[node name="Pause" parent="Screen-overlay" instance=ExtResource("3_fkugw")]
 process_mode = 3
 metadata/_edit_use_anchors_ = true
 
@@ -154,3 +156,11 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_fkugw")
 draw_pass_1 = SubResource("CapsuleMesh_26q78")
+
+[node name="walk-normal" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52518, 0)
+stream = ExtResource("9_bectd")
+volume_db = 80.0
+max_db = 6.0
+panning_strength = 3.0
+script = ExtResource("10_wvtmh")

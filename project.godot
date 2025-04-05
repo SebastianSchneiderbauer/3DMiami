@@ -33,6 +33,7 @@ folder_colors={
 "res://autoloader/": "red",
 "res://entities/": "green",
 "res://legacy/": "gray",
+"res://sources/": "pink",
 "res://textures/": "green",
 "res://ui/": "purple",
 "res://world-00/": "orange"
