@@ -268,6 +268,7 @@ func airDash(delta:float):
 		return
 func focus(delta:float):
 	focused = Input.is_action_pressed("mouseclick-r")
+	return
 	#we could turn this on later just does not feel right + exploitable
 	if focused:
 		if Engine.time_scale - (Engine.time_scale/1.5)*delta*10 < 0.3 or Engine.time_scale == 0.3:
