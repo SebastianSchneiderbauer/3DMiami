@@ -317,7 +317,6 @@ func move(delta:float): #custom move function for extra logic before and after c
 			
 			set_collision_mask_value(1, true)
 		else:
-			camera.rotation.x += -10/airdashDistance*delta
 			focused = false
 			Engine.time_scale = 1
 			velocity = (airdashTarget - global_position).normalized()*baseSpeed*airDashSpeedMultiplier
