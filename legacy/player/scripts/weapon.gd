@@ -1,6 +1,6 @@
 extends Resource
 
-class_name Weapon
+class_name OLDWeapon
 
 enum WeaponType {
 	MELEE,

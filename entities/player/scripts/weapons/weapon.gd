@@ -1,5 +1,7 @@
 extends Node
 
+class_name Weapon
+
 var weaponType: int # 0 -> blunt hit, 1 -> sharp weapon, 2 -> gun
 
 #overall

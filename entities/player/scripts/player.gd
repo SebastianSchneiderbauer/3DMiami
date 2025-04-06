@@ -22,6 +22,9 @@ var sensitivity:float = 0.1 # editable from outside
 
 var extraVelocity:Vector3 = Vector3.ZERO # adding extra velocity like a shockwave, wallsjumps, etc.
 
+# weapon
+var weapon: Weapon = null
+
 # sound effects
 @onready var walk: AudioStreamPlayer3D = $walk
 var walktimer: float = 0
@@ -66,6 +69,7 @@ var airdashTarget:Vector3 = Vector3.ZERO
 var enemyDistance:float = INF #does not track distance to the enemy, its used for enemys to store their distance to the collision point, basicly measuring if they are the closest
 var airdashing:bool = false
 var airjumpTriggered:bool = false
+var airdashDistance:float = 0
 
 # focus
 var focused:bool = false
@@ -278,6 +282,7 @@ func airDash(delta:float):
 			camera.startShake(0.1,0.2)
 			airdashing = true
 			airjumpTriggered = false
+			airdashDistance = (airdashTarget - global_position).length()
 		
 		return
 func focus(delta:float):
@@ -312,6 +317,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 			
 			set_collision_mask_value(1, true)
 		else:
+			camera.rotation.x += -10/airdashDistance*delta
 			focused = false
 			Engine.time_scale = 1
 			velocity = (airdashTarget - global_position).normalized()*baseSpeed*airDashSpeedMultiplier
