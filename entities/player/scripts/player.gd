@@ -26,6 +26,11 @@ var extraVelocity:Vector3 = Vector3.ZERO # adding extra velocity like a shockwav
 @onready var walk: AudioStreamPlayer3D = $walk
 var walktimer: float = 0
 
+@onready var jump_air = $"jump-air"
+@onready var jump_wall = $"jump-wall"
+@onready var jump_ground = $"jump-ground"
+
+
 #jump stuff
 const maxJumps: int = 2
 const maxWalljumps: int = 3
@@ -109,6 +114,7 @@ func jump_logic(delta:float):
 		used_gravity = default_gravity
 		jumps -= 1
 		velocity.y = JUMP_VELOCITY
+		jump_ground.play()
 		
 		preservedJump = false
 	
@@ -131,12 +137,18 @@ func jump_logic(delta:float):
 				used_gravity = default_gravity
 				jumps -= 1
 				velocity.y = JUMP_VELOCITY
+				
+				if jumps == 1:
+					jump_ground.play()
+				else:
+					jump_air.play()
 		else:
 			if walljumps > 0:
 				used_gravity = default_gravity
 				walljumps -= 1
 				var wallVector: Vector3 = get_shortest_wall_vector().normalized() * wallJumpForce * (speed/10)
 				velocity.y = JUMP_VELOCITY
+				jump_wall.play()
 				extraVelocity += wallVector
 				# print(wallVector)
 func vault_logic(delta:float):
@@ -230,6 +242,8 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 			camera.position.y = crouchStart
 		else:
 			camera.rotation.x -= delta*0.8
+		
+		slideDirection = Vector3(0,1,0)
 func airDash(delta:float):
 	if not focused:
 		if lastInstance != null:
