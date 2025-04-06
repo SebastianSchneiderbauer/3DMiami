@@ -138,7 +138,7 @@ func jump_logic(delta:float):
 				jumps -= 1
 				velocity.y = JUMP_VELOCITY
 				
-				if jumps == 1:
+				if is_on_floor():
 					jump_ground.play()
 				else:
 					jump_air.play()
