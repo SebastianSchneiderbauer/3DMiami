@@ -7,10 +7,10 @@ var weaponType: int # 0 -> blunt hit, 1 -> sharp weapon, 2 -> gun
 # overall
 var weapon_damage: float
 var weapon_name: String
-var weapon_model: MeshInstance3D
+var weapon_model: Node3D #handels looks and animation
 var weapon_cooldown: float # millisec.
 var stagger_time: float
-var attack_speed_multiplier: float # eg. double a weapons firing speed (also nerf cooldown then)
+var attack_speed_multiplier: float # CHEAT eg. double a weapons firing speed (also nerf cooldown then)
 var durability: int # uses untill the weapon breaks
 var weight: float # how far can you yeet it
 var chargeup_time: float #something like a bfg
@@ -28,7 +28,7 @@ var overheat_add: float # by what the overheat max is increased by each fire
 var needs_reload: bool
 var mag_size: int
 var mag_bullet_count: int
-var projectile: MeshInstance3D # will prob be scenes and handle the projectile stuff themself
+var projectile: Node3D # will prob be scenes and handle the projectile stuff themself
 
 static func create_blunt(
 	name: String,
@@ -39,7 +39,7 @@ static func create_blunt(
 	durability: int,
 	weight: float,
 	chargeup_time: float,
-	model: MeshInstance3D,
+	model: Node3D,
 	crushing_power: float,
 	knockback: float
 ) -> Weapon:
@@ -67,7 +67,7 @@ static func create_sharp(
 	durability: int,
 	weight: float,
 	chargeup_time: float,
-	model: MeshInstance3D,
+	model: Node3D,
 	sharpness_lvl: int
 ) -> Weapon:
 	var w = Weapon.new()
@@ -93,12 +93,12 @@ static func create_gun(
 	durability: int,
 	weight: float,
 	chargeup_time: float,
-	model: MeshInstance3D,
+	model: Node3D,
 	overheat_max: float,
 	overheat_add: float,
 	needs_reload: bool,
 	mag_size: int,
-	projectile: MeshInstance3D
+	projectile: Node3D
 ) -> Weapon:
 	var w = Weapon.new()
 	w.weaponType = 2
