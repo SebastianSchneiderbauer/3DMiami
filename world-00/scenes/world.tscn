@@ -91,6 +91,7 @@ environment = SubResource("Environment_v1eft")
 [node name="THE SUN" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(-0.911654, -0.216701, 0.349181, 0.209432, 0.486077, 0.84845, -0.353589, 0.846623, -0.39775, 3.61487, 20.6757, 19.8699)
 visible = false
+layers = 262145
 shadow_enabled = true
 
 [node name="TBLoader" type="TBLoader" parent="."]
@@ -140,7 +141,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -45, 1
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@OmniLight3D@25897" type="OmniLight3D" parent="TBLoader"]
+[node name="_OmniLight3D_25897" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -45, 15.25, 13)
 light_bake_mode = 1
 omni_range = 10.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=24 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="1_apn28"]
 [ext_resource type="PackedScene" uid="uid://d1acb3ydgpw1b" path="res://ui/overlay-info/scenes/info.tscn" id="2_bls4j"]
@@ -9,8 +9,10 @@
 [ext_resource type="Shader" uid="uid://bsvvxxmusqghy" path="res://entities/player/shaders/transparency.gdshader" id="6_qiwj3"]
 [ext_resource type="Script" uid="uid://daaofh21obc1c" path="res://entities/player/scripts/overlay_scaling.gd" id="7_26q78"]
 [ext_resource type="AudioStream" uid="uid://cwhlhhqorts4c" path="res://entities/player/sounds/footstep.MP3" id="9_bectd"]
+[ext_resource type="Script" uid="uid://554y4tgq2and" path="res://entities/player/scripts/weapon_container.gd" id="9_j3ovn"]
 [ext_resource type="Script" uid="uid://m34605hh1vnw" path="res://entities/player/scripts/walk_sound_pitcher.gd" id="10_wvtmh"]
 [ext_resource type="AudioStream" uid="uid://cxixff513ylrt" path="res://entities/player/sounds/jump.MP3" id="11_7thud"]
+[ext_resource type="PackedScene" uid="uid://cqei3rltlbr60" path="res://entities/player/scripts/weapons/glock-00/model/glock-00-model.tscn" id="12_a1qjk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_twk7w"]
 
@@ -152,6 +154,32 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_fkugw")
 draw_pass_1 = SubResource("CapsuleMesh_26q78")
+
+[node name="weaponContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("9_j3ovn")
+
+[node name="SubViewport" type="SubViewport" parent="weaponContainer"]
+transparent_bg = true
+handle_input_locally = false
+scaling_3d_scale = 0.25
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+script = ExtResource("7_26q78")
+
+[node name="Node3D" type="Node3D" parent="weaponContainer/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="weaponContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+cull_mask = 262144
+
+[node name="Glock-00-model" parent="weaponContainer/SubViewport/Node3D" instance=ExtResource("12_a1qjk")]
+transform = Transform3D(-0.163068, 0, 0.986615, 0, 1, 0, -0.986615, 0, -0.163068, 1.10964, 1.076, -2.42067)
 
 [node name="walk-normal" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52518, 0)
