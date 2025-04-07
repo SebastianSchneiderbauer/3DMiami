@@ -6,6 +6,7 @@
 transparency = 1
 albedo_texture = ExtResource("1_vqmjl")
 backlight_enabled = true
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_kkqkw"]
 material = SubResource("StandardMaterial3D_kkqkw")
