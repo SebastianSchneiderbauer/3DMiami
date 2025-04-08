@@ -276,7 +276,7 @@ func airDash(delta:float):
 		lastInstance = smallestInstance
 		smallestInstance.get_node("selectHighlight").show()
 		
-		if Input.is_action_just_pressed("mouseclick-l"):
+		if (Input.is_action_just_pressed("mouseclick-l") or Input.is_action_just_pressed("mouseclick-r")) and not airdashing:
 			airdashTarget = smallestInstance.global_position
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
 			camera.startShake(0.1,0.2)
@@ -286,7 +286,7 @@ func airDash(delta:float):
 		
 		return
 func focus(delta:float):
-	focused = Input.is_action_pressed("mouseclick-r")
+	focused = Input.is_action_pressed("shift")
 	return
 	#we could turn this on later just does not feel right + exploitable
 	if focused:

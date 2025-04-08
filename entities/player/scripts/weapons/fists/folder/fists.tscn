@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhd34rubihr6a"]
+
+[ext_resource type="Texture2D" uid="uid://b55ochsmbmect" path="res://textures/gitter.png" id="1_vyu7t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkqkw"]
+albedo_texture = ExtResource("1_vyu7t")
+backlight_enabled = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_nfyql"]
+material = SubResource("StandardMaterial3D_kkqkw")
+size = Vector3(2, 0.5, 0.5)
+
+[node name="Fists" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+layers = 262144
+mesh = SubResource("BoxMesh_nfyql")
