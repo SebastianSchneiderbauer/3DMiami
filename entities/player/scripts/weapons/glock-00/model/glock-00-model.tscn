@@ -19,11 +19,11 @@ size = Vector3(0.5, 0.25, 0.25)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.496944, 0.219258, 0)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.25, 0)
 layers = 262144
 mesh = SubResource("BoxMesh_kkqkw")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.523822, 0.851827, 0, -0.851827, -0.523822, 0, 0, 0, 1, -0.989704, -0.263912, 0)
+transform = Transform3D(-0.523822, 0.851827, 0, -0.851827, -0.523822, 0, 0, 0, 1, -1.5, -0.486598, 0)
 layers = 262144
 mesh = SubResource("BoxMesh_vqmjl")
