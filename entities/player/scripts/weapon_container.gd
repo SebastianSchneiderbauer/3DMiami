@@ -20,33 +20,16 @@ func _process(delta: float) -> void:
 
 var counter:float = 0
 
-func weaponSway(delta:float):
-	#hide
-	var goal := -1.5
-	var base := 0.0
-	var hideSpeed := 10
-	if false:
-		if weapons.rotation.x - hideSpeed * delta > goal:
-			weapons.rotation.x -= hideSpeed * delta
-	else:
-		if weapons.rotation.x + hideSpeed * delta < base:
-			weapons.rotation.x += hideSpeed * delta
-		else:
-			weapons.rotation.x = 0
-	
-	#walk
+func walk(do:bool, delta:float):
 	var hOffset = 0
 	var vOffset = 0
 	var reset:bool = false
-	if Input.is_action_pressed("0") and not reset:
+	if do and not reset:
 		counter = fmod(counter + 10*delta, TAU)
-		
 		hOffset = sin(counter)
 		vOffset = abs(sin(counter))
 	else:
 		reset = true
-		print(counter)
-		
 		if inRange(0, PI/2, counter):
 			if counter - 10*delta > 0:
 				counter -= 10*delta
@@ -74,8 +57,31 @@ func weaponSway(delta:float):
 		
 		hOffset = sin(counter)
 		vOffset = abs(sin(counter))
-	
 	weapons.position = weaponBasePosition + Vector3(hOffset/5,vOffset/10,0)
+
+func hideWeapons(do:bool, delta:float):
+	var goal := -1.5
+	var base := 0.0
+	var hideSpeed := 10
+	if do:
+		if weapons.rotation.x - hideSpeed * delta > goal:
+			weapons.rotation.x -= hideSpeed * delta
+	else:
+		if weapons.rotation.x + hideSpeed * delta < base:
+			weapons.rotation.x += hideSpeed * delta
+		else:
+			weapons.rotation.x = 0
+
+func weaponSway(delta:float):
+	if player.vaulting or player.crouched:
+		hideWeapons(true, delta)
+		walk(false, delta)
+	else:
+		hideWeapons(false, delta)
+		if player.direction != Vector3.ZERO:
+			walk(true, delta)
+		else:
+			walk(false, delta)
 
 func inRange(from:float, to:float, value:float) -> bool: #from(including to(excluding)
 	return value >= from and value < to

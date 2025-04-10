@@ -33,7 +33,6 @@ var walktimer: float = 0
 @onready var jump_wall = $"jump-wall"
 @onready var jump_ground = $"jump-ground"
 
-
 #jump stuff
 const maxJumps: int = 2
 const maxWalljumps: int = 3
