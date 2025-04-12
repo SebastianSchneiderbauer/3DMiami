@@ -3,6 +3,9 @@ extends CharacterBody3D
 @export var target_name: String = "Enemy"
 
 @onready var player = get_parent().get_node("player")
+@onready var select_highlight: MeshInstance3D = $selectHighlight
+@onready var animation_player: AnimationPlayer = $particles/AnimationPlayer
+@onready var particles: GPUParticles3D = $particles
 
 var outline_width:float = 5
 
@@ -38,6 +41,16 @@ func _physics_process(delta: float) -> void:
 	mesh_instance_3d.show
 	movement(delta)
 	turnAirdashDetectionToPlayer()
+	
+	if select_highlight.visible:
+		if not particles.visible:
+			particles.show()
+			particles.restart()
+			animation_player.play("show")
+	else:
+		if particles.visible:
+			particles.hide()
+			particles.emitting = false
 
 func updateOutline(_strength:float):
 	var strength = _strength

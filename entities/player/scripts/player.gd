@@ -69,6 +69,8 @@ var enemyDistance:float = INF #does not track distance to the enemy, its used fo
 var airdashing:bool = false
 var airjumpTriggered:bool = false
 var airdashDistance:float = 0
+@onready var airdash_highlight: MeshInstance3D = $"airdash-highlight"
+
 
 # focus
 var focused:bool = false
@@ -249,6 +251,7 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 		slideDirection = Vector3(0,1,0)
 func airDash(delta:float):
 	if not focused:
+		airdash_highlight.end()
 		if lastInstance != null:
 			lastInstance.get_node("selectHighlight").hide()
 		return
@@ -272,6 +275,9 @@ func airDash(delta:float):
 		lastInstance.get_node("selectHighlight").hide()
 	
 	if smallestInstance != null:
+		airdash_highlight.end()
+		airdash_highlight.get_node("particles").restart()
+		airdash_highlight.get_node("particles").set_emitting(false)
 		lastInstance = smallestInstance
 		smallestInstance.get_node("selectHighlight").show()
 		
@@ -282,8 +288,25 @@ func airDash(delta:float):
 			airdashing = true
 			airjumpTriggered = false
 			airdashDistance = (airdashTarget - global_position).length()
+	else:
+		airdash_highlight.global_position = get_first_wall_hit_from_camera()
+		airdash_highlight.global_position.y += 0.2
+		airdash_highlight.get_node("RayCast3D").force_raycast_update()
+		if airdash_highlight.global_position == Vector3.ZERO or not airdash_highlight.get_node("RayCast3D").is_colliding() or airdashing:
+			airdash_highlight.end()
+			airdash_highlight.get_node("particles").restart()
+			airdash_highlight.get_node("particles").set_emitting(false)
+			return
+		airdash_highlight.start()
+		airdash_highlight.get_node("particles").set_emitting(true)
 		
-		return
+		if (Input.is_action_just_pressed("mouseclick-l") or Input.is_action_just_pressed("mouseclick-r")) and not airdashing:
+			airdashTarget = airdash_highlight.global_position
+			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
+			camera.startShake(0.1,0.2)
+			airdashing = true
+			airjumpTriggered = false
+			airdashDistance = (airdashTarget - global_position).length()
 func focus(delta:float):
 	focused = Input.is_action_pressed("shift")
 	return
@@ -307,12 +330,13 @@ func move(delta:float): #custom move function for extra logic before and after c
 	
 	get_node("SubViewportContainer/SubViewport/airdash").emitting = airdashing or crouched
 	if airdashing:
-		if ((airdashTarget - global_position).length() < 0.1*airDashSpeedMultiplier):
+		if ((airdashTarget - global_position).length() < 0.2*airDashSpeedMultiplier):
 			camera.startShake(0.1,0.3)
 			global_position.y = airdashTarget.y
 			velocity.y = 0
 			extraVelocity.y = 0 
 			airdashing = false
+			jumps = maxJumps
 			
 			set_collision_mask_value(1, true)
 		else:
@@ -422,27 +446,8 @@ func tranform_into_direction_vector(vector:Vector3):
 		return_value.z = -1
 	return return_value
 func debug():
-	if Input.is_action_just_pressed("debug1"):
-		camera.position.z = +3
-	
-	if Input.is_action_pressed("debug2"):
-		velocity.y = 5
-	
-	if Input.is_action_just_pressed("debug3"):
-		SaveManager.reset_to_defaults()
-		SaveManager.save_game()
-	
-	if Input.is_action_just_pressed("debug4"):
-		print(SaveManager.get_all_data())
-	
 	if Input.is_action_just_pressed("1"):
-		global_position = Vector3(-39.5, 59.5, 50)
-	
-	if Input.is_action_just_pressed("2"):
-		global_position = Vector3(-32, 53, 53)
-	
-	if Input.is_action_just_pressed("3"):
-		global_position = Vector3(-11.5, 91.5, 18.5)
+		global_position = Vector3(0,5,0)
 func scaleMultiplier(value:float, base:float, multiplier:float): #example usecase: you scale jumps height by another property, however you want the effect of the multiplication just to be half as noticable. then you use this method with multipleir 0.5
 	#error case where we are <= than the base
 	if value == base and base == 0:
@@ -490,6 +495,26 @@ func get_airdash_hits_from_camera(ray_length := 100.0) -> Array:
 		current_from = hit.position + direction * step_offset
 	
 	return results
+func get_first_wall_hit_from_camera(ray_length := 100.0) -> Vector3:
+	var from = camera.global_transform.origin
+	var direction = -camera.global_transform.basis.z
+	var to = from + direction * ray_length
+
+	var params := PhysicsRayQueryParameters3D.new()
+	params.from = from
+	params.to = to
+	params.collision_mask = 1 << 0 # Layer 1 for walls
+	params.collide_with_areas = false
+	params.collide_with_bodies = true
+
+	var space_state = get_world_3d().direct_space_state
+	var hit = space_state.intersect_ray(params)
+
+	if hit.has("position"):
+		return hit.position
+
+	return Vector3.ZERO
+
 
 func play_looping_sounds(delta:float):
 	#walk sound
