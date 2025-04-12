@@ -88,7 +88,7 @@ func getDist(hitPosition: Vector3):
 	
 	var midPosition := global_position
 	midPosition.y += 1
-	return (hitPosition - midPosition).length()
+	return (hitPosition - midPosition).length()/(from - to).length()
 
 func get_fsr_value(index:int):
 	match index:
