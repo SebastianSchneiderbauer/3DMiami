@@ -51,6 +51,9 @@ func animateWeapons(delta:float) -> void:
 	if player.jumps == player.maxJumps:
 		rotationgoal = 0
 	
+	if player.is_on_floor() and player.lastVelocityY < 0:
+		player.get_node("camera").startShake(0.01,0.15)
+	
 	if AW.rotation.x > rotationgoal:
 		if AW.rotation.x - jumpAnimateSpeed * delta > rotationgoal:
 			AW.rotation.x -= jumpAnimateSpeed * delta
