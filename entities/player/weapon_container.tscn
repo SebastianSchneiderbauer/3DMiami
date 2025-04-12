@@ -1,9 +1,213 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu57thl5ye5ar"]
+[gd_scene load_steps=13 format=3 uid="uid://cu57thl5ye5ar"]
 
 [ext_resource type="Script" uid="uid://554y4tgq2and" path="res://entities/player/scripts/weapon_container.gd" id="1_mmgq4"]
 [ext_resource type="Script" uid="uid://daaofh21obc1c" path="res://entities/player/scripts/overlay_scaling.gd" id="2_y7kqc"]
 [ext_resource type="PackedScene" uid="uid://cqei3rltlbr60" path="res://entities/player/scripts/weapons/glock-00/model/glock-00-model.tscn" id="3_o18xw"]
 [ext_resource type="PackedScene" uid="uid://bhd34rubihr6a" path="res://entities/player/scripts/weapons/fists/folder/fists.tscn" id="4_1nh8t"]
+
+[sub_resource type="Animation" id="Animation_mmgq4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Container/Weapons/right-Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Container/Weapons/left-Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SubViewport/Container/Weapons/right-Weapon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SubViewport/Container/Weapons/left-Weapon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o18xw"]
+resource_name = "hide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Container/Weapons/right-Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.0472)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Container/Weapons/right-Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y7kqc"]
+resource_name = "show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Container/Weapons/right-Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.0472), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Container/Weapons/right-Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3u56h"]
+_data = {
+&"RESET": SubResource("Animation_mmgq4"),
+&"hide": SubResource("Animation_o18xw"),
+&"show": SubResource("Animation_y7kqc")
+}
+
+[sub_resource type="Animation" id="Animation_e64b2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Container/Weapons/left-Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Container/Weapons/left-Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1nh8t"]
+resource_name = "hide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Container/Weapons/left-Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.0472)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Container/Weapons/left-Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3u56h"]
+resource_name = "show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Container/Weapons/left-Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 1.0472), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Container/Weapons/left-Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oa1ap"]
+_data = {
+&"RESET": SubResource("Animation_e64b2"),
+&"hide": SubResource("Animation_1nh8t"),
+&"show": SubResource("Animation_3u56h")
+}
 
 [node name="weaponContainer" type="SubViewportContainer"]
 anchors_preset = 15
@@ -30,20 +234,30 @@ script = ExtResource("2_y7kqc")
 
 [node name="Glock-00-model" parent="SubViewport/Container/Weapons/right-Weapon" instance=ExtResource("3_o18xw")]
 transform = Transform3D(-0.163068, 0, 0.986615, 0, 1, 0, -0.986615, 0, -0.163068, 1.11, 1.076, -3)
+visible = false
 
 [node name="Fists" parent="SubViewport/Container/Weapons/right-Weapon" instance=ExtResource("4_1nh8t")]
 transform = Transform3D(0.456062, 0.00788703, -0.889913, -0.178366, 0.980481, -0.0827191, 0.871891, 0.196455, 0.448566, 2.30164, 0.801256, -0.78225)
-visible = false
 
 [node name="left-Weapon" type="Node3D" parent="SubViewport/Container/Weapons"]
 
 [node name="Glock-00-model" parent="SubViewport/Container/Weapons/left-Weapon" instance=ExtResource("3_o18xw")]
 transform = Transform3D(0.163326, 0, 0.986572, 0, 1, 0, -0.986572, 0, 0.163326, -1.11, 1.076, -3)
+visible = false
 
 [node name="Fists" parent="SubViewport/Container/Weapons/left-Weapon" instance=ExtResource("4_1nh8t")]
 transform = Transform3D(-0.456689, -0.00865937, -0.889584, -0.178201, 0.980577, 0.0819385, 0.871596, 0.195945, -0.449361, -2.302, 0.801, -0.782)
-visible = false
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/Container"]
 transform = Transform3D(1, -3.49151e-05, -0.000339675, 3.5085e-05, 1, 0.000463815, 0.000339657, -0.000463828, 1, 0, 1.6, 0)
 cull_mask = 262144
+
+[node name="right_animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3u56h")
+}
+
+[node name="left_animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_oa1ap")
+}

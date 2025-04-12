@@ -83,7 +83,7 @@ func getDist(hitPosition: Vector3):
 	query.exclude = [self]
 	
 	var result = space_state.intersect_ray(query)
-	if result:
+	if result or player.airdashing:
 		return INF
 	
 	var midPosition := global_position

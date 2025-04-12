@@ -4,30 +4,72 @@ func _ready() -> void:
 	get_child(0).world_3d = get_viewport().world_3d
 
 @onready var camera: Camera3D = $"../camera"
-@onready var weapons = $SubViewport/Container/Weapons
 @onready var container = $SubViewport/Container
 @onready var player:CharacterBody3D = get_parent()
 @export var weaponSwayStrength: float = 1
-var weaponBasePosition := Vector3(0,0,0)
-var animationWeaponPosition := Vector3(0,0,0)
+
+@onready var AW: Node3D = $SubViewport/Container/Weapons
+@onready var RW: Node3D = $"SubViewport/Container/Weapons/right-Weapon"
+@onready var LW: Node3D = $"SubViewport/Container/Weapons/left-Weapon"
+
+@onready var RA: AnimationPlayer = $right_animator
+@onready var LA: AnimationPlayer = $left_animator
 
 func _process(delta: float) -> void:
 	container.global_position = camera.global_position
 	container.global_rotation = camera.global_rotation
 	
-	# animate weapons
-	weaponSway(delta)
+	animateWeapons(delta)
 
+var crouchUpdater:bool = false
 var counter:float = 0
+var weaponBasePosition := Vector3(0,0,0)
+var LROffset = 0
 
-func walk(do:bool, delta:float):
-	var hOffset = 0
-	var vOffset = 0
+func f(x): # method that makes the falling/rising weapon animation
+	return tanh(x * 0.5) * (-0.35 if x >= 0.0 else -0.25)
+
+func inRange(from:float, to:float, value:float) -> bool: #from(including to(excluding)
+	return value >= from and value < to
+
+func animateWeapons(delta:float) -> void:
+	#hide
+	if player.crouched and not crouchUpdater:
+		crouchUpdater = true
+		RA.play("hide")
+		LA.play("hide")
+	if not player.crouched and crouchUpdater:
+		crouchUpdater = false
+		RA.play("show")
+		LA.play("show")
+	
+	#jump
+	counter = fmod((counter + delta), TAU) 
+	
+	var jumpAnimateSpeed := 4
+	var rotationgoal = f(player.velocity.y)
+	if player.jumps == player.maxJumps:
+		rotationgoal = 0
+	
+	if AW.rotation.x > rotationgoal:
+		if AW.rotation.x - jumpAnimateSpeed * delta > rotationgoal:
+			AW.rotation.x -= jumpAnimateSpeed * delta
+		else:
+			AW.rotation.x = rotationgoal
+	else:
+		if AW.rotation.x + jumpAnimateSpeed * delta < rotationgoal:
+			AW.rotation.x += jumpAnimateSpeed * delta
+		else:
+			AW.rotation.x = rotationgoal
+	
+	#walk
+	var hOffsetW = 0
+	var vOffsetW = 0
 	var reset:bool = false
-	if do and not reset:
+	if player.direction != Vector3.ZERO and not reset and rotationgoal == 0:
 		counter = fmod(counter + 10*delta, TAU)
-		hOffset = sin(counter)
-		vOffset = abs(sin(counter))
+		hOffsetW = sin(counter)
+		vOffsetW = abs(sin(counter))
 	else:
 		reset = true
 		if inRange(0, PI/2, counter):
@@ -55,33 +97,21 @@ func walk(do:bool, delta:float):
 				counter = 0
 				reset = false
 		
-		hOffset = sin(counter)
-		vOffset = abs(sin(counter))
-	weapons.position = weaponBasePosition + Vector3(hOffset/5,vOffset/10,0)
-
-func hideWeapons(do:bool, delta:float):
-	var goal := -1.5
-	var base := 0.0
-	var hideSpeed := 10
-	if do:
-		if weapons.rotation.x - hideSpeed * delta > goal:
-			weapons.rotation.x -= hideSpeed * delta
-	else:
-		if weapons.rotation.x + hideSpeed * delta < base:
-			weapons.rotation.x += hideSpeed * delta
+		hOffsetW = sin(counter)
+		vOffsetW = abs(sin(counter))
+	AW.position = weaponBasePosition + Vector3(hOffsetW/5,vOffsetW/10,0)
+	
+	#left/right
+	var LROffsetgoal = player.input_dir.x * -0.2
+	var LROffsetSpeed = 3
+	if LROffset > LROffsetgoal:
+		if LROffset - delta * LROffsetSpeed > LROffsetgoal:
+			LROffset -= delta * LROffsetSpeed 
 		else:
-			weapons.rotation.x = 0
-
-func weaponSway(delta:float):
-	if player.vaulting or player.crouched:
-		hideWeapons(true, delta)
-		walk(false, delta)
-	else:
-		hideWeapons(false, delta)
-		if player.direction != Vector3.ZERO:
-			walk(true, delta)
+			LROffset = LROffsetgoal
+	elif LROffset < LROffsetgoal:
+		if LROffset + delta * LROffsetSpeed < LROffsetgoal:
+			LROffset += delta * LROffsetSpeed 
 		else:
-			walk(false, delta)
-
-func inRange(from:float, to:float, value:float) -> bool: #from(including to(excluding)
-	return value >= from and value < to
+			LROffset = LROffsetgoal
+	AW.position += Vector3(LROffset,0,0)
