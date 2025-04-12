@@ -23,8 +23,15 @@ func _process(delta: float) -> void:
 
 var crouchUpdater:bool = false
 var counter:float = 0
+var idleCounter:float = 0
 var weaponBasePosition := Vector3(0,0,0)
 var LROffset = 0
+
+func pickWeapon(w:Weapon, side:bool): # true for left and false for right:
+	if side:
+		pass
+	else:
+		pass
 
 func f(x): # method that makes the falling/rising weapon animation
 	return tanh(x * 0.5) * (-0.35 if x >= 0.0 else -0.25)
@@ -51,7 +58,7 @@ func animateWeapons(delta:float) -> void:
 	if player.jumps == player.maxJumps:
 		rotationgoal = 0
 	
-	if player.is_on_floor() and player.lastVelocityY < 0:
+	if player.is_on_floor() and player.lastVelocityY < 0: # lil bop at the end
 		player.get_node("camera").startShake(0.01,0.15)
 	
 	if AW.rotation.x > rotationgoal:
@@ -118,3 +125,13 @@ func animateWeapons(delta:float) -> void:
 		else:
 			LROffset = LROffsetgoal
 	AW.position += Vector3(LROffset,0,0)
+	
+	#idle
+	var idleVOffset:float = 0
+	if player.velocity == Vector3.ZERO: 
+		idleCounter = fmod((idleCounter + delta), TAU) 
+		idleVOffset = sin(idleCounter) * 0.05
+	else:
+		idleCounter = 0
+	print(idleVOffset)
+	AW.position += Vector3(0,idleVOffset,0)

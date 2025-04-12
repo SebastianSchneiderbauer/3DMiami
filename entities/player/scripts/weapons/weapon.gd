@@ -7,7 +7,7 @@ var weaponType: int # 0 -> blunt hit, 1 -> sharp weapon, 2 -> gun
 # overall
 var weapon_damage: float
 var weapon_name: String
-var weapon_model: Node3D #handels looks and animation
+var weapon_model: String #handels looks and animation, name of the MODEL
 var weapon_cooldown: float # millisec.
 var stagger_time: float
 var attack_speed_multiplier: float # CHEAT eg. double a weapons firing speed (also nerf cooldown then)
@@ -28,7 +28,7 @@ var overheat_add: float # by what the overheat max is increased by each fire
 var needs_reload: bool
 var mag_size: int
 var mag_bullet_count: int
-var projectile: Node3D # will prob be scenes and handle the projectile stuff themself
+var projectile: String # NAME of the projectile
 
 static func create_blunt(
 	name: String,
