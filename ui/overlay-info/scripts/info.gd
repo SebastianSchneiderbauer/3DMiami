@@ -4,6 +4,9 @@ extends Control
 @onready var player:CharacterBody3D = get_node("../../")
 
 func _process(delta):
+	if Input.is_action_just_pressed("0"):
+		visible = !visible
+	
 	#fps_label.text = "ctrl pressed: " + str(Input.is_action_pressed("ctrl"))
 	fps_label.text = "fps: " + str(round(1/delta))
 	fps_label.text += "\nonwall: " + str(player.is_on_wall())
@@ -13,5 +16,4 @@ func _process(delta):
 	fps_label.text += "\ninput: " + str(player.input_dir)
 	fps_label.text += "\nvelocity: " + str(player.velocity)
 	fps_label.text += "\nextra-velocity: " + str(player.extraVelocity)
-	fps_label.text += "\vaultimachitui: " + str(player.can_vault())
-	fps_label.text += "\vwall: " + str(player.is_on_wall())
+	fps_label.text += "\naultimachitui: " + str(player.can_vault())
