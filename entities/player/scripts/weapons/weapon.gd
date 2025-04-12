@@ -14,6 +14,7 @@ var attack_speed_multiplier: float # CHEAT eg. double a weapons firing speed (al
 var durability: int # uses untill the weapon breaks
 var weight: float # how far can you yeet it
 var chargeup_time: float #something like a bfg
+var double_handed: bool # when picked up, both weapons are ejected
 
 # blunt-specific
 var crushing_power: float # can you completely bash someones head in
@@ -93,12 +94,12 @@ static func create_gun(
 	durability: int,
 	weight: float,
 	chargeup_time: float,
-	model: Node3D,
+	model: String,
 	overheat_max: float,
 	overheat_add: float,
 	needs_reload: bool,
 	mag_size: int,
-	projectile: Node3D
+	projectile: String
 ) -> Weapon:
 	var w = Weapon.new()
 	w.weaponType = 2

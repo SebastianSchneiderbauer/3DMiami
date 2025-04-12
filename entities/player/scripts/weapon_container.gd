@@ -15,11 +15,44 @@ func _ready() -> void:
 @onready var RA: AnimationPlayer = $right_animator
 @onready var LA: AnimationPlayer = $left_animator
 
+#right weapons
+@onready var glock_00_modelR: Node3D = $"SubViewport/Container/Weapons/right-Weapon/Glock-00-model"
+@onready var fistsR: Node3D = $"SubViewport/Container/Weapons/right-Weapon/Fists"
+
+#left weapons
+@onready var glock_00_modelL: Node3D = $"SubViewport/Container/Weapons/left-Weapon/Glock-00-model"
+@onready var fistsL: Node3D = $"SubViewport/Container/Weapons/left-Weapon/Fists"
+
 func _process(delta: float) -> void:
 	container.global_position = camera.global_position
 	container.global_rotation = camera.global_rotation
 	
 	animateWeapons(delta)
+	
+	var exampleGun: Weapon = Weapon.create_gun("supi",1,1,1,1,1,1,1,"Glock-00",1,1,true,1,"dontcare")
+	
+	if RW.rotation.z - -1.04719996452332 < 0.1 and not (player.crouched or player.vaulting or player.airdashing):
+		match RWName:
+			"Fists":
+				fistsR.show()
+				RA.play("show")
+			"Glock-00":
+				glock_00_modelR.show()
+				RA.play("show")
+	if -LW.rotation.z - -1.04719996452332 < 0.1 and not (player.crouched or player.vaulting or player.airdashing):
+		match LWName:
+			"Fists":
+				fistsL.show()
+				LA.play("show")
+			"Glock-00":
+				glock_00_modelL.show()
+				LA.play("show")
+	
+	if Input.is_action_just_pressed("4"):
+		dropWeapon(true)
+	
+	if Input.is_action_just_pressed("5"):
+		dropWeapon(false)
 
 var crouchUpdater:bool = false
 var counter:float = 0
@@ -27,11 +60,28 @@ var idleCounter:float = 0
 var weaponBasePosition := Vector3(0,0,0)
 var LROffset = 0
 
-func pickWeapon(w:Weapon, side:bool): # true for left and false for right:
+var LWName = "Fists"
+var RWName = "Fists"
+
+func dropWeapon(side:bool): # true for left and false for right:
 	if side:
-		pass
+		if LWName != "Fists":
+			LA.play("hide")
+			#hide old
+			fistsL.show()
+			match LWName:
+				"Glock-00":
+					glock_00_modelL.hide()
+			LWName = "Fists"
 	else:
-		pass
+		if RWName != "Fists":
+			RA.play("hide")
+			#hide old
+			fistsR.show()
+			match RWName:
+				"Glock-00":
+					glock_00_modelR.hide()
+			RWName = "Fists"
 
 func f(x): # method that makes the falling/rising weapon animation
 	return tanh(x * 0.5) * (-0.35 if x >= 0.0 else -0.25)
@@ -41,11 +91,11 @@ func inRange(from:float, to:float, value:float) -> bool: #from(including to(excl
 
 func animateWeapons(delta:float) -> void:
 	#hide
-	if player.crouched and not crouchUpdater:
+	if (player.crouched or player.vaulting or player.airdashing) and not crouchUpdater:
 		crouchUpdater = true
 		RA.play("hide")
 		LA.play("hide")
-	if not player.crouched and crouchUpdater:
+	if not (player.crouched or player.vaulting or player.airdashing) and crouchUpdater:
 		crouchUpdater = false
 		RA.play("show")
 		LA.play("show")
@@ -133,5 +183,4 @@ func animateWeapons(delta:float) -> void:
 		idleVOffset = sin(idleCounter) * 0.05
 	else:
 		idleCounter = 0
-	print(idleVOffset)
 	AW.position += Vector3(0,idleVOffset,0)
