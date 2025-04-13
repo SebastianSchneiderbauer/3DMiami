@@ -106,19 +106,19 @@ func getDist(hitPosition: Vector3):
 func get_fsr_value(index:int):
 	match index:
 		1:
-			1.0
+			return 1.0
 		2:
-			25.0
+			return 25.0
 		3:
-			50.0
+			return 50.0
 		4:
-			66.0
+			return 66.0
 		5:
-			77.0
+			return 77.0
 		6:
-			83.0
+			return 83.0
 		7:
-			125.00
+			return 125.00
 
 func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)

@@ -6,11 +6,12 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_65od5"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlfdi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mvqt"]
+transparency = 1
 albedo_texture = ExtResource("2_vlfdi")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1qa1k"]
-material = SubResource("StandardMaterial3D_vlfdi")
+material = SubResource("StandardMaterial3D_1mvqt")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1mvqt"]
 render_priority = 0
@@ -55,33 +56,6 @@ material = SubResource("StandardMaterial3D_mvpll")
 radius = 0.01
 height = 0.02
 
-[sub_resource type="Animation" id="Animation_1mvqt"]
-resource_name = "show"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("OmniLight3D:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_uo211"]
 length = 0.001
 tracks/0/type = "value"
@@ -109,6 +83,34 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_1mvqt"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uo211"]
 _data = {
 &"RESET": SubResource("Animation_uo211"),
@@ -129,7 +131,7 @@ transform = Transform3D(-0.903851, 0, -0.427847, 0, 1, 0, 0.427847, 0, -0.903851
 mesh = SubResource("CapsuleMesh_1qa1k")
 
 [node name="selectHighlight" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(-0.904083, 0, -0.427358, 0, 1, 0, 0.427358, 0, -0.904083, 0, 1, 0)
 visible = false
 material_overlay = SubResource("ShaderMaterial_1mvqt")
 mesh = SubResource("CapsuleMesh_1qa1k")

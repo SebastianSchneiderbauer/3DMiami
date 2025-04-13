@@ -164,6 +164,18 @@ text = "ERR"
 label_settings = SubResource("LabelSettings_iv7ha")
 horizontal_alignment = 3
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="change-color" type="Button" parent="Options/HBoxContainer"]
+layout_mode = 2
+text = "customize highlight color"
+
+[node name="ColorRect" type="ColorRect" parent="Options/HBoxContainer"]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+
 [node name="return" type="Button" parent="Options"]
 layout_mode = 2
 text = "EXIT"
@@ -177,12 +189,29 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -177.0
+offset_top = -193.0
 offset_right = 200.0
-offset_bottom = 180.0
+offset_bottom = 192.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.184314, 0.184314, 0.184314, 1)
 
+[node name="ColorPicker" type="ColorPicker" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.502
+anchor_top = 0.518
+anchor_right = 0.502
+anchor_bottom = 0.518
+offset_left = 205.696
+offset_top = -204.664
+offset_right = 503.696
+offset_bottom = 371.336
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.747429, 0.666375)
+
+[connection signal="pressed" from="Options/HBoxContainer/change-color" to="." method="_on_changecolor_pressed"]
 [connection signal="pressed" from="Options/return" to="." method="_on_return_pressed"]

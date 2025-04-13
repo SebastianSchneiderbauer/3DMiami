@@ -15,6 +15,9 @@ var loaded:bool = false
 @onready var scale_slider: HSlider = $Options/ScaleBox5/ScaleSlider
 @onready var fps_limit_: CheckButton = $"Options/ScaleBox4/fpsLimit?"
 @onready var scale_label: Label = $Options/ScaleBox5/ScaleLabel
+@onready var color_picker: ColorPicker = $ColorPicker
+@onready var highlightColorDisplay: ColorRect = $Options/HBoxContainer/ColorRect
+@onready var highlightColorButton: Button = $Options/HBoxContainer/Button
 
 var noLoad:bool = false
 
@@ -32,6 +35,8 @@ func _on_savedata_update():
 	crosshair_slider.value = SaveManager.get_data("crosshairScale")
 	fps_limit_.set_pressed(SaveManager.get_data("capFPS"))
 	scale_slider.value = SaveManager.get_data("FPScap")
+	highlightColorDisplay.color = SaveManager.get_data("highlightColor")
+	color_picker.color = SaveManager.get_data("highlightColor")
 
 func _on_return_pressed():
 	#update save file
@@ -53,6 +58,9 @@ func _on_return_pressed():
 	if SaveManager.get_data("FPScap") != scale_slider.value:
 		SaveManager.set_data("FPScap", scale_slider.value)
 	
+	if SaveManager.get_data("highlightColor") != color_picker.color:
+		SaveManager.set_data("highlightColor", color_picker.color)
+	
 	noLoad = true
 	
 	SaveManager.save_game()
@@ -69,9 +77,12 @@ func _process(delta):
 		crosshair_slider.value = SaveManager.get_data("crosshairScale")
 		fps_limit_.set_pressed(SaveManager.get_data("capFPS"))
 		scale_slider.value = SaveManager.get_data("FPScap")
+		highlightColorDisplay.color = SaveManager.get_data("highlightColor")
+		color_picker.color = SaveManager.get_data("highlightColor")
 		loaded = true
 	
 	if Input.is_action_just_pressed("ui_cancel") and visible:
+		color_picker.hide()
 		print("gameplay")
 		_on_return_pressed()
 	
@@ -90,6 +101,9 @@ func _process(delta):
 		crosshair_label.set_text(str(crosshair_slider.value))
 		crosshair.visible = show_crosshair.is_pressed()
 		crosshair_slider.editable = show_crosshair.is_pressed()
+		
+		#highlight color
+		highlightColorDisplay.color = color_picker.color
 	
 	#fps-cap
 	if fps_limit_.is_pressed():
@@ -99,3 +113,7 @@ func _process(delta):
 		Engine.max_fps = 0
 		
 	scale_slider.editable = fps_limit_.is_pressed()
+
+
+func _on_changecolor_pressed() -> void:
+	color_picker.visible = !color_picker.visible

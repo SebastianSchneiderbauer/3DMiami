@@ -119,6 +119,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Pause" parent="Screen-overlay" instance=ExtResource("3_fkugw")]
 process_mode = 3
+visible = true
 metadata/_edit_use_anchors_ = true
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]

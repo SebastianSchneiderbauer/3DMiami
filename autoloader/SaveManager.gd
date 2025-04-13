@@ -19,7 +19,8 @@ var default_values := {
 	"VSYNC": true,
 	"capFPS": true,
 	"FPScap": 100,
-	"defaultScreen": 0
+	"defaultScreen": 0,
+	"highlightColor": Color(1,0,0,1)
 }
 
 func _ready():
@@ -84,21 +85,21 @@ func get_all_data():
 
 # Helper function to ensure type detection is consistent
 func parse_value(value: String):
-	# Auto-detect boolean
 	if value.to_lower() == "true":
 		return true
 	elif value.to_lower() == "false":
 		return false
-	# Auto-detect numbers
 	elif value.is_valid_int():
 		return value.to_int()
 	elif value.is_valid_float():
 		return value.to_float()
-	# Detect Vector3 and Number Arrays Separately
 	elif "," in value:
 		var elements = value.split(",")
-
-		# Check if all parts are numbers
+		
+		for i in elements.size():
+			print(elements[i])
+			elements[i] = elements[i].strip_edges().replace("(", "").replace(")", "")
+		
 		var all_numbers = true
 		for element in elements:
 			if not element.is_valid_float():
@@ -106,11 +107,14 @@ func parse_value(value: String):
 				break
 		
 		if all_numbers:
-			if elements.size() == 3:  # Vector3 case
-				return Vector3(elements[0].to_float(), elements[1].to_float(), elements[2].to_float())
-			else:  # Number array case
-				return Array(elements).map(func(e): return e.to_float())
+			match elements.size():
+				3:
+					return Vector3(elements[0].to_float(), elements[1].to_float(), elements[2].to_float())
+				4:
+					return Color(elements[0].to_float(), elements[1].to_float(), elements[2].to_float(), elements[3].to_float())
+				_:
+					return Array(elements).map(func(e): return e.to_float())
 		else:
-			return elements  # Regular string array
+			return elements
 	else:
-		return value  # Default to string
+		return value
