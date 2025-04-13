@@ -122,8 +122,15 @@ func get_fsr_value(index:int):
 
 func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)
+	$"selectHighlight".material_overlay.set_shader_parameter("outline_color", SaveManager.get_data("highlightColor"))
+	$"particles".get_draw_pass_mesh(0).get_material().albedo_color = SaveManager.get_data("highlightColor")
+	$"particles/OmniLight3D".light_color = SaveManager.get_data("highlightColor")
 
 func _on_savedata_update():
+	$"selectHighlight".material_overlay.set_shader_parameter("outline_color", SaveManager.get_data("highlightColor"))
+	$"particles".get_draw_pass_mesh(0).get_material().albedo_color = SaveManager.get_data("highlightColor")
+	$"particles/OmniLight3D".light_color = SaveManager.get_data("highlightColor")
+	
 	var type:int = SaveManager.get_data("scaler")
 	var strength:float
 	
