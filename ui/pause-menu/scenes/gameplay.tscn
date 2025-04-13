@@ -212,6 +212,7 @@ offset_bottom = 371.336
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.747429, 0.666375)
+edit_alpha = false
 
 [connection signal="pressed" from="Options/HBoxContainer/change-color" to="." method="_on_changecolor_pressed"]
 [connection signal="pressed" from="Options/return" to="." method="_on_return_pressed"]

@@ -70,13 +70,14 @@ var airdashing:bool = false
 var airjumpTriggered:bool = false
 var airdashDistance:float = 0
 @onready var airdash_highlight: MeshInstance3D = $"airdash-highlight"
-
+var lockedAirdash:bool = false
 
 # focus
 var focused:bool = false
 
 #basic shit
 func _ready():
+	Engine.time_scale = 0.1 * 10
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
 func _input(event):
@@ -285,6 +286,12 @@ func airDash(delta:float):
 			airdashTarget = smallestInstance.global_position
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
 			camera.startShake(0.1,0.2)
+			
+			lockedAirdash = true
+			
+			$weaponContainer/SubViewport/Container/Weapon/fists/animation.stop()
+			$weaponContainer/SubViewport/Container/Weapon/fists/animation.seek(0.0, true)
+			$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-prepare")
 			airdashing = true
 			airjumpTriggered = false
 			airdashDistance = (airdashTarget - global_position).length()
@@ -304,6 +311,10 @@ func airDash(delta:float):
 			airdashTarget = airdash_highlight.global_position
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
 			camera.startShake(0.1,0.2)
+			
+			lockedAirdash = false
+			$weaponContainer/animator.play("hide")
+			
 			airdashing = true
 			airjumpTriggered = false
 			airdashDistance = (airdashTarget - global_position).length()
@@ -334,7 +345,14 @@ func move(delta:float): #custom move function for extra logic before and after c
 			camera.startShake(0.1,0.3)
 			global_position.y = airdashTarget.y
 			velocity.y = 0
-			extraVelocity.y = 0 
+			extraVelocity.y = 0
+			if lockedAirdash: 
+				camera.startShake(0.15,0.1)
+				$weaponContainer/SubViewport/Container/Weapon/fists/animation.stop()
+				$weaponContainer/SubViewport/Container/Weapon/fists/animation.seek(0.0, true)
+				$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-end")
+			else:
+				$weaponContainer/animator.play("show")
 			airdashing = false
 			jumps = maxJumps
 			
