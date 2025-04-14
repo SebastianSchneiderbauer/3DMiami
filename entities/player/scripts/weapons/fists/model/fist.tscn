@@ -26,46 +26,6 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_b01sk")
 size = Vector3(2, 0.5, 0.5)
 
-[sub_resource type="Animation" id="Animation_0r5p4"]
-resource_name = "slice"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Rfist/blade:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.05, 0.163333, 0.4, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 1.65806, 0), Vector3(0, 1.48353, 0), Vector3(0, 1.48353, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.2, 0, -0.2), Vector3(-0.2, 0, -0.2), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(-0.349066, 2.96706, 0), Vector3(-0.349066, 2.96706, 0), Vector3(0, 1.5708, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_ld316"]
 length = 0.001
 tracks/0/type = "value"
@@ -165,70 +125,6 @@ tracks/7/keys = {
 "values": [Vector3(0.788821, 0, 0.260523)]
 }
 
-[sub_resource type="Animation" id="Animation_1avyf"]
-resource_name = "airdash-prepare"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Rfist:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.785398, -0.785398)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Lfist:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.509422, 0, -0.623861), Vector3(0.75, 0, -2.5)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Lfist:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-7.05412e-15, 2.50242, -3.14159), Vector3(-0.642281, 3.50113, -3.95143)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Rfist:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.509422, 0, 0), Vector3(-0.5, 0, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Lfist/blade:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.12),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.788821, 0, 0.260523), Vector3(3, 0, 0.5)]
-}
-
 [sub_resource type="Animation" id="Animation_nx0rq"]
 resource_name = "airdash-end"
 length = 0.5
@@ -293,6 +189,110 @@ tracks/4/keys = {
 "values": [Vector3(3, 0, 0.5), Vector3(3, 0, 0.5), Vector3(0.789, 0, 0.261)]
 }
 
+[sub_resource type="Animation" id="Animation_1avyf"]
+resource_name = "airdash-prepare"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rfist:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.785398, -0.785398)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lfist:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.509422, 0, -0.623861), Vector3(0.75, 0, -2.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lfist:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-7.05412e-15, 2.50242, -3.14159), Vector3(-0.642281, 3.50113, -3.95143)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rfist:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.509422, 0, 0), Vector3(-0.5, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Lfist/blade:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.788821, 0, 0.260523), Vector3(3, 0, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_0r5p4"]
+resource_name = "slice"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rfist/blade:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.05, 0.163333, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 1.65806, 0), Vector3(0, 1.48353, 0), Vector3(0, 1.48353, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.2, 0, -0.2), Vector3(-0.2, 0, -0.2), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(-0.349066, 2.96706, 0), Vector3(-0.349066, 2.96706, 0), Vector3(0, 1.5708, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1avyf"]
 _data = {
 &"RESET": SubResource("Animation_ld316"),
@@ -320,7 +320,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28009, 0.719586, 3.62794e-0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.788821, 0, 0.260523)
 
 [node name="Lfist" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.802588, -1.21187e-07, 0.596533, -1.50996e-07, -0.999999, 7.05411e-15, 0.596532, -9.00739e-08, -0.802588, 0.509422, 0, -0.623861)
+transform = Transform3D(0.802589, -2.03471e-06, 0.596531, -2.53518e-06, -0.999999, 7.05411e-15, 0.596531, -1.51231e-06, -0.802589, 0.509422, 0, -0.623861)
 layers = 262144
 mesh = SubResource("BoxMesh_ukmrw")
 

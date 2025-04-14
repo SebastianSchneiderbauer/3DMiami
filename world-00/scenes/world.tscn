@@ -12,6 +12,7 @@ volumetric_fog_density = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_io3qo"]
 albedo_texture = ExtResource("5_576h8")
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_q6s7m"]
 lightmap_size_hint = Vector2i(826, 806)
@@ -49,6 +50,9 @@ lighting_unwrap_uv2 = true
 transform = Transform3D(0.999998, -0.0011228, 0.00183259, 0.00112579, 0.999998, -0.00164195, -0.00183075, 0.00164399, 0.999997, 0, 0, 0)
 script = ExtResource("1_1qa1k")
 
+[node name="dummy" parent="TBLoader" instance=ExtResource("5_04duo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20)
+
 [node name="Default Layer" type="Node3D" parent="TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.40278, 11.5556)
 
@@ -60,13 +64,10 @@ mesh = SubResource("ArrayMesh_q6s7m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/entity_0_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_04duo")
 
-[node name="dummy" parent="TBLoader" instance=ExtResource("5_04duo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20)
-
-[node name="@CharacterBody3D@295119" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@29267" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 8, 12)
 
-[node name="@CharacterBody3D@295120" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@29268" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 8, 12)
 
 [node name="player" parent="TBLoader" instance=ExtResource("2_op7cj")]
