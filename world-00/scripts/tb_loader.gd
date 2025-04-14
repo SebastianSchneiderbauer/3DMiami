@@ -1,27 +1,21 @@
 @tool
 extends TBLoader
 
-@export var generate_sdf_for_layers: bool:
+@export var make_game_ready: bool:
 	set(value):
 		if value and Engine.is_editor_hint():
+			makeReady()
 			generate_sdf_colliders()
-		generate_sdf_for_layers = false  # reset toggle
+		make_game_ready = false  # reset toggle
 
-func _ready():
-	if not Engine.is_editor_hint():
-		return
-
+func makeReady():
 	for child in get_children():
 		if child is OmniLight3D:
 			child.shadow_enabled = true
-			child.set_layer_mask_value(19, true)
+			child.set_layer_mask_value(19,true)
+		elif "Layer" in child.name and child is Node3D:
+			child.get_child(0).mesh.surface_get_material(0).set_texture_filter(0)
 
-	# Set everything to be sharp
-	var geometry := get_node_or_null("Default Layer/entity_0_geometry")
-	if geometry and geometry.mesh:
-		var material = geometry.mesh.surface_get_material(0)
-		if material:
-			material.set_texture_filter(BaseMaterial3D.TEXTURE_FILTER_NEAREST)
 
 func generate_sdf_colliders():
 	print("✨ Generating SDF colliders...")

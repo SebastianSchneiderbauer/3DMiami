@@ -70,7 +70,6 @@ var airdashing:bool = false
 var airjumpTriggered:bool = false
 var airdashDistance:float = 0
 @onready var airdash_highlight: MeshInstance3D = $"airdash-highlight"
-var lockedAirdash:bool = false
 
 # focus
 var focused:bool = false
@@ -287,11 +286,10 @@ func airDash(delta:float):
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
 			camera.startShake(0.1,0.2)
 			
-			lockedAirdash = true
-			
 			$weaponContainer/SubViewport/Container/Weapon/fists/animation.stop()
 			$weaponContainer/SubViewport/Container/Weapon/fists/animation.seek(0.0, true)
 			$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-prepare")
+			
 			airdashing = true
 			airjumpTriggered = false
 			airdashDistance = (airdashTarget - global_position).length()
@@ -312,8 +310,9 @@ func airDash(delta:float):
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
 			camera.startShake(0.1,0.2)
 			
-			lockedAirdash = false
-			$weaponContainer/animator.play("hide")
+			$weaponContainer/SubViewport/Container/Weapon/fists/animation.stop()
+			$weaponContainer/SubViewport/Container/Weapon/fists/animation.seek(0.0, true)
+			$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-prepare")
 			
 			airdashing = true
 			airjumpTriggered = false
@@ -346,13 +345,12 @@ func move(delta:float): #custom move function for extra logic before and after c
 			global_position.y = airdashTarget.y
 			velocity.y = 0
 			extraVelocity.y = 0
-			if lockedAirdash: 
-				camera.startShake(0.15,0.1)
-				$weaponContainer/SubViewport/Container/Weapon/fists/animation.stop()
-				$weaponContainer/SubViewport/Container/Weapon/fists/animation.seek(0.0, true)
-				$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-end")
-			else:
-				$weaponContainer/animator.play("show")
+		
+			camera.startShake(0.15,0.1)
+			$weaponContainer/SubViewport/Container/Weapon/fists/animation.stop()
+			$weaponContainer/SubViewport/Container/Weapon/fists/animation.seek(0.0, true)
+			$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-end")
+			
 			airdashing = false
 			jumps = maxJumps
 			

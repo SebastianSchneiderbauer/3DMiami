@@ -118,7 +118,6 @@ transform = Transform3D(0.997033, 0, 0.0769801, 0, 1, 0, -0.0769801, 0, 0.997033
 
 [node name="fists" parent="SubViewport/Container/Weapon" instance=ExtResource("3_1bwj2")]
 transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
-generate_sdf_for_layers = false
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/Container"]
 transform = Transform3D(1, -3.49151e-05, -0.000339675, 3.5085e-05, 1, 0.000463815, 0.000339657, -0.000463828, 1, 0, 1.6, 0)
