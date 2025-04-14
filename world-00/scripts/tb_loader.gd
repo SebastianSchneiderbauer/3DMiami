@@ -31,10 +31,10 @@ func generate_sdf_colliders():
 		
 		if "Layer" in node.name and node is Node3D:
 			print("🧪 Processing:", node.name)
-			
+			var newNodeName := node.name + " Collision"
 			# Remove old node if it exists (no condition check, just try)
-			if node.has_node("AutoSDF_Collision"):
-				var old_sdf := node.get_node("AutoSDF_Collision")
+			if node.has_node(newNodeName):
+				var old_sdf := node.get_node(newNodeName)
 				node.remove_child(old_sdf)
 				old_sdf.queue_free()
 				print("🗑️ Old SDF removed from:", node.name)
@@ -46,13 +46,12 @@ func generate_sdf_colliders():
 			
 			# Create and insert new SDF node
 			var sdf := GPUParticlesCollisionSDF3D.new()
-			sdf.name = "AutoSDF_Collision"
+			sdf.name = newNodeName
 			sdf.transform.origin = aabb.position + aabb.size * 0.5
 			sdf.scale = aabb.size
 			sdf.bake_mask = 1
-			sdf.owner = get_parent()
-			print(get_parent())
 			
 			node.add_child(sdf)
+			sdf.owner = get_tree().edited_scene_root
 			
-			#print("✅ SDF collider added to:", node.name)
+			print("✅ SDF collider added to:", node.name)
