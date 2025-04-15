@@ -12,9 +12,12 @@ var start:Vector3
 @onready var zn: RayCast3D = $zn
 @onready var xp: RayCast3D = $xp
 
-func spawndecals():
-	var counter: int = 7
+func spawndecal():
 	var bpScene = load("res://BPS/scene/decal.tscn")
+	
+	var combinedRotateVector: Vector3
+	var counter: int = 0
+	var combinedPositionOffset: Vector3 = get_collision_point()
 	
 	xp.force_raycast_update()
 	xn.force_raycast_update()
@@ -25,69 +28,57 @@ func spawndecals():
 	
 	if xp.is_colliding():
 		print("xp")
-		var xpBP = bpScene.instantiate()
 		
-		xpBP.rotation.z = 1.5708
-		add_child(xpBP)
-		
-		get_child(counter).global_position = get_collision_point()
-		get_child(counter).global_position.x -= 0.05
+		combinedRotateVector.y += -deg_to_rad(90)
+		#get_child(counter).global_position.x -= 0.05
 		counter+=1
 	
 	if xn.is_colliding():
 		print("xn")
-		var xnBP = bpScene.instantiate()
 		
-		xnBP.rotation.z = -1.5708
-		add_child(xnBP)
-		
-		get_child(counter).global_position = get_collision_point()
-		get_child(counter).global_position.x += 0.05
+		combinedRotateVector.y += deg_to_rad(90)
+		#get_child(counter).global_position.x += 0.05
 		counter+=1
 	
 	if yp.is_colliding():
 		print("yp")
-		var ypBP = bpScene.instantiate()
 		
-		ypBP.rotation.z = 3.14159
-		add_child(ypBP)
-		
-		get_child(counter).global_position = get_collision_point()
-		get_child(counter).global_position.y -= 0.05
-		counter+=1
+		combinedRotateVector.x += deg_to_rad(90)
+		#get_child(counter).global_position.y -= 0.05
 	
 	if yn.is_colliding():
 		print("yn")
-		var ynBP = bpScene.instantiate()
 		
-		ynBP.rotation.z = 0
-		add_child(ynBP)
-		
-		get_child(counter).global_position = get_collision_point()
-		get_child(counter).global_position.y += 0.05
-		counter+=1
+		combinedRotateVector.x += -deg_to_rad(90)
+		#get_child(counter).global_position.y += 0.05
 	
 	if zp.is_colliding():
 		print("zp")
-		var zpBP = bpScene.instantiate()
 		
-		zpBP.rotation.x = -1.5708
-		add_child(zpBP)
+		print(combinedRotateVector.y)
+		print(-deg_to_rad(90))
+		if combinedRotateVector.y < 0:
+			combinedRotateVector.y += -deg_to_rad(180)
+		else:
+			combinedRotateVector.y += deg_to_rad(180)
 		
-		get_child(counter).global_position = get_collision_point()
-		get_child(counter).global_position.z -= 0.05
+		#get_child(counter).global_position.z -= 0.05
 		counter+=1
 	
 	if zn.is_colliding():
 		print("zn")
-		var znBP = bpScene.instantiate()
 		
-		znBP.rotation.x = 1.5708
-		add_child(znBP)
-		
-		get_child(counter).global_position = get_collision_point()
-		get_child(counter).global_position.z += 0.05
+		combinedRotateVector.y += 0 #not needed, but here for clarity
+		#get_child(counter).global_position.z += 0.05
 		counter+=1
+	
+	var BP = bpScene.instantiate()
+	BP.rotation = combinedRotateVector
+	if counter > 1:
+		BP.rotation/=2
+	else:
+		BP.rotation.x/=2
+	add_child(BP)
 
 func _ready() -> void:
 	global_position = start
@@ -109,9 +100,8 @@ func _physics_process(delta: float) -> void:
 			
 			if not is_colliding():
 				global_position += direction*delta
-		print((direction * delta).length())
 		
-		spawndecals()
+		spawndecal()
 		
 		#$"particle".hide()
 		set_physics_process(false)

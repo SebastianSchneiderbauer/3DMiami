@@ -5,6 +5,8 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_1ufef"]
 material = SubResource("StandardMaterial3D_o1frc")
 size = Vector2(0.5, 0.5)
+orientation = 2
 
 [node name="decal" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("PlaneMesh_1ufef")
