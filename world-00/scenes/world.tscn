@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://b0m4r88nagwh5"]
+[gd_scene load_steps=9 format=4 uid="uid://b0m4r88nagwh5"]
 
 [ext_resource type="Script" uid="uid://8cvv37d6bhs8" path="res://world-00/scripts/tb_loader.gd" id="1_1qa1k"]
 [ext_resource type="PackedScene" uid="uid://2xraxqbjr6q3" path="res://entities/player/player.tscn" id="2_op7cj"]
 [ext_resource type="Texture2D" uid="uid://112lslahbt2u" path="res://textures/__TB_empty.png" id="5_576h8"]
-[ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="6_04duo"]
 [ext_resource type="PackedScene" uid="uid://bfq37irto2yr2" path="res://BPS/scene/bps.tscn" id="6_io3qo"]
 
 [sub_resource type="Environment" id="Environment_v1eft"]
@@ -66,12 +65,8 @@ shape = SubResource("ConcavePolygonShape3D_q6s7m")
 transform = Transform3D(12, 0, 0, 0, 8, 0, 0, 0, 28, 0, 0.829861, -3.75)
 bake_mask = 1
 
-[node name="player" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("2_op7cj")]
+[node name="player" parent="TBLoader" instance=ExtResource("2_op7cj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 12, -9.5)
-collision_layer = 130
-wall_min_slide_angle = 0.0
-script = ExtResource("6_04duo")
-vault_height = 1.5
 
 [node name="@OmniLight3D@32652" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.625, 7.125, 9.5)
