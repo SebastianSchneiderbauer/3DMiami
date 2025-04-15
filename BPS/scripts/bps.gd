@@ -7,7 +7,7 @@ func _process(delta: float) -> void:
 		var bpsScene = load("res://BPS/scene/bp.tscn")
 		var BP = bpsScene.instantiate()
 		BP.start = global_position
-		BP.direction = -global_transform.basis.z.normalized()*5
+		BP.direction = -global_transform.basis.z.normalized()*RandomNumberGenerator.new().randf_range(0,5)
 		BP.direction.y = 11
 		BP.gravity = Vector3(0, -9.81, 0)
 		BP.speedMultiplier = 1

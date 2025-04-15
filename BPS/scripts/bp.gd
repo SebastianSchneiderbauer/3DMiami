@@ -76,7 +76,7 @@ func spawndecal():
 	BP.rotation = combinedRotateVector
 	if counter > 1:
 		BP.rotation/=2
-	else:
+	elif counter == 1:
 		BP.rotation.x/=2
 	add_child(BP)
 
@@ -103,5 +103,5 @@ func _physics_process(delta: float) -> void:
 		
 		spawndecal()
 		
-		#$"particle".hide()
+		$"particle".hide()
 		set_physics_process(false)
