@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsdsfu7p8usxb"]
+
+[ext_resource type="Script" uid="uid://cj4onskm1sq44" path="res://BPS/scripts/bp.gd" id="1_1ufef"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_crde7"]
+radius = 0.1
+height = 0.2
+
+[node name="BP" type="RayCast3D"]
+top_level = true
+target_position = Vector3(0, 0, 0)
+script = ExtResource("1_1ufef")
+speedMultiplier = 0.1
+
+[node name="particle" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_crde7")
+
+[node name="xp" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+target_position = Vector3(0.05, 0, 0)
+hit_from_inside = true
+
+[node name="xn" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+target_position = Vector3(-0.05, 0, 0)
+hit_from_inside = true
+
+[node name="yp" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0.05, 0)
+hit_from_inside = true
+
+[node name="yn" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.05, 0)
+hit_from_inside = true
+
+[node name="zp" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+target_position = Vector3(0, 0, 0.05)
+hit_from_inside = true
+
+[node name="zn" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+target_position = Vector3(0, 0, -0.05)
+hit_from_inside = true

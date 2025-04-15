@@ -28,11 +28,11 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg", "res://addon
 [file_customization]
 
 folder_colors={
+"res://BPS/": "red",
 "res://Main-Menu/": "orange",
 "res://addons/": "red",
 "res://autoloader/": "red",
 "res://entities/": "green",
-"res://legacy/": "gray",
 "res://sources/": "pink",
 "res://textures/": "green",
 "res://ui/": "purple",
