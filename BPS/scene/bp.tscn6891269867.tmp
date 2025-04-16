@@ -11,8 +11,8 @@ top_level = true
 target_position = Vector3(0, 0, 0)
 script = ExtResource("1_1ufef")
 spread_radius = 0.3
-time_offset = 0.4
-decal_count_performence = 10
+time_offset = 0.6
+decal_count = 5
 
 [node name="particle" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_crde7")
