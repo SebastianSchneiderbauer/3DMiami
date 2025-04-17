@@ -7,7 +7,7 @@ extends RayCast3D
 @export var spread_radius: float = 0.5
 @export var time_offset: float = 0.1
 @export var max_ray_length: float = 10.0
-@export var decal_count_performence: int # 1) ultra performence 5) low 10) mid 15) high 20) ultra 25) no, thats plain wrong
+var decal_count_performence: int # 1) ultra performence 5) low 10) mid 15) high 20) ultra 25) no, thats plain wrong
 
 var start: Vector3
 var previous_position: Vector3

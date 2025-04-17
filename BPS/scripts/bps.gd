@@ -5,26 +5,21 @@ var max:float
 var counter:float = 0
 var counterpoint:float = 0.05
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_released("2"):
-		counter = 0
-	
-	counter += delta
-	
-	if Input.is_action_pressed("2") and max > 0 and counter > counterpoint:
-		counter = 0
+@export var particle_count:int = 5
+@export var decal_count:int = 20
+
+func fire():
+	$"BLOOD".emitting = true
+	for i in range(particle_count):
+		await get_tree().create_timer(0.1).timeout
 		var bpsScene = load("res://BPS/scene/bp.tscn")
 		var BP = bpsScene.instantiate()
 		BP.start = global_position
 		BP.direction = -global_transform.basis.z.normalized()*RandomNumberGenerator.new().randf_range(1,2)
-		BP.direction.y = 5
+		BP.direction.y = 4
 		BP.gravity = Vector3(0, -9.81, 0)
 		BP.speedMultiplier = 1
+		BP.decal_count_performence = decal_count
 		add_child(BP)
 		
-		max -= 1
-		
 		rotate_y(360)
-	
-	if not Input.is_action_pressed("2"):
-		max = 5

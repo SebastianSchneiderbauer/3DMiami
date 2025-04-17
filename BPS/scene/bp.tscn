@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsdsfu7p8usxb"]
+[gd_scene load_steps=5 format=3 uid="uid://bsdsfu7p8usxb"]
 
 [ext_resource type="Script" uid="uid://cj4onskm1sq44" path="res://BPS/scripts/bp.gd" id="1_1ufef"]
+[ext_resource type="Texture2D" uid="uid://bjvw0t8oqwgf" path="res://BPS/textures/splats/glob1.png" id="2_crde7"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_crde7"]
-radius = 0.1
-height = 0.2
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hblg4"]
+transparency = 1
+albedo_texture = ExtResource("2_crde7")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_28j8e"]
+material = SubResource("StandardMaterial3D_hblg4")
 
 [node name="BP" type="RayCast3D"]
 top_level = true
@@ -12,7 +18,6 @@ target_position = Vector3(0, 0, 0)
 script = ExtResource("1_1ufef")
 spread_radius = 0.3
 time_offset = 0.4
-decal_count_performence = 10
 
 [node name="particle" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_crde7")
+mesh = SubResource("QuadMesh_28j8e")

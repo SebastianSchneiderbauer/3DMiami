@@ -70,6 +70,7 @@ var airdashing:bool = false
 var airjumpTriggered:bool = false
 var airdashDistance:float = 0
 @onready var airdash_highlight: MeshInstance3D = $"airdash-highlight"
+var airdashInstance
 
 # focus
 var focused:bool = false
@@ -293,6 +294,8 @@ func airDash(delta:float):
 			airdashing = true
 			airjumpTriggered = false
 			airdashDistance = (airdashTarget - global_position).length()
+			
+			airdashInstance = smallestInstance
 	else:
 		airdash_highlight.global_position = get_first_wall_hit_from_camera()
 		airdash_highlight.global_position.y += 0.2
@@ -317,6 +320,8 @@ func airDash(delta:float):
 			airdashing = true
 			airjumpTriggered = false
 			airdashDistance = (airdashTarget - global_position).length()
+			
+			airdashInstance = null
 func focus(delta:float):
 	focused = Input.is_action_pressed("shift")
 	return
@@ -352,6 +357,10 @@ func move(delta:float): #custom move function for extra logic before and after c
 			$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-end")
 			
 			airdashing = false
+			
+			if airdashInstance != null:
+				airdashInstance.death()
+			
 			jumps = maxJumps
 			
 			set_collision_mask_value(1, true)

@@ -18,6 +18,14 @@ var gravity_changer:float = 20 #ridiculously high, bc this without deltatime wou
 
 var loaded:bool = false
 
+func death():
+	var kiddo = load("res://BPS/scene/bps.tscn").instantiate()
+	get_tree().current_scene.add_child(kiddo)
+	kiddo.global_position = global_position
+	kiddo.fire()
+	
+	queue_free()
+
 func movement(delta:float):
 	#increase gravity while falling
 	if velocity.y < 0 and not is_on_wall():

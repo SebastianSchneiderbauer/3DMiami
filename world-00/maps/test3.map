@@ -146,3 +146,9 @@
 "classname" "light"
 "origin" "36 92 100"
 }
+// entity 8
+{
+"classname" "dummy_dummy"
+"origin" "152 0 128"
+"angles" "0 -180 0"
+}
