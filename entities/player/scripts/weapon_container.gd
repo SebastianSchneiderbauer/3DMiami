@@ -10,6 +10,7 @@ func _ready() -> void:
 
 @onready var W: Node3D = $SubViewport/Container/Weapon/fists
 @onready var CW: Node3D = $"SubViewport/Container/Weapon"
+@onready var blood: GPUParticles3D = $BLOOD
 
 @onready var A: AnimationPlayer = $animator
 

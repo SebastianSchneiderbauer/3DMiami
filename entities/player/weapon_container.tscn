@@ -1,8 +1,34 @@
-[gd_scene load_steps=8 format=3 uid="uid://cu57thl5ye5ar"]
+[gd_scene load_steps=14 format=3 uid="uid://cu57thl5ye5ar"]
 
 [ext_resource type="Script" uid="uid://554y4tgq2and" path="res://entities/player/scripts/weapon_container.gd" id="1_mmgq4"]
 [ext_resource type="Script" uid="uid://daaofh21obc1c" path="res://entities/player/scripts/overlay_scaling.gd" id="2_y7kqc"]
 [ext_resource type="PackedScene" uid="uid://b36tjkqt0peym" path="res://entities/player/scripts/weapons/fists/model/fist.tscn" id="3_1bwj2"]
+[ext_resource type="Texture2D" uid="uid://bjvw0t8oqwgf" path="res://BPS/textures/splats/glob1.png" id="4_mmgq4"]
+
+[sub_resource type="Curve" id="Curve_y7kqc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v1xh2"]
+curve = SubResource("Curve_y7kqc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o18xw"]
+direction = Vector3(0, 1, -1)
+spread = 20.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+alpha_curve = SubResource("CurveTexture_v1xh2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onie7"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_mmgq4")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_1nh8t"]
+material = SubResource("StandardMaterial3D_onie7")
+size = Vector2(0.6, 0.6)
 
 [sub_resource type="Animation" id="Animation_mmgq4"]
 length = 0.001
@@ -122,6 +148,18 @@ transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/Container"]
 transform = Transform3D(1, -3.49151e-05, -0.000339675, 3.5085e-05, 1, 0.000463815, 0.000339657, -0.000463828, 1, 0, 1.6, 0)
 cull_mask = 262144
+
+[node name="BLOOD" type="GPUParticles3D" parent="SubViewport/Container/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+layers = 262144
+emitting = false
+amount = 7
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_o18xw")
+draw_pass_1 = SubResource("QuadMesh_1nh8t")
 
 [node name="animator" type="AnimationPlayer" parent="."]
 libraries = {

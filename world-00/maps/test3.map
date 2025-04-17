@@ -152,3 +152,15 @@
 "origin" "152 0 128"
 "angles" "0 -180 0"
 }
+// entity 9
+{
+"classname" "dummy_dummy"
+"origin" "152 72 128"
+"angles" "0 -180 0"
+}
+// entity 10
+{
+"classname" "dummy_dummy"
+"origin" "152 -72 128"
+"angles" "0 -180 0"
+}

@@ -16,8 +16,7 @@ var hOffset:float
 var vOffset:float
 
 func _ready() -> void:
-	get_node("../SubViewportContainer/SubViewport/airdash").emitting = false
-
+	get_node("../airdash/SubViewport/airdash").emitting = false
 func startZoom(duration:float, strength:float, direction:int):
 	zoomtime = duration
 	zoomStrenth = strength

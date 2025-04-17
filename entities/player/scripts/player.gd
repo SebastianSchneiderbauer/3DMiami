@@ -343,7 +343,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 	if is_on_wall() and velocity.y < 0 and not Input.is_action_pressed("ctrl") and not airdashing and not vaulting:
 		velocity.y = used_gravity.y/7
 	
-	get_node("SubViewportContainer/SubViewport/airdash").emitting = airdashing or crouched
+	get_node("airdash/SubViewport/airdash").emitting = airdashing or crouched
 	if airdashing:
 		if ((airdashTarget - global_position).length() < 0.2*airDashSpeedMultiplier):
 			camera.startShake(0.1,0.3)
@@ -359,6 +359,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 			airdashing = false
 			
 			if airdashInstance != null:
+				$weaponContainer/SubViewport/Container/Camera3D/BLOOD.emitting = true
 				airdashInstance.death()
 			
 			jumps = maxJumps

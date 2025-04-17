@@ -11,7 +11,7 @@ var counterpoint:float = 0.05
 func fire():
 	$"BLOOD".emitting = true
 	for i in range(particle_count):
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.05).timeout
 		var bpsScene = load("res://BPS/scene/bp.tscn")
 		var BP = bpsScene.instantiate()
 		BP.start = global_position

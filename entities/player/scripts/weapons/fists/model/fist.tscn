@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b36tjkqt0peym"]
+[gd_scene load_steps=15 format=3 uid="uid://b36tjkqt0peym"]
 
 [ext_resource type="Texture2D" uid="uid://b55ochsmbmect" path="res://textures/gitter.png" id="1_0cu35"]
 [ext_resource type="PackedScene" uid="uid://cqei3rltlbr60" path="res://entities/player/scripts/weapons/glock-00/model/glock-00-model.tscn" id="2_vsyfj"]
@@ -169,6 +169,45 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(1, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_10bnl"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rfist:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lfist:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.153589, -3.14159)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lfist:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.509, 0, -1)]
+}
+
 [sub_resource type="Animation" id="Animation_0r5p4"]
 resource_name = "slice"
 length = 0.8
@@ -214,6 +253,7 @@ _data = {
 &"RESET": SubResource("Animation_ld316"),
 &"airdash-end": SubResource("Animation_nx0rq"),
 &"airdash-prepare": SubResource("Animation_1avyf"),
+&"new_animation": SubResource("Animation_10bnl"),
 &"slice": SubResource("Animation_0r5p4")
 }
 
