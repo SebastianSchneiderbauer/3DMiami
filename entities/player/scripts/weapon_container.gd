@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 var crouchUpdater:bool = false
 var counter:float = 0
 var idleCounter:float = 0
-var weaponBasePosition := Vector3(0.864, 0.641, -0.848)
+var weaponBasePosition := Vector3(0, 0.641, -0.848)
 var LROffset = 0
 
 func f(x): # method that makes the falling/rising weapon animation
@@ -72,7 +72,7 @@ func animateWeapons(delta:float) -> void:
 	var hOffsetW = 0
 	var vOffsetW = 0
 	var reset:bool = false
-	if (player.direction != Vector3.ZERO and not reset and rotationgoal == 0) or player.airdashing:
+	if ((player.direction != Vector3.ZERO and not reset and rotationgoal == 0) or player.airdashing) and not player.crouched:
 		counter = fmod(counter + 10*delta, TAU)
 		hOffsetW = sin(counter)
 		vOffsetW = abs(sin(counter))
