@@ -23,10 +23,10 @@ func _process(delta: float) -> void:
 	var exampleGun: Weapon = Weapon.create_gun("supi",1,1,1,1,1,1,1,"Glock-00",1,1,true,1,"dontcare")
 	
 	if Input.is_action_just_pressed("e") and (not player.airdashing and not player.crouched and not player.vaulting):
-		W.get_node("animation").play("slice")
+		W.get_node("animation").play("pistol-1-throw")
 		W.get_node("animation").stop()
 		W.get_node("animation").seek(0.0, true)
-		W.get_node("animation").play("slice")
+		W.get_node("animation").play("pistol-1-throw")
 
 var crouchUpdater:bool = false
 var counter:float = 0
