@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b36tjkqt0peym"]
+[gd_scene load_steps=16 format=3 uid="uid://b36tjkqt0peym"]
 
-[ext_resource type="Texture2D" uid="uid://b55ochsmbmect" path="res://textures/gitter.png" id="1_0cu35"]
-[ext_resource type="PackedScene" uid="uid://cqei3rltlbr60" path="res://entities/player/scripts/weapons/glock-00/model/glock-00-model.tscn" id="2_8xmsg"]
+[ext_resource type="Script" uid="uid://dyj1ycg2ubeme" path="res://entities/player/scripts/weapons/weapons.gd" id="1_63upd"]
+[ext_resource type="Texture2D" uid="uid://b55ochsmbmect" path="res://textures/gitter.png" id="2_j0a1b"]
+[ext_resource type="PackedScene" uid="uid://cqei3rltlbr60" path="res://entities/player/scripts/weapons/glock-00/model/cock-00-model.tscn" id="3_i1b1q"]
 
 [sub_resource type="Animation" id="Animation_ld316"]
 length = 0.001
@@ -56,7 +57,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("pistol-1/Rfist:position")
+tracks/4/path = NodePath("cock-00/Rfist:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -68,7 +69,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("pistol-1/Rfist:rotation")
+tracks/5/path = NodePath("cock-00/Rfist:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -80,7 +81,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("pistol-1/Lfist:position")
+tracks/6/path = NodePath("cock-00/Lfist:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -92,7 +93,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("pistol-1/Lfist:rotation")
+tracks/7/path = NodePath("cock-00/Lfist:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -104,7 +105,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("pistol-1/Rfist/Glock-00-model:visible")
+tracks/8/path = NodePath("cock-00/Rfist/Clock-00-model:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -112,6 +113,42 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("cock-00/Rfist/Clock-00-model:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.65, 0.1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("cock-00/Rfist/Clock-00-model:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("cock-00:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_scma5"]
@@ -170,6 +207,110 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0.2), Vector3(0, 1.163, 2)]
 }
 
+[sub_resource type="Animation" id="Animation_63upd"]
+resource_name = "pistol-1-fire"
+length = 0.17
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cock-00/Rfist/Clock-00-model:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0.174533), Vector3(0, -3.14159, 0.10472), Vector3(0, -3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cock-00:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.174533, 0, 0), Vector3(0.10472, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0r5p4"]
+resource_name = "pistol-1-throw"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cock-00/Rfist:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 0, -1), Vector3(1, 0, -1), Vector3(1, 0, -1), Vector3(1, -1, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cock-00/Rfist:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0.31765, -1.5708, -0.785398), Vector3(-0.31765, -1.5708, 0.872665)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cock-00/Lfist:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.438856, -0.130563, -1), Vector3(-1, -0.131, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("cock-00/Lfist:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.999533, 0), Vector3(-0.31765, 2.11359, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("cock-00/Rfist/Clock-00-model:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("cock-00:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_8xmsg"]
 resource_name = "punch"
 length = 0.7
@@ -210,80 +351,18 @@ tracks/2/keys = {
 "values": [Vector3(1, 0, -1), Vector3(2, 0, -1), Vector3(2, 0, -1), Vector3(2, 0, -1), Vector3(1, 0, -1)]
 }
 
-[sub_resource type="Animation" id="Animation_0r5p4"]
-resource_name = "pistol-1-throw"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("pistol-1/Rfist:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 0, -1), Vector3(1, 0, -1), Vector3(1, 0, -1), Vector3(1, -1, -1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("pistol-1/Rfist:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -1.5708, 0), Vector3(0.31765, -1.5708, -0.785398), Vector3(-0.31765, -1.5708, 0.872665)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("pistol-1/Lfist:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.438856, -0.130563, -1), Vector3(-1, -0.131, 0.5)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("pistol-1/Lfist:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0.999533, 0), Vector3(-0.31765, 2.11359, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("pistol-1/Rfist/Glock-00-model:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.0333333, 0.0666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1avyf"]
 _data = {
 &"RESET": SubResource("Animation_ld316"),
 &"airdash-end": SubResource("Animation_scma5"),
 &"airdash-prepare": SubResource("Animation_1avyf"),
+&"pistol-1-fire": SubResource("Animation_63upd"),
 &"pistol-1-throw": SubResource("Animation_0r5p4"),
 &"punch": SubResource("Animation_8xmsg")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y15du"]
-albedo_texture = ExtResource("1_0cu35")
+albedo_texture = ExtResource("2_j0a1b")
 backlight_enabled = true
 texture_filter = 0
 
@@ -296,7 +375,7 @@ material = SubResource("StandardMaterial3D_y15du")
 size = Vector3(3, 0.5, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b01sk"]
-albedo_texture = ExtResource("1_0cu35")
+albedo_texture = ExtResource("2_j0a1b")
 backlight_enabled = true
 texture_filter = 0
 
@@ -304,8 +383,9 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_b01sk")
 size = Vector3(2, 0.5, 0.5)
 
-[node name="RFist" type="Node3D"]
+[node name="weapons" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+script = ExtResource("1_63upd")
 
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -337,19 +417,19 @@ layers = 262144
 mesh = SubResource("BoxMesh_ukmrw")
 skeleton = NodePath("../..")
 
-[node name="pistol-1" type="Node3D" parent="."]
+[node name="cock-00" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.452536)
 
-[node name="Rfist" type="MeshInstance3D" parent="pistol-1"]
+[node name="Rfist" type="MeshInstance3D" parent="cock-00"]
 transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 1, 0, -1)
 layers = 262144
 mesh = SubResource("BoxMesh_qh6q0")
 skeleton = NodePath("../..")
 
-[node name="Glock-00-model" parent="pistol-1/Rfist" instance=ExtResource("2_8xmsg")]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -2.24536, 0.676796, 9.77516e-06)
+[node name="Clock-00-model" parent="cock-00/Rfist" instance=ExtResource("3_i1b1q")]
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, -0.65, 0.1, 0)
 
-[node name="Lfist" type="MeshInstance3D" parent="pistol-1"]
+[node name="Lfist" type="MeshInstance3D" parent="cock-00"]
 transform = Transform3D(0.540695, 0, 0.841218, 0, 0.999999, 0, -0.841218, 0, 0.540695, 0.438856, -0.130563, -1)
 layers = 262144
 mesh = SubResource("BoxMesh_ukmrw")

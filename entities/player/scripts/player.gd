@@ -23,7 +23,9 @@ var sensitivity:float = 0.1 # editable from outside
 var extraVelocity:Vector3 = Vector3.ZERO # adding extra velocity like a shockwave, wallsjumps, etc.
 
 # weapon
-var weapon: Weapon = null
+var weapon := Weapon.create_gun("cock-00",1,1,1,1,false,1,"big")
+var baseWeapon = Weapon.create_blunt("fists",1,0,0.5,1,1,1) # default fist
+var canAttack:bool = false
 
 # sound effects
 @onready var walk: AudioStreamPlayer3D = $walk
@@ -85,6 +87,13 @@ func _input(event):
 		mouse_delta = event.relative
 
 #movement/cam methods
+func movement(delta): #triggers all movement-related methods underneath
+	focus(delta) #is a part that everything could use, so delay by 1 frame would be suboptimal
+	basic_movement()
+	jump_logic(delta)
+	crouch(delta)
+	vault_logic(delta)
+	airDash(delta)
 func handle_mouse_look(delta:float):
 	var rotation_x = -mouse_delta.y * sensitivity# * delta * 100
 	var rotation_y = -mouse_delta.x * sensitivity# * delta * 100
@@ -282,14 +291,14 @@ func airDash(delta:float):
 		lastInstance = smallestInstance
 		smallestInstance.get_node("selectHighlight").show()
 		
-		if (Input.is_action_just_pressed("mouseclick-l") or Input.is_action_just_pressed("mouseclick-r")) and not airdashing:
+		if Input.is_action_just_pressed("mouseclick-l") and not airdashing:
 			airdashTarget = smallestInstance.global_position
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
 			camera.startShake(0.1,0.2)
 			
-			$weaponContainer/SubViewport/Container/Weapon/fists/animation.stop()
-			$weaponContainer/SubViewport/Container/Weapon/fists/animation.seek(0.0, true)
-			$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-prepare")
+			$weaponContainer/SubViewport/Container/Weapon/weapons/animation.stop()
+			$weaponContainer/SubViewport/Container/Weapon/weapons/animation.seek(0.0, true)
+			$weaponContainer/SubViewport/Container/Weapon/weapons/animation.play("airdash-prepare")
 			
 			airdashing = true
 			airjumpTriggered = false
@@ -308,14 +317,14 @@ func airDash(delta:float):
 		airdash_highlight.start()
 		airdash_highlight.get_node("particles").set_emitting(true)
 		
-		if (Input.is_action_just_pressed("mouseclick-l") or Input.is_action_just_pressed("mouseclick-r")) and not airdashing:
+		if Input.is_action_just_pressed("mouseclick-l") and not airdashing:
 			airdashTarget = airdash_highlight.global_position
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
 			camera.startShake(0.1,0.2)
 			
-			$weaponContainer/SubViewport/Container/Weapon/fists/animation.stop()
-			$weaponContainer/SubViewport/Container/Weapon/fists/animation.seek(0.0, true)
-			$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-prepare")
+			$weaponContainer/SubViewport/Container/Weapon/weapons/animation.stop()
+			$weaponContainer/SubViewport/Container/Weapon/weapons/animation.seek(0.0, true)
+			$weaponContainer/SubViewport/Container/Weapon/weapons/animation.play("airdash-prepare")
 			
 			airdashing = true
 			airjumpTriggered = false
@@ -352,9 +361,9 @@ func move(delta:float): #custom move function for extra logic before and after c
 			extraVelocity.y = 0
 		
 			camera.startShake(0.15,0.1)
-			$weaponContainer/SubViewport/Container/Weapon/fists/animation.stop()
-			$weaponContainer/SubViewport/Container/Weapon/fists/animation.seek(0.0, true)
-			$weaponContainer/SubViewport/Container/Weapon/fists/animation.play("airdash-end")
+			$weaponContainer/SubViewport/Container/Weapon/weapons/animation.stop()
+			$weaponContainer/SubViewport/Container/Weapon/weapons/animation.seek(0.0, true)
+			$weaponContainer/SubViewport/Container/Weapon/weapons/animation.play("airdash-end")
 			
 			airdashing = false
 			
@@ -393,7 +402,6 @@ func move(delta:float): #custom move function for extra logic before and after c
 	elif velocity.y == 0:
 		storeFrameCounter += 1
 var lastInstance: CharacterBody3D = null
-
 
 #utility
 func get_shortest_wall_vector() -> Vector3:
@@ -541,7 +549,7 @@ func get_first_wall_hit_from_camera(ray_length := 100.0) -> Vector3:
 
 	return Vector3.ZERO
 
-
+#sound
 func play_looping_sounds(delta:float):
 	#walk sound
 	if direction != Vector3.ZERO and is_on_floor() and not crouched:
@@ -554,17 +562,22 @@ func play_looping_sounds(delta:float):
 	else:
 		walktimer = 0.27 # instant play when walking
 
-func _physics_process(delta): # "main"
-	focus(delta) #is a part that everything could use, so delay by 1 frame would be suboptimal
-	basic_movement()
-	jump_logic(delta)
-	crouch(delta)
-	vault_logic(delta)
-	airDash(delta)
-	debug()
-
-	play_looping_sounds(delta)
+#gameplay (firing, inventory etc.)
+func manage_attack():
+	canAttack = not crouched and not airdashing and not vaulting #used for attacking (yes, this includes throwing too)
 	
-	move(delta)
+	if Input.is_action_just_pressed("mouseclick-r") and canAttack:
+		$weaponContainer.drop()
+
+func _physics_process(delta): # "main"
+	movement(delta) #trigger movement-related functions
+	
+	manage_attack()
+	
+	play_looping_sounds(delta) #mainly the walk animation
+	
+	move(delta) #actually apply the calculated velocity
+	
+	debug() #run custom debug actions
 func _process(delta):
 	handle_mouse_look(delta)

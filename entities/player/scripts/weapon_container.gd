@@ -8,11 +8,24 @@ func _ready() -> void:
 @onready var player:CharacterBody3D = get_parent()
 @export var weaponSwayStrength: float = 1
 
-@onready var W: Node3D = $SubViewport/Container/Weapon/fists
+@onready var W: Node3D = $SubViewport/Container/Weapon/weapons
 @onready var CW: Node3D = $"SubViewport/Container/Weapon"
 @onready var blood: GPUParticles3D = $BLOOD
 
 @onready var A: AnimationPlayer = $animator
+
+var dropping:bool = false
+
+func drop():
+	match(player.weapon.weapon_name):
+		"fists":
+			pass
+		"cock-00":
+			dropping = true
+			$"SubViewport/Container/Weapon/weapons".hideall()
+			$"SubViewport/Container/Weapon/weapons/animation".play("pistol-1-throw")
+	
+	player.weapon = player.baseWeapon
 
 func _process(delta: float) -> void:
 	container.global_position = camera.global_position
@@ -20,13 +33,11 @@ func _process(delta: float) -> void:
 	
 	animateWeapons(delta)
 	
-	var exampleGun: Weapon = Weapon.create_gun("supi",1,1,1,1,1,1,1,"Glock-00",1,1,true,1,"dontcare")
-	
-	if Input.is_action_just_pressed("e") and (not player.airdashing and not player.crouched and not player.vaulting):
-		W.get_node("animation").play("pistol-1-throw")
-		W.get_node("animation").stop()
-		W.get_node("animation").seek(0.0, true)
-		W.get_node("animation").play("pistol-1-throw")
+	if not $"SubViewport/Container/Weapon/weapons/animation".is_playing() and dropping:
+		dropping = false
+		$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
+		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
+		A.play("show")
 
 var crouchUpdater:bool = false
 var counter:float = 0
