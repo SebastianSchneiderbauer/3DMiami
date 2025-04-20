@@ -20,7 +20,6 @@ func _process(delta):
 	
 	if round(1/delta) < lowest:
 		lowest = round(1/delta)
-		print("drop")
 	
 	fps_label.text += " (lowest: " + str(lowest) + ")"
 	

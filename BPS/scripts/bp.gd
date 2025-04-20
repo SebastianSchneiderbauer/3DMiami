@@ -68,9 +68,9 @@ func scatter_and_place_decals(origin: Vector3, target: Vector3):
 func spawn_decal(pos: Vector3, normal: Vector3):
 	var bpScene = load("res://BPS/scene/decal.tscn").instantiate()
 	var scaled = 1.5 - 1.5*(decal_count_performence/30.0)
-	print(decal_count_performence/30.0)
-	print(decal_count_performence)
-	print(scaled)
+	#print(decal_count_performence/30.0)
+	#print(decal_count_performence)
+	#print(scaled)
 	bpScene.mesh.size = Vector2(scaled,scaled)
 	get_tree().current_scene.add_child(bpScene)
 

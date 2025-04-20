@@ -165,7 +165,6 @@ func jump_logic(delta:float):
 				velocity.y = JUMP_VELOCITY
 				jump_wall.play()
 				extraVelocity += wallVector
-				# print(wallVector)
 func vault_logic(delta:float):
 	if vaulting:
 		velocity = Vector3.ZERO
