@@ -79,12 +79,77 @@ var focused:bool = false
 
 #basic shit
 func _ready():
-	Engine.time_scale = 0.1 * 10
+	Console.enable()
+	Console.pause_enabled = true
+	Console.add_command("hkfly",hk_fly,0,0,"en/dis-able fly-mode")
+	Console.add_command("hkclip",hk_clip,0,0,"en/dis-able noclip-mode")
+	Console.add_command("hkghost",hk_ghost,0,0,"en/dis-able ghost-mode (fly AND clip)")
+	Console.add_command("hkspd", hk_spd, ["speed"], 1, "gameSpeed")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_delta = event.relative
+
+#cheats
+func cheats(delta:float):
+	#fly
+	if HKFLY:
+		var speed = 1
+		if Input.is_action_pressed("mouseclick-l"):
+			speed = 2
+		var velY = Input.get_vector("ctrl","ui_accept","ctrl","ui_accept").x * delta * flyspeed #will not work otherwise
+		velocity.y = velY
+		velocity *= speed
+		used_gravity = Vector3.ZERO
+	else:
+		used_gravity = default_gravity
+	
+	#clip
+	set_collision_mask_value(1,not HKCLIP)
+	
+	#speed
+	Engine.time_scale = HKSPEED
+
+var flyspeed:float = 500
+var HKFLY:bool = false
+func hk_fly():
+	HKFLY = not HKFLY
+	
+	if HKFLY:
+		
+		
+		Console.print_line("TURNED FLY MODE ON")
+	else:
+		Console.print_line("TURNED FLY MODE OFF")
+var HKCLIP:bool = false
+func hk_clip():
+	HKCLIP = not HKCLIP
+	
+	if HKCLIP:
+		Console.print_line("TURNED CLIPPING MODE ON")
+	else:
+		Console.print_line("TURNED CLIPPING MODE OFF")
+var HKGHOST:bool = false
+func hk_ghost():
+	if HKFLY != HKCLIP: #wtf is this
+		Console.print_line("TURNED GHOST MODE ON")
+		HKFLY = true
+		HKCLIP = true
+		HKGHOST = true
+	elif HKFLY:
+		Console.print_line("TURNED GHOST MODE OFF")
+		HKFLY = false
+		HKCLIP = false
+		HKGHOST = false
+	else:
+		Console.print_line("TURNED GHOST MODE ON")
+		HKFLY = true
+		HKCLIP = true
+		HKGHOST = true
+var HKSPEED: float = 1
+func hk_spd(speed:String):
+	HKSPEED = float(speed)
 
 #movement/cam methods
 func movement(delta): #triggers all movement-related methods underneath
@@ -384,7 +449,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 			
 			velocity += extraVelocity
 	
-	if airdashing and (get_node("hitbox-uncrouched").disabled or get_node("hitbox_crouched").disabled):
+	if airdashing and (get_node("hitbox-uncrouched").disabled or get_node("hitbox_crouched").disabled) or HKCLIP:
 		set_collision_mask_value(1, false)
 	
 	move_and_slide()
@@ -392,7 +457,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 	#fix bug where we get stuck in a wall when vaulting at a strange angle, its snappy, but fuck the user its their fualt if they run into a wall like this
 	var inWallDetector: RayCast3D = $inWallDetector
 	inWallDetector.force_raycast_update()
-	if inWallDetector.is_colliding() and not vaulting and not airdashing:
+	if inWallDetector.is_colliding() and not vaulting and not airdashing and not HKCLIP:
 		global_position.y +=1
 	
 	if velocity.y != 0 or storeFrameCounter == storeFrames:
@@ -478,9 +543,6 @@ func tranform_into_direction_vector(vector:Vector3):
 	if(vector.z < 0):
 		return_value.z = -1
 	return return_value
-func debug():
-	if Input.is_action_just_pressed("1"):
-		global_position = Vector3(0,40.5,-9.5)
 func scaleMultiplier(value:float, base:float, multiplier:float): #example usecase: you scale jumps height by another property, however you want the effect of the multiplication just to be half as noticable. then you use this method with multipleir 0.5
 	#error case where we are <= than the base
 	if value == base and base == 0:
@@ -575,8 +637,7 @@ func _physics_process(delta): # "main"
 	
 	play_looping_sounds(delta) #mainly the walk animation
 	
+	cheats(delta) #execute cheats before moving since they might influence velocity/gravity etc.
 	move(delta) #actually apply the calculated velocity
-	
-	debug() #run custom debug actions
 func _process(delta):
 	handle_mouse_look(delta)

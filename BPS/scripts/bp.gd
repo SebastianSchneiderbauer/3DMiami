@@ -8,6 +8,7 @@ extends RayCast3D
 @export var time_offset: float = 0.1
 @export var max_ray_length: float = 10.0
 var decal_count_performence: int # 1) ultra performence 5) low 10) mid 15) high 20) ultra 25) no, thats plain wrong
+var life_time:float
 
 var start: Vector3
 var previous_position: Vector3
@@ -72,6 +73,7 @@ func spawn_decal(pos: Vector3, normal: Vector3):
 	#print(decal_count_performence)
 	#print(scaled)
 	bpScene.mesh.size = Vector2(scaled,scaled)
+	bpScene.counter = life_time
 	get_tree().current_scene.add_child(bpScene)
 
 	pos += normal * 0.01

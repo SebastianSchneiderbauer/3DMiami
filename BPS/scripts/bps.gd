@@ -7,6 +7,7 @@ var counterpoint:float = 0.05
 
 @export var particle_count:int = 5
 @export var decal_count:int = 20
+@export var life_time:float = INF
 
 func fire():
 	$"BLOOD".emitting = true
@@ -20,6 +21,7 @@ func fire():
 		BP.gravity = Vector3(0, -9.81, 0)
 		BP.speedMultiplier = 1
 		BP.decal_count_performence = decal_count
+		BP.life_time = life_time
 		add_child(BP)
 		
 		rotate_y(360)
