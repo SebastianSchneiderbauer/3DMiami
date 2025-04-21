@@ -11,7 +11,7 @@ const JUMP_VELOCITY:float = 6
 const airDashSpeedMultiplier:float = 6
 
 var lastVelocityY:float = 0
-var storeFrames:int = 2
+var storeFrames:int = 200
 var storeFrameCounter:int = 0
 
 var direction:Vector3 = Vector3(0,0,0)
@@ -55,6 +55,7 @@ var speedIncrease:float = 1.5
 var preservedJump:bool = false
 
 #crouch
+var airdashSpeed:float = -18 #no this is not displaced
 var crouched:bool = false
 var crouchStart:float = 1.6
 var crouchEnd:float = 0.8
@@ -258,11 +259,7 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 	if not released and not Input.is_action_pressed("ctrl"):
 		released = true
 	
-	if is_on_floor():
-		print("floor")
-	
 	if not crouched and Input.is_action_pressed("ctrl") and is_on_floor() and released:
-		print("e")
 		if direction == Vector3.ZERO: #in case no input is present, take the one we are looking in
 			var foreward:Vector3 = -camera.global_transform.basis.z
 			foreward.y = 0
@@ -388,7 +385,6 @@ func airDash(delta:float):
 		if Input.is_action_just_pressed("mouseclick-l") and not airdashing:
 			airdashTarget = airdash_highlight.global_position
 			airdashTarget.y -= 0.2
-			print(airdashTarget.y,"<------")
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
 			camera.startShake(0.1,0.2)
 			
@@ -425,7 +421,6 @@ func move(delta:float): #custom move function for extra logic before and after c
 	get_node("airdash/SubViewport/airdash").emitting = airdashing or crouched
 	if airdashing:
 		if ((airdashTarget - global_position).length() < 0.2*airDashSpeedMultiplier):
-			print("end")
 			camera.startShake(0.1,0.3)
 			global_position.y = airdashTarget.y
 			velocity.y = 0
@@ -469,11 +464,12 @@ func move(delta:float): #custom move function for extra logic before and after c
 	
 	if velocity.y != 0 or storeFrameCounter == storeFrames:
 		storeFrameCounter = 0
-		lastVelocityY = velocity.y
+		if airdashing:
+			lastVelocityY = airdashSpeed
+		else:
+			lastVelocityY = velocity.y
 	elif velocity.y == 0:
 		storeFrameCounter += 1
-	
-	print(lastVelocityY)
 var lastInstance: CharacterBody3D = null
 
 #utility
