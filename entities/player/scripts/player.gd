@@ -11,7 +11,7 @@ const JUMP_VELOCITY:float = 6
 const airDashSpeedMultiplier:float = 6
 
 var lastVelocityY:float = 0
-var storeFrames:int = 1
+var storeFrames:int = 2
 var storeFrameCounter:int = 0
 
 var direction:Vector3 = Vector3(0,0,0)
@@ -258,7 +258,11 @@ func crouch(delta:float): # yes, its a slide, but fuck it this is mostly the cro
 	if not released and not Input.is_action_pressed("ctrl"):
 		released = true
 	
+	if is_on_floor():
+		print("floor")
+	
 	if not crouched and Input.is_action_pressed("ctrl") and is_on_floor() and released:
+		print("e")
 		if direction == Vector3.ZERO: #in case no input is present, take the one we are looking in
 			var foreward:Vector3 = -camera.global_transform.basis.z
 			foreward.y = 0
@@ -383,6 +387,8 @@ func airDash(delta:float):
 		
 		if Input.is_action_just_pressed("mouseclick-l") and not airdashing:
 			airdashTarget = airdash_highlight.global_position
+			airdashTarget.y -= 0.2
+			print(airdashTarget.y,"<------")
 			camera.startZoom((airdashTarget - global_position).length()/(baseSpeed*airDashSpeedMultiplier),30, -1)
 			camera.startShake(0.1,0.2)
 			
@@ -419,6 +425,7 @@ func move(delta:float): #custom move function for extra logic before and after c
 	get_node("airdash/SubViewport/airdash").emitting = airdashing or crouched
 	if airdashing:
 		if ((airdashTarget - global_position).length() < 0.2*airDashSpeedMultiplier):
+			print("end")
 			camera.startShake(0.1,0.3)
 			global_position.y = airdashTarget.y
 			velocity.y = 0
@@ -461,10 +468,12 @@ func move(delta:float): #custom move function for extra logic before and after c
 		global_position.y +=1
 	
 	if velocity.y != 0 or storeFrameCounter == storeFrames:
-		lastVelocityY = velocity.y
 		storeFrameCounter = 0
+		lastVelocityY = velocity.y
 	elif velocity.y == 0:
 		storeFrameCounter += 1
+	
+	print(lastVelocityY)
 var lastInstance: CharacterBody3D = null
 
 #utility
@@ -594,22 +603,21 @@ func get_first_wall_hit_from_camera(ray_length := 100.0) -> Vector3:
 	var from = camera.global_transform.origin
 	var direction = -camera.global_transform.basis.z
 	var to = from + direction * ray_length
-
+	
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = from
 	params.to = to
 	params.collision_mask = 1 << 0 # Layer 1 for walls
 	params.collide_with_areas = false
 	params.collide_with_bodies = true
-
+	
 	var space_state = get_world_3d().direct_space_state
 	var hit = space_state.intersect_ray(params)
-
+	
 	if hit.has("position"):
 		return hit.position
-
+	
 	return Vector3.ZERO
-
 #sound
 func play_looping_sounds(delta:float):
 	#walk sound
