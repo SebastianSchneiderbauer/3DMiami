@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3oep5ot0siul"]
 
-[ext_resource type="Script" uid="uid://ycsnnqso6o5h" path="res://Main-Menu/scenes/button.gd" id="1_np5m4"]
-[ext_resource type="PackedScene" uid="uid://d22k2ss55xjem" path="res://ui/pause-menu/scenes/pause.tscn" id="2_0r80p"]
+[ext_resource type="Script" uid="uid://bsutb3p6xodjo" path="res://Main-Menu/scripts/main_menu.gd" id="1_i3vks"]
+[ext_resource type="Script" uid="uid://ycsnnqso6o5h" path="res://Main-Menu/scripts/button.gd" id="1_np5m4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0r80p"]
 font_size = 100
@@ -13,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_i3vks")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -41,9 +42,5 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "start"
 script = ExtResource("1_np5m4")
-
-[node name="Pause" parent="." instance=ExtResource("2_0r80p")]
-visible = false
-layout_mode = 1
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -20,10 +20,11 @@ config/icon="res://icon.svg"
 SaveManager="*res://autoloader/SaveManager.gd"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Discord="*res://autoloader/Discord.gd"
+Console="*res://addons/console/console.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/tbloader/plugin.cfg")
+enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/tbloader/plugin.cfg")
 
 [file_customization]
 
