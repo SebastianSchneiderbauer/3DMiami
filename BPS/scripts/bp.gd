@@ -8,6 +8,7 @@ extends RayCast3D
 @export var time_offset: float = 0.1
 @export var max_ray_length: float = 10.0
 var decal_count_performence: int # 1) ultra performence 5) low 10) mid 15) high 20) ultra 25) no, thats plain wrong
+var particle_life_time: float = 10
 var life_time:float
 
 var start: Vector3
@@ -18,6 +19,10 @@ func _ready() -> void:
 	previous_position = global_position
 
 func _physics_process(delta: float) -> void:
+	particle_life_time -= delta
+	if particle_life_time <= 0:
+		queue_free()
+	
 	delta *= speedMultiplier
 	direction += gravity * delta
 	

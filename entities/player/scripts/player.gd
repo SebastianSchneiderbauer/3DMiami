@@ -23,8 +23,8 @@ var sensitivity:float = 0.1 # editable from outside
 var extraVelocity:Vector3 = Vector3.ZERO # adding extra velocity like a shockwave, wallsjumps, etc.
 
 # weapon
-var weapon := Weapon.create_gun("cock-00",1,1,1,1,false,1,"big")
-var baseWeapon = Weapon.create_blunt("fists",1,0,0.5,1,1,1) # default fist
+var weapon := Weapon.create_gun("cock-00",1,0.1,1,1,false,1,"big")
+var baseWeapon = Weapon.create_blunt("fists",1,0.5,0.5,1,1,1) # default fist
 var canAttack:bool = false
 
 # sound effects
@@ -630,6 +630,9 @@ func play_looping_sounds(delta:float):
 #gameplay (firing, inventory etc.)
 func manage_attack():
 	canAttack = not crouched and not airdashing and not vaulting #used for attacking (yes, this includes throwing too)
+	
+	if Input.is_action_just_pressed("mouseclick-l") and not Input.is_action_pressed("shift") and canAttack:
+		$weaponContainer.attack()
 	
 	if Input.is_action_just_pressed("mouseclick-r") and canAttack:
 		$weaponContainer.drop()

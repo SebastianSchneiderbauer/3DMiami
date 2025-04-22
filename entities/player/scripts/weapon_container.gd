@@ -11,11 +11,20 @@ func _ready() -> void:
 @onready var W: Node3D = $SubViewport/Container/Weapon/weapons
 @onready var CW: Node3D = $"SubViewport/Container/Weapon"
 @onready var blood: GPUParticles3D = $BLOOD
-
 @onready var A: AnimationPlayer = $animator
 
-var dropping:bool = false
+var attackCooldownCounter:float = 0
+func attack():
+	if attackCooldownCounter >= player.weapon.weapon_cooldown:
+		$"SubViewport/Container/Weapon/weapons/animation".stop()
+		attackCooldownCounter = 0
+		match(player.weapon.weapon_name):
+			"fists":
+				$"SubViewport/Container/Weapon/weapons/animation".play("punch")
+			"cock-00":
+				$"SubViewport/Container/Weapon/weapons/animation".play("pistol-1-fire")
 
+var dropping:bool = false
 func drop():
 	match(player.weapon.weapon_name):
 		"fists":
@@ -38,6 +47,8 @@ func _process(delta: float) -> void:
 		$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
 		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
 		A.play("show")
+	
+	attackCooldownCounter += delta
 
 var crouchUpdater:bool = false
 var counter:float = 0
@@ -47,10 +58,8 @@ var LROffset = 0
 
 func f(x): # method that makes the falling/rising weapon animation
 	return tanh(x * 0.5) * (-0.35 if x >= 0.0 else -0.25)
-
 func inRange(from:float, to:float, value:float) -> bool: #from(including to(excluding)
 	return value >= from and value < to
-
 func animateWeapons(delta:float) -> void:
 	#hide
 	if (player.crouched or player.vaulting) and not crouchUpdater:
