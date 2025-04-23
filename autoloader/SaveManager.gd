@@ -24,6 +24,7 @@ var default_values := {
 }
 
 func _ready():
+	Console.add_command("reset",reset_to_defaults,[],0,"")
 	load_game()
 	loaded = true
 
