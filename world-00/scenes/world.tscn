@@ -37,13 +37,6 @@ data = PackedVector3Array(-6, -2.1701, -4.75, -6, -3.1701, -4.75, 6, -3.1701, -4
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_v1eft")
 
-[node name="THE SUN" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.911654, -0.216701, 0.349181, 0.209432, 0.486077, 0.84845, -0.353589, 0.846623, -0.39775, 3.61487, 20.6757, 19.8699)
-visible = false
-layers = 262145
-shadow_enabled = true
-shadow_bias = 1.0
-
 [node name="TBLoader" type="TBLoader" parent="."]
 map_resource = "res://world-00/maps/test3.map"
 lighting_unwrap_uv2 = true
