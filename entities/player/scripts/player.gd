@@ -638,6 +638,8 @@ func manage_attack():
 		$weaponContainer.drop()
 
 func _physics_process(delta): # "main"
+	if Input.is_action_just_pressed("3"):
+		get_parent().get_parent().get_child(3).spawn_blood_decal(global_position, Vector3(01,0,1))
 	movement(delta) #trigger movement-related functions
 	
 	manage_attack()
