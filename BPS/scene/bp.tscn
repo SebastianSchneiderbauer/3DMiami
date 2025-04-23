@@ -16,8 +16,6 @@ material = SubResource("StandardMaterial3D_hblg4")
 top_level = true
 target_position = Vector3(0, 0, 0)
 script = ExtResource("1_1ufef")
-spread_radius = 0.3
-time_offset = 0.4
 
 [node name="particle" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_28j8e")

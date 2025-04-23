@@ -22,6 +22,7 @@ func death():
 	var kiddo = load("res://BPS/scene/bps.tscn").instantiate()
 	get_tree().current_scene.add_child(kiddo)
 	kiddo.global_position = global_position
+	kiddo.global_position.y += 0.5
 	kiddo.fire()
 	
 	queue_free()

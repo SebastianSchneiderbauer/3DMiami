@@ -1,6 +1,6 @@
 extends MultiMeshInstance3D
 
-@export var max_decals := 100
+@export var max_decals := 10000
 var instance_index := 0
 
 func _ready():
