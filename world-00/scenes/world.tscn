@@ -38,7 +38,6 @@ data = PackedVector3Array(-6, -1.5026, 2.9375, -6, -2.5026, 2.9375, 6, -2.5026, 
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1frc"]
 transparency = 1
-albedo_color = Color(1, 0, 0, 1)
 albedo_texture = ExtResource("5_io3qo")
 texture_filter = 0
 
@@ -157,7 +156,7 @@ layers = 1048575
 light_energy = 0.1
 shadow_enabled = true
 
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+[node name="BloodMultimesh" type="MultiMeshInstance3D" parent="."]
 multimesh = SubResource("MultiMesh_8eyds")
 script = ExtResource("6_q6s7m")
 
