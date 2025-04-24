@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfq37irto2yr2"]
+[gd_scene load_steps=3 format=3 uid="uid://bfq37irto2yr2"]
 
 [ext_resource type="Script" uid="uid://ctamyxq0dm4pa" path="res://BPS/scripts/bps.gd" id="1_f3c0b"]
 
+[sub_resource type="Curve" id="Curve_f3c0b"]
+_data = [Vector2(0, 0), 0.0, 0.145242, 0, 0, Vector2(0.889423, 0.337079), 1.19239, 1.19239, 0, 0, Vector2(1, 0.988764), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="BPS" type="Node3D"]
 script = ExtResource("1_f3c0b")
-particle_count = 100
+particle_count = 50
 life_time = 1.0
+velocity_curve = SubResource("Curve_f3c0b")
