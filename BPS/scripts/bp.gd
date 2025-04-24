@@ -6,12 +6,14 @@ extends RayCast3D
 var particle_life_time: float = 10.0
 var start: Vector3
 var previous_position: Vector3
+var gravity_changer:float = 5
 
 func _ready() -> void:
 	global_position = start
 	previous_position = global_position
 
 func _physics_process(delta: float) -> void:
+	gravity.y -= gravity_changer*delta
 	particle_life_time -= delta
 	if particle_life_time <= 0:
 		queue_free()

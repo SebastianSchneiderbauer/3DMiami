@@ -1,13 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://b0m4r88nagwh5"]
+[gd_scene load_steps=15 format=4 uid="uid://b0m4r88nagwh5"]
 
 [ext_resource type="Script" uid="uid://8cvv37d6bhs8" path="res://world-00/scripts/tb_loader.gd" id="1_1qa1k"]
 [ext_resource type="Script" uid="uid://dxtl0hineeq8" path="res://world-00/scripts/fullbright.gd" id="1_8eyds"]
 [ext_resource type="PackedScene" uid="uid://2xraxqbjr6q3" path="res://entities/player/player.tscn" id="2_op7cj"]
-[ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="4_04duo"]
 [ext_resource type="PackedScene" uid="uid://bf8kikmkf0ytj" path="res://entities/dummy/dummy.tscn" id="5_04duo"]
 [ext_resource type="Texture2D" uid="uid://112lslahbt2u" path="res://textures/__TB_empty.png" id="5_576h8"]
 [ext_resource type="Texture2D" uid="uid://bjvw0t8oqwgf" path="res://BPS/textures/splats/glob1.png" id="5_io3qo"]
-[ext_resource type="Script" uid="uid://crvf7it34h14c" path="res://entities/dummy/scripts/dummy.gd" id="6_8eyds"]
 [ext_resource type="Script" uid="uid://dtklo2ujeg001" path="res://world-00/scripts/blood_decals.gd" id="6_q6s7m"]
 
 [sub_resource type="Environment" id="Environment_v1eft"]
@@ -80,12 +78,8 @@ shape = SubResource("ConcavePolygonShape3D_wmjpl")
 transform = Transform3D(24, 0, 0, 0, 15, 0, 0, 0, 59, 0, 3.35049, -8.44118)
 bake_mask = 1
 
-[node name="player" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("2_op7cj")]
+[node name="player" parent="TBLoader" instance=ExtResource("2_op7cj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 12, -9.5)
-collision_layer = 130
-wall_min_slide_angle = 0.0
-script = ExtResource("4_04duo")
-vault_height = 1.5
 
 [node name="@OmniLight3D@37723" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.625, 7.125, 9.5)
@@ -129,29 +123,17 @@ light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="dummy" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="dummy" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 9.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 
-[node name="@CharacterBody3D@37729" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@37729" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8, 9.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 
-[node name="@CharacterBody3D@37730" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@37730" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 8, 9.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 
-[node name="@CharacterBody3D@37731" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@37731" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5, -30)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 
 [node name="@OmniLight3D@37732" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.75, 14.25, -40.75)
@@ -185,29 +167,17 @@ shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.2
 
-[node name="@CharacterBody3D@37736" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@37736" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, 5, -21.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 
-[node name="@CharacterBody3D@37737" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@37737" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, 5, -21.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 
-[node name="@CharacterBody3D@37738" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@37738" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, 5, -38.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 
-[node name="@CharacterBody3D@37739" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@37739" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, 5, -38.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("6_8eyds")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.445245, 0.895409, 0, -0.895409, 0.445245, 0, 47.1714, -2.10283)
@@ -218,12 +188,3 @@ shadow_enabled = true
 [node name="BloodMultimesh" type="MultiMeshInstance3D" parent="."]
 multimesh = SubResource("MultiMesh_8eyds")
 script = ExtResource("6_q6s7m")
-
-[connection signal="mouse_entered" from="TBLoader/dummy" to="TBLoader/dummy" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@37729" to="TBLoader/@CharacterBody3D@37729" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@37730" to="TBLoader/@CharacterBody3D@37730" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@37731" to="TBLoader/@CharacterBody3D@37731" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@37736" to="TBLoader/@CharacterBody3D@37736" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@37737" to="TBLoader/@CharacterBody3D@37737" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@37738" to="TBLoader/@CharacterBody3D@37738" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@37739" to="TBLoader/@CharacterBody3D@37739" method="_on_mouse_entered"]
