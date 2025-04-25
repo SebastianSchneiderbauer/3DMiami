@@ -23,7 +23,10 @@ func get_curve_velocity() -> float:
 	return lerp(min_velocity, max_velocity, bias)
 
 func fire():
+	$mist.emitting = true
 	for i in range(particle_count):
+		await get_tree().create_timer(0.1/particle_count).timeout
+		
 		var bpsScene = load("res://BPS/scene/bp.tscn")
 		var BP = bpsScene.instantiate()
 		
