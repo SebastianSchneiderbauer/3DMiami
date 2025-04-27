@@ -26,14 +26,26 @@ func attack():
 
 var dropping:bool = false
 func drop():
+	#play animation and spawn throwable
 	match(player.weapon.weapon_name):
 		"fists":
 			pass
 		"cock-00":
+			#spawn throwable
+			var throwable = load("res://entities/weapons/cock-00/model/cock-00.tscn").instantiate()
+			get_parent().add_child(throwable)
+			throwable.top_level = true
+			throwable.global_position = get_parent().global_position
+			throwable.global_position.y += 1.5
+			throwable.velocity = get_parent().get_node("camera").global_transform.basis.z.normalized() * -30.0
+			throwable.firing = true
+			
+			#play animation
+			$SubViewport/Container/Weapon/weapons.hideWeapon(player.weapon.weapon_name)
 			dropping = true
-			$"SubViewport/Container/Weapon/weapons".hideall()
-			$"SubViewport/Container/Weapon/weapons/animation".play("pistol-1-throw")
+			A.play("hide")
 	
+	#reset weapon
 	player.weapon = player.baseWeapon
 
 func _process(delta: float) -> void:
@@ -42,10 +54,12 @@ func _process(delta: float) -> void:
 	
 	animateWeapons(delta)
 	
-	if not $"SubViewport/Container/Weapon/weapons/animation".is_playing() and dropping:
+	if not A.is_playing() and dropping:
 		dropping = false
+		
 		$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
 		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
+		
 		A.play("show")
 	
 	attackCooldownCounter += delta
@@ -57,7 +71,7 @@ var weaponBasePosition := Vector3(0, 0.641, -0.848)
 var LROffset = 0
 
 func f(x): # method that makes the falling/rising weapon animation
-	return tanh(x * 0.5) * (-0.35 if x >= 0.0 else -0.25)
+	return tanh(x * 0.5) * (-0.2 if x >= 0.0 else -0.1)
 func inRange(from:float, to:float, value:float) -> bool: #from(including to(excluding)
 	return value >= from and value < to
 func animateWeapons(delta:float) -> void:

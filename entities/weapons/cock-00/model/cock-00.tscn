@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqei3rltlbr60"]
+[gd_scene load_steps=8 format=3 uid="uid://cqei3rltlbr60"]
 
-[ext_resource type="Texture2D" uid="uid://b55ochsmbmect" path="res://textures/gitter.png" id="1_ywn61"]
+[ext_resource type="Script" uid="uid://r7dfd2vqnltx" path="res://entities/weapons/cock-00/model/cock_00_model.gd" id="1_h0iqb"]
+[ext_resource type="Texture2D" uid="uid://b55ochsmbmect" path="res://textures/gitter.png" id="2_fcgm4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqmjl"]
-albedo_texture = ExtResource("1_ywn61")
+albedo_texture = ExtResource("2_fcgm4")
 backlight_enabled = true
 texture_filter = 0
 
@@ -12,7 +13,7 @@ material = SubResource("StandardMaterial3D_vqmjl")
 size = Vector3(1, 0.25, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77vaj"]
-albedo_texture = ExtResource("1_ywn61")
+albedo_texture = ExtResource("2_fcgm4")
 backlight_enabled = true
 texture_filter = 0
 
@@ -20,7 +21,14 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_77vaj")
 size = Vector3(0.5, 0.25, 0.25)
 
-[node name="Clock-00-model" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_m6eym"]
+size = Vector3(0.7, 1.3, 0.3)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_h0iqb")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.559484, 0.339524, -0.000476599)
@@ -31,3 +39,9 @@ mesh = SubResource("BoxMesh_kkqkw")
 transform = Transform3D(-0.523822, 0.851827, 0, -0.851827, -0.523822, 0, 0, 0, 1, 0.059484, 0.102926, -0.000476599)
 layers = 262144
 mesh = SubResource("BoxMesh_vqmjl")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.43789, 0.141488, 0)
+shape = SubResource("BoxShape3D_m6eym")

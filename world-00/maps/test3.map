@@ -254,3 +254,8 @@
 "classname" "dummy_dummy"
 "origin" "-616 -136 80"
 }
+// entity 20
+{
+"classname" "weapons_cock-00_model_cock-00"
+"origin" "-144 56 220"
+}

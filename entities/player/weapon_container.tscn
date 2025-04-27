@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://554y4tgq2and" path="res://entities/player/scripts/weapon_container.gd" id="1_mmgq4"]
 [ext_resource type="Script" uid="uid://daaofh21obc1c" path="res://entities/player/scripts/overlay_scaling.gd" id="2_y7kqc"]
-[ext_resource type="PackedScene" uid="uid://b36tjkqt0peym" path="res://entities/player/scripts/weapons/weapons.tscn" id="3_1bwj2"]
+[ext_resource type="PackedScene" uid="uid://b36tjkqt0peym" path="res://entities/weapons/weapons.tscn" id="3_1bwj2"]
 [ext_resource type="Texture2D" uid="uid://bjvw0t8oqwgf" path="res://BPS/textures/splats/glob1.png" id="4_mmgq4"]
 
 [sub_resource type="Curve" id="Curve_y7kqc"]
@@ -146,7 +146,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.641, -0.848)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/Container"]
-transform = Transform3D(1, -3.49275e-05, -0.000339673, 3.5085e-05, 1, 0.000463816, 0.000339657, -0.000463828, 1, 0, 1.6, 0)
+transform = Transform3D(1, -3.49275e-05, -0.000339673, 3.5085e-05, 1, 0.000463816, 0.000339657, -0.000463828, 1, 0, 1.6, 1.85249)
 cull_mask = 262144
 
 [node name="BLOOD" type="GPUParticles3D" parent="SubViewport/Container/Camera3D"]

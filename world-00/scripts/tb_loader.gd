@@ -15,7 +15,11 @@ func makeReady():
 			child.set_layer_mask_value(19,true)
 		elif "Layer" in child.name and child is Node3D:
 			child.get_child(0).mesh.surface_get_material(0).set_texture_filter(0)
-
+		elif "firing" in child:
+			child.firing = true
+			child.rotation.x = deg_to_rad(-90.0)
+		else:
+			print("else")
 
 func generate_sdf_colliders():
 	print("✨ Generating SDF colliders...")
