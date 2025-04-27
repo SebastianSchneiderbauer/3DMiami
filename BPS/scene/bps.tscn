@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bfq37irto2yr2"]
 
 [ext_resource type="Script" uid="uid://ctamyxq0dm4pa" path="res://BPS/scripts/bps.gd" id="1_f3c0b"]
-[ext_resource type="Texture2D" uid="uid://bosemxx605ie" path="res://BPS/textures/splats/glob2.png" id="2_v1xh2"]
+[ext_resource type="Texture2D" uid="uid://cqclu884asc2y" path="res://BPS/textures/splats/glob2.png" id="2_v1xh2"]
 
 [sub_resource type="Curve" id="Curve_f3c0b"]
 _data = [Vector2(0, 0), 0.0, 0.145242, 0, 0, Vector2(0.7125, 0.324781), 1.19239, 1.19239, 0, 0, Vector2(1, 0.988764), 0.0, 0.0, 0, 0]

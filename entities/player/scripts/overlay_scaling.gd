@@ -29,6 +29,8 @@ func get_fsr_value(index:int):
 			return 83.0
 		7:
 			return 125.00
+	
+	return 0
 
 func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)

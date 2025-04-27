@@ -434,7 +434,6 @@ func move(delta:float): #custom move function for extra logic before and after c
 			airdashing = false
 			
 			if airdashInstance != null:
-				$weaponContainer/SubViewport/Container/Camera3D/BLOOD.emitting = true
 				airdashInstance.death()
 			
 			jumps = maxJumps

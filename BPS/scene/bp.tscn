@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsdsfu7p8usxb"]
 
 [ext_resource type="Script" uid="uid://cj4onskm1sq44" path="res://BPS/scripts/bp.gd" id="1_1ufef"]
-[ext_resource type="Texture2D" uid="uid://bjvw0t8oqwgf" path="res://BPS/textures/splats/glob1.png" id="2_crde7"]
+[ext_resource type="Texture2D" uid="uid://bf1cnlk5gb1by" path="res://BPS/textures/splats/glob1.png" id="2_crde7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hblg4"]
 transparency = 1
