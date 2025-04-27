@@ -48,6 +48,13 @@ func drop():
 	#reset weapon
 	player.weapon = player.baseWeapon
 
+var picking: bool = true
+func pick():
+	match (player.weapon.weapon_name):
+		"cock-00":
+			picking = true
+			A.play("hide")
+
 func _process(delta: float) -> void:
 	container.global_position = camera.global_position
 	container.global_rotation = camera.global_rotation
@@ -56,6 +63,14 @@ func _process(delta: float) -> void:
 	
 	if not A.is_playing() and dropping:
 		dropping = false
+		
+		$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
+		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
+		
+		A.play("show")
+	
+	if not A.is_playing() and picking:
+		picking = false
 		
 		$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
 		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)

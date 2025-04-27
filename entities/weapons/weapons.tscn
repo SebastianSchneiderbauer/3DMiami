@@ -379,6 +379,7 @@ skeleton = NodePath("../..")
 
 [node name="cock-00" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.452536)
+visible = false
 
 [node name="Rfist" type="MeshInstance3D" parent="cock-00"]
 transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 1, 0, -1)

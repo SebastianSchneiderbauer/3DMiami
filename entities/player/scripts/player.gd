@@ -23,9 +23,11 @@ var sensitivity:float = 0.1 # editable from outside
 var extraVelocity:Vector3 = Vector3.ZERO # adding extra velocity like a shockwave, wallsjumps, etc.
 
 # weapon
-var weapon := Weapon.create_gun("cock-00",1,0.1,1,1,false,1,"big")
 var baseWeapon = Weapon.create_blunt("fists",1,0.5,0.5,1,1,1) # default fist
+var weapon = baseWeapon
 var canAttack:bool = false
+var canPick:bool = false
+var pickUpable = [] #stores which items are around
 
 # sound effects
 @onready var walk: AudioStreamPlayer3D = $walk
@@ -629,12 +631,25 @@ func play_looping_sounds(delta:float):
 #gameplay (firing, inventory etc.)
 func manage_attack():
 	canAttack = not crouched and not airdashing and not vaulting #used for attacking (yes, this includes throwing too)
+	canPick = canAttack and weapon.weapon_name != "fists"
 	
 	if Input.is_action_just_pressed("mouseclick-l") and not Input.is_action_pressed("shift") and canAttack:
 		$weaponContainer.attack()
 	
 	if Input.is_action_just_pressed("mouseclick-r") and canAttack:
-		$weaponContainer.drop()
+		if weapon.weapon_name == "fists":
+			if pickUpable.size() != 0:
+				var smallest = null
+				for weapon in pickUpable:
+					if smallest == null or (global_position - weapon.global_position).length() < (global_position - smallest.global_position).length():
+						smallest = weapon
+				
+				if smallest != null:
+					weapon = smallest.weapon
+					$weaponContainer.pick()
+					smallest.queue_free()
+		else:
+			$weaponContainer.drop()
 
 func _physics_process(delta): # "main"
 	movement(delta) #trigger movement-related functions

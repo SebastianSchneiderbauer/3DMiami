@@ -68,12 +68,19 @@ mesh = SubResource("BoxMesh_vqmjl")
 
 [node name="high1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.559484, 0.339524, -0.000476599)
+visible = false
 layers = 262144
 material_overlay = SubResource("StandardMaterial3D_h0iqb")
 mesh = SubResource("BoxMesh_vpknd")
 
 [node name="high2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.523822, 0.851827, 0, -0.851827, -0.523822, 0, 0, 0, 1, 0.059484, 0.102926, -0.000476599)
+visible = false
 layers = 262144
 material_overlay = SubResource("StandardMaterial3D_h0iqb")
 mesh = SubResource("BoxMesh_66ul0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="high2"]
+transform = Transform3D(0.865686, -0.500587, 0.000721432, 0.500588, 0.865686, -0.00034055, -0.000454069, 0.000655943, 1, -0.0187925, 0.349754, 0.442166)
+light_color = Color(1, 0, 0, 1)
+omni_range = 2.59811

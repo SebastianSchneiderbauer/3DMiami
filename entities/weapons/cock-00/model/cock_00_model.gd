@@ -7,6 +7,8 @@ var pickuprange := 2
 var player
 var loaded = false
 
+var weapon = Weapon.create_gun("cock-00",1,0.1,1,1,false,1,"big")
+
 func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)
 	if get_parent().name == "TBLoader":
@@ -17,12 +19,25 @@ func _ready():
 func _on_savedata_update():
 	var type:int = SaveManager.get_data("scaler")
 	var strength:float
-	print(SaveManager.get_data("highlightColor").a)
 	$high1.material_overlay.albedo_color = SaveManager.get_data("highlightColor")
 	$high1.material_overlay.albedo_color.a = 0.32
 	$high2.material_overlay.albedo_color = SaveManager.get_data("highlightColor")
 	$high2.material_overlay.albedo_color.a = 0.32
+	$high2/OmniLight3D.light_color = SaveManager.get_data("highlightColor")
 
+func add():
+	if player and not player.pickUpable.has(self):
+		player.pickUpable.append(self)
+	
+	$high1.show()
+	$high2.show()
+
+func remove():
+	if player:
+		player.pickUpable.erase(self)
+	
+	$high1.hide()
+	$high2.hide()
 
 func _physics_process(delta: float) -> void:
 	if SaveManager.loaded and not loaded:
@@ -31,12 +46,9 @@ func _physics_process(delta: float) -> void:
 	
 	if firing:
 		if (global_position - player.global_position).length() < pickuprange:
-			$high1.show()
-			$high2.show()
+			add()
 		else:
-			$high1.hide()
-			$high2.hide()
-		
+			remove()
 		rotate_y(0.1)
 		$MeshInstance3D2.set_layer_mask_value(1,true) 
 		$MeshInstance3D2.set_layer_mask_value(19,false) 
@@ -66,11 +78,8 @@ func _physics_process(delta: float) -> void:
 		$high1.material_overlay.albedo_color.a = 0.32
 		$high2.material_overlay.albedo_color.a = 0.32
 		if (global_position - player.global_position).length() < pickuprange:
-			$high1.show()
-			$high2.show()
+			add()
 		else:
-			$high1.hide()
-			$high2.hide()
+			remove()
 	else:
-			$high1.hide()
-			$high2.hide()
+			remove()
