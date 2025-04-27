@@ -233,6 +233,7 @@
 {
 "classname" "light"
 "origin" "-308 -172 228"
+"energy" "1"
 }
 // entity 16
 {

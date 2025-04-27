@@ -1,14 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqei3rltlbr60"]
+[gd_scene load_steps=13 format=3 uid="uid://cqei3rltlbr60"]
 
 [ext_resource type="Script" uid="uid://r7dfd2vqnltx" path="res://entities/weapons/cock-00/model/cock_00_model.gd" id="1_h0iqb"]
 [ext_resource type="Texture2D" uid="uid://b55ochsmbmect" path="res://textures/gitter.png" id="2_fcgm4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m6eym"]
 size = Vector3(0.7, 1.3, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0iqb"]
-transparency = 1
-albedo_color = Color(1, 0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqmjl"]
 albedo_texture = ExtResource("2_fcgm4")
@@ -28,6 +24,26 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_77vaj")
 size = Vector3(0.5, 0.25, 0.25)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0iqb"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.133333)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcgm4"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vpknd"]
+material = SubResource("StandardMaterial3D_fcgm4")
+size = Vector3(1, 0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfxl8"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_66ul0"]
+material = SubResource("StandardMaterial3D_cfxl8")
+size = Vector3(0.5, 0.25, 0.25)
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
@@ -43,11 +59,21 @@ shape = SubResource("BoxShape3D_m6eym")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.559484, 0.339524, -0.000476599)
 layers = 262144
-material_overlay = SubResource("StandardMaterial3D_h0iqb")
 mesh = SubResource("BoxMesh_kkqkw")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.523822, 0.851827, 0, -0.851827, -0.523822, 0, 0, 0, 1, 0.059484, 0.102926, -0.000476599)
 layers = 262144
-material_overlay = SubResource("StandardMaterial3D_h0iqb")
 mesh = SubResource("BoxMesh_vqmjl")
+
+[node name="high1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.559484, 0.339524, -0.000476599)
+layers = 262144
+material_overlay = SubResource("StandardMaterial3D_h0iqb")
+mesh = SubResource("BoxMesh_vpknd")
+
+[node name="high2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.523822, 0.851827, 0, -0.851827, -0.523822, 0, 0, 0, 1, 0.059484, 0.102926, -0.000476599)
+layers = 262144
+material_overlay = SubResource("StandardMaterial3D_h0iqb")
+mesh = SubResource("BoxMesh_66ul0")

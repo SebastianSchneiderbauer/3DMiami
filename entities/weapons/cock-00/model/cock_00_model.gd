@@ -3,27 +3,49 @@ extends CharacterBody3D
 @export var firing: bool = false
 var gravity := Vector3(0,-9.81,0)
 var onGround := false
-var pickuprange := 4
+var pickuprange := 2
+var player
+var loaded = false
 
 func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)
+	if get_parent().name == "TBLoader":
+		player = get_parent().get_node("player")
+	elif get_parent().name == "player":
+		player = get_parent()
 
 func _on_savedata_update():
 	var type:int = SaveManager.get_data("scaler")
 	var strength:float
-	$MeshInstance3D2.material_overlay.albedo_color = SaveManager.get_data("highlightColor")
-	$MeshInstance3D2.material_overlay.albedo_color.a = 0
-	$MeshInstance3D3.material_overlay.albedo_color = SaveManager.get_data("highlightColor")
-	$MeshInstance3D3.material_overlay.albedo_color.a = 0
+	print(SaveManager.get_data("highlightColor").a)
+	$high1.material_overlay.albedo_color = SaveManager.get_data("highlightColor")
+	$high1.material_overlay.albedo_color.a = 0.32
+	$high2.material_overlay.albedo_color = SaveManager.get_data("highlightColor")
+	$high2.material_overlay.albedo_color.a = 0.32
 
 
 func _physics_process(delta: float) -> void:
+	if SaveManager.loaded and not loaded:
+		loaded = true
+		_on_savedata_update()
+	
 	if firing:
+		if (global_position - player.global_position).length() < pickuprange:
+			$high1.show()
+			$high2.show()
+		else:
+			$high1.hide()
+			$high2.hide()
+		
 		rotate_y(0.1)
 		$MeshInstance3D2.set_layer_mask_value(1,true) 
 		$MeshInstance3D2.set_layer_mask_value(19,false) 
 		$MeshInstance3D3.set_layer_mask_value(1,true) 
-		$MeshInstance3D3.set_layer_mask_value(19,false) 
+		$MeshInstance3D3.set_layer_mask_value(19,false)
+		$high1.set_layer_mask_value(1,true) 
+		$high1.set_layer_mask_value(19,false) 
+		$high2.set_layer_mask_value(1,true) 
+		$high2.set_layer_mask_value(19,false)  
 		
 		if is_on_ceiling() or is_on_wall():
 			velocity.x = 0
@@ -40,3 +62,15 @@ func _physics_process(delta: float) -> void:
 				pass#velocity.y = -9.810
 		
 		move_and_slide()
+	elif onGround:
+		$high1.material_overlay.albedo_color.a = 0.32
+		$high2.material_overlay.albedo_color.a = 0.32
+		if (global_position - player.global_position).length() < pickuprange:
+			$high1.show()
+			$high2.show()
+		else:
+			$high1.hide()
+			$high2.hide()
+	else:
+			$high1.hide()
+			$high2.hide()
