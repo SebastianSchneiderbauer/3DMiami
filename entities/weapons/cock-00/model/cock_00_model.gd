@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var firing: bool = false
 var gravity := Vector3(0,-9.81,0)
 var onGround := false
+var pickuprange := 4
 
 func _ready():
 	SaveManager.save_data_update.connect(_on_savedata_update)
@@ -39,5 +40,3 @@ func _physics_process(delta: float) -> void:
 				pass#velocity.y = -9.810
 		
 		move_and_slide()
-	
-	
