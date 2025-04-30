@@ -646,8 +646,9 @@ func manage_attack():
 				
 				if smallest != null:
 					weapon = smallest.weapon
-					$weaponContainer.pick()
 					smallest.queue_free()
+					pickUpable.erase(smallest)
+					$weaponContainer.pick()
 		else:
 			$weaponContainer.drop()
 

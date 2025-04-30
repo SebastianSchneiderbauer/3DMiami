@@ -32,7 +32,7 @@ material = SubResource("StandardMaterial3D_72j6n")
 
 [node name="BPS" type="Node3D"]
 script = ExtResource("1_f3c0b")
-particle_count = 50
+particle_count = 25
 life_time = 1.0
 velocity_curve = SubResource("Curve_f3c0b")
 

@@ -12,7 +12,7 @@ func hideWeapon(name:String): #only used for the throwing animation
 
 func showWeapon(name:String):
 	hideall()
-	$animation.play("RESET")
+	#$animation.play("RESET")
 	
 	match(name):
 		"fists":

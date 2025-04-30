@@ -64,17 +64,17 @@ func _process(delta: float) -> void:
 	if not A.is_playing() and dropping:
 		dropping = false
 		
-		$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
-		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
+		#$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
 		
+		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
 		A.play("show")
 	
 	if not A.is_playing() and picking:
 		picking = false
 		
-		$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
-		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
+		#$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
 		
+		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
 		A.play("show")
 	
 	attackCooldownCounter += delta

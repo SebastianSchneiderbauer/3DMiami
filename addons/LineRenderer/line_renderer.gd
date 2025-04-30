@@ -35,6 +35,7 @@ func _process(_delta):
 	
 	camera = get_viewport().get_camera_3d()
 	if camera == null:
+		print("e")
 		return
 	cameraOrigin = to_local(camera.get_global_transform().origin)
 	
