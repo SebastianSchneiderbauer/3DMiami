@@ -75,8 +75,8 @@ func _physics_process(delta: float) -> void:
 		
 		move_and_slide()
 	elif onGround:
-		$high1.material_overlay.albedo_color.a = 0.32
-		$high2.material_overlay.albedo_color.a = 0.32
+		$high1.material_overlay.albedo_color.a = 1
+		$high2.material_overlay.albedo_color.a = 1
 		if (global_position - player.global_position).length() < pickuprange:
 			add()
 		else:

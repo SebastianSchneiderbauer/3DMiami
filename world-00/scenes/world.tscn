@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://b0m4r88nagwh5"]
+[gd_scene load_steps=16 format=4 uid="uid://b0m4r88nagwh5"]
 
 [ext_resource type="Script" uid="uid://8cvv37d6bhs8" path="res://world-00/scripts/tb_loader.gd" id="1_1qa1k"]
 [ext_resource type="Script" uid="uid://dxtl0hineeq8" path="res://world-00/scripts/fullbright.gd" id="1_8eyds"]
@@ -6,11 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bf8kikmkf0ytj" path="res://entities/dummy/dummy.tscn" id="5_04duo"]
 [ext_resource type="Texture2D" uid="uid://112lslahbt2u" path="res://textures/__TB_empty.png" id="5_576h8"]
 [ext_resource type="Texture2D" uid="uid://bf1cnlk5gb1by" path="res://BPS/textures/splats/glob1.png" id="5_io3qo"]
-[ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="5_q6s7m"]
 [ext_resource type="Script" uid="uid://dtklo2ujeg001" path="res://world-00/scripts/blood_decals.gd" id="6_q6s7m"]
-[ext_resource type="Script" uid="uid://crvf7it34h14c" path="res://entities/dummy/scripts/dummy.gd" id="7_wmjpl"]
 [ext_resource type="PackedScene" uid="uid://cqei3rltlbr60" path="res://entities/weapons/cock-00/model/cock-00.tscn" id="8_xdp8h"]
-[ext_resource type="Script" uid="uid://r7dfd2vqnltx" path="res://entities/weapons/cock-00/model/cock_00_model.gd" id="9_co4kp"]
 
 [sub_resource type="Environment" id="Environment_v1eft"]
 ambient_light_energy = 9.69
@@ -82,12 +79,8 @@ shape = SubResource("ConcavePolygonShape3D_xdp8h")
 transform = Transform3D(24, 0, 0, 0, 15, 0, 0, 0, 59, 0, 3.35049, -8.44118)
 bake_mask = 1
 
-[node name="player" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("2_op7cj")]
+[node name="player" parent="TBLoader" instance=ExtResource("2_op7cj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 16, -9.5)
-collision_layer = 130
-wall_min_slide_angle = 0.0
-script = ExtResource("5_q6s7m")
-vault_height = 1.5
 
 [node name="@OmniLight3D@61835" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.625, 7.125, 9.5)
@@ -119,29 +112,17 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.75, 
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="dummy" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="dummy" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 9.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("7_wmjpl")
 
-[node name="@CharacterBody3D@61841" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@61841" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8, 9.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("7_wmjpl")
 
-[node name="@CharacterBody3D@61842" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@61842" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 8, 9.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("7_wmjpl")
 
-[node name="@CharacterBody3D@61843" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@61843" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5, -30)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("7_wmjpl")
 
 [node name="@OmniLight3D@61844" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.75, 14.25, -40.75)
@@ -163,42 +144,24 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.75
 light_bake_mode = 1
 omni_range = 10.0
 
-[node name="@CharacterBody3D@61848" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@61848" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, 5, -21.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("7_wmjpl")
 
-[node name="@CharacterBody3D@61849" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@61849" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, 5, -21.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("7_wmjpl")
 
-[node name="@CharacterBody3D@61850" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@61850" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, 5, -38.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("7_wmjpl")
 
-[node name="@CharacterBody3D@61851" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@61851" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, 5, -38.5)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("7_wmjpl")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("8_xdp8h")]
+[node name="CharacterBody3D" parent="TBLoader" instance=ExtResource("8_xdp8h")]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 3.5, 13.75, -9)
-collision_layer = 0
-collision_mask = 5
-script = ExtResource("9_co4kp")
 firing = true
 
-[node name="@CharacterBody3D@61852" type="CharacterBody3D" parent="TBLoader" instance=ExtResource("8_xdp8h")]
+[node name="@CharacterBody3D@61852" parent="TBLoader" instance=ExtResource("8_xdp8h")]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -3.5, 13.75, -9)
-collision_layer = 0
-collision_mask = 5
-script = ExtResource("9_co4kp")
 firing = true
 
 [node name="LightMap" type="LightmapGI" parent="TBLoader"]
@@ -213,12 +176,3 @@ shadow_enabled = true
 [node name="BloodMultimesh" type="MultiMeshInstance3D" parent="."]
 multimesh = SubResource("MultiMesh_8eyds")
 script = ExtResource("6_q6s7m")
-
-[connection signal="mouse_entered" from="TBLoader/dummy" to="TBLoader/dummy" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@61841" to="TBLoader/@CharacterBody3D@61841" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@61842" to="TBLoader/@CharacterBody3D@61842" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@61843" to="TBLoader/@CharacterBody3D@61843" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@61848" to="TBLoader/@CharacterBody3D@61848" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@61849" to="TBLoader/@CharacterBody3D@61849" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@61850" to="TBLoader/@CharacterBody3D@61850" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TBLoader/@CharacterBody3D@61851" to="TBLoader/@CharacterBody3D@61851" method="_on_mouse_entered"]
