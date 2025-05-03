@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	movement(delta)
 	turnAirdashDetectionToPlayer()
 	
-	if select_highlight.visible:
+	if select_highlight.visible and true:
 		if not particles.visible:
 			particles.show()
 			particles.restart()

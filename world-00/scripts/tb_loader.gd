@@ -62,6 +62,7 @@ func create_lightmap():
 	# Create new lightmap
 	var lightmap = LightmapGI.new()
 	lightmap.name = "LightMap"
+	lightmap.set_bake_quality(3)
 	lightmap.set_generate_probes(4)
 	
 	add_child(lightmap)

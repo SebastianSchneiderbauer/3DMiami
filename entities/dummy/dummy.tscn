@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bf8kikmkf0ytj"]
+[gd_scene load_steps=19 format=3 uid="uid://bf8kikmkf0ytj"]
 
 [ext_resource type="Script" uid="uid://crvf7it34h14c" path="res://entities/dummy/scripts/dummy.gd" id="1_ec5rh"]
 [ext_resource type="Shader" uid="uid://dn6mku2q48j75" path="res://entities/dummy/shaders/dummy-select-shader.gdshader" id="2_1mvqt"]
@@ -30,6 +30,13 @@ height = 0.1
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1mvqt"]
 
+[sub_resource type="Curve" id="Curve_1mvqt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.894531, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uo211"]
+curve = SubResource("Curve_1mvqt")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1mvqt"]
 emission_shape_scale = Vector3(0.5, 0.5, 1.2)
 emission_shape = 2
@@ -39,6 +46,7 @@ spread = 180.0
 initial_velocity_min = 0.5
 initial_velocity_max = 1.0
 gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_uo211")
 turbulence_enabled = true
 turbulence_noise_scale = 1.0
 turbulence_noise_speed_random = 0.0
@@ -170,7 +178,8 @@ mesh = SubResource("CapsuleMesh_1mvqt")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
 visibility_range_fade_mode = 1
 emitting = false
-amount = 300
+amount = 60
+lifetime = 1.5
 fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_1mvqt")
