@@ -80,44 +80,44 @@ transform = Transform3D(24, 0, 0, 0, 15, 0, 0, 0, 59, 0, 3.35049, -8.44118)
 bake_mask = 1
 
 [node name="player" parent="TBLoader" instance=ExtResource("2_op7cj")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 12, -9.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 16, -9.5)
 
-[node name="@OmniLight3D@39645" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40884" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.625, 7.125, 9.5)
 layers = 262145
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="@OmniLight3D@39646" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40885" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.625, 7.125, 9.5)
 layers = 262145
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="@OmniLight3D@39647" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40886" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.75, 7.25, 16.75)
 layers = 262145
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="@OmniLight3D@39648" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40887" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.75, 6.25, 16.75)
 layers = 262145
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="@OmniLight3D@39649" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40888" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.75, 7.25, 2.25)
 layers = 262145
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="@OmniLight3D@39650" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40889" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.75, 6.25, 2.25)
 layers = 262145
 light_bake_mode = 1
@@ -127,57 +127,61 @@ omni_range = 10.0
 [node name="dummy" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 9.5)
 
-[node name="@CharacterBody3D@39651" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@40890" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8, 9.5)
 
-[node name="@CharacterBody3D@39652" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@40891" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 8, 9.5)
 
-[node name="@CharacterBody3D@39653" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@40892" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5, -30)
 
-[node name="@OmniLight3D@39654" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40893" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.75, 14.25, -40.75)
 layers = 262145
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="@OmniLight3D@39655" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40894" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10.75, 14.25, -40.75)
 layers = 262145
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="@OmniLight3D@39656" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40895" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10.75, 14.25, -19.25)
 layers = 262145
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="@OmniLight3D@39657" type="OmniLight3D" parent="TBLoader"]
+[node name="@OmniLight3D@40896" type="OmniLight3D" parent="TBLoader"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.75, 14.25, -19.25)
 layers = 262145
 light_bake_mode = 1
 shadow_enabled = true
 omni_range = 10.0
 
-[node name="@CharacterBody3D@39658" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@40897" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, 5, -21.5)
 
-[node name="@CharacterBody3D@39659" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@40898" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, 5, -21.5)
 
-[node name="@CharacterBody3D@39660" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@40899" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, 5, -38.5)
 
-[node name="@CharacterBody3D@39661" parent="TBLoader" instance=ExtResource("5_04duo")]
+[node name="@CharacterBody3D@40900" parent="TBLoader" instance=ExtResource("5_04duo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, 5, -38.5)
 
 [node name="CharacterBody3D" parent="TBLoader" instance=ExtResource("8_xdp8h")]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 3.5, 13.75, -9)
+firing = true
+
+[node name="@CharacterBody3D@40901" parent="TBLoader" instance=ExtResource("8_xdp8h")]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -3.5, 13.75, -9)
 firing = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

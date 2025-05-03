@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://2xraxqbjr6q3"]
+[gd_scene load_steps=24 format=3 uid="uid://2xraxqbjr6q3"]
 
 [ext_resource type="Script" uid="uid://bgjtqe4mcjjnk" path="res://entities/player/scripts/player.gd" id="1_apn28"]
 [ext_resource type="PackedScene" uid="uid://d1acb3ydgpw1b" path="res://ui/overlay-info/scenes/info.tscn" id="2_bls4j"]
@@ -13,8 +13,6 @@
 [ext_resource type="Script" uid="uid://m34605hh1vnw" path="res://entities/player/scripts/walk_sound_pitcher.gd" id="10_wvtmh"]
 [ext_resource type="AudioStream" uid="uid://cxixff513ylrt" path="res://entities/player/sounds/jump.MP3" id="11_7thud"]
 [ext_resource type="PackedScene" uid="uid://kdil5sgan36f" path="res://entities/player/airdash_highlight.tscn" id="13_j3ovn"]
-[ext_resource type="Texture2D" uid="uid://crtd3n5p2k7lh" path="res://icon.png" id="14_gx6sm"]
-[ext_resource type="Script" uid="uid://ue85fhfxxl3w" path="res://addons/LineRenderer/line_renderer.gd" id="15_yqrof"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_twk7w"]
 
@@ -54,16 +52,6 @@ albedo_texture = ExtResource("6_8fjmc")
 material = SubResource("StandardMaterial3D_qiwj3")
 radius = 0.01
 height = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wlsy"]
-transparency = 1
-albedo_texture = ExtResource("14_gx6sm")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2kln"]
-transparency = 1
-albedo_texture = ExtResource("14_gx6sm")
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_gx6sm"]
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 130
@@ -204,11 +192,3 @@ max_db = 6.0
 script = ExtResource("10_wvtmh")
 
 [node name="airdash-highlight" parent="." instance=ExtResource("13_j3ovn")]
-
-[node name="LineRenderer3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22237, 0, 0)
-material_override = SubResource("StandardMaterial3D_3wlsy")
-material_overlay = SubResource("StandardMaterial3D_b2kln")
-mesh = SubResource("ImmediateMesh_gx6sm")
-script = ExtResource("15_yqrof")
-metadata/_custom_type_script = "uid://ue85fhfxxl3w"

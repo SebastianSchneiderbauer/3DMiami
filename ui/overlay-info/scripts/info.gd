@@ -8,8 +8,21 @@ var wanted:float = 100
 
 var lowest:float = INF
 
+func test():
+	const LineRenderer3D = preload("res://addons/LineRenderer/line_renderer.gd")
+	
+	var line = LineRenderer3D.new()
+	
+	get_tree().current_scene.add_child(line)
+	line.points.clear()
+	line.points.append(Vector3(0, 40, 0))
+	line.points.append(Vector3(0, 44, 0))
+	#line._update_line()
+
+
 func _ready() -> void:
 	Console.add_command("hkinfo",toggle,[],0,"")
+	Console.add_command("test",test,[],0,"")
 
 func toggle():
 	visible = not visible

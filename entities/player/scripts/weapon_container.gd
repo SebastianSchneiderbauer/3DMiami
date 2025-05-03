@@ -3,6 +3,7 @@ extends SubViewportContainer
 func _ready() -> void:
 	get_child(0).world_3d = get_viewport().world_3d
 
+var throwStrength:float = 50
 @onready var camera: Camera3D = $"../camera"
 @onready var container = $SubViewport/Container
 @onready var player:CharacterBody3D = get_parent()
@@ -37,7 +38,7 @@ func drop():
 			throwable.top_level = true
 			throwable.global_position = get_parent().global_position
 			throwable.global_position.y += 1.5
-			throwable.velocity = get_parent().get_node("camera").global_transform.basis.z.normalized() * -30.0
+			throwable.velocity = get_parent().get_node("camera").global_transform.basis.z.normalized() * -throwStrength
 			throwable.firing = true
 			
 			#play animation
@@ -64,10 +65,9 @@ func _process(delta: float) -> void:
 	if not A.is_playing() and dropping:
 		dropping = false
 		
-		#$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
-		
 		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
-		A.play("show")
+		if player.crouched:
+			print("TODO: insert slide-drop-sound")
 	
 	if not A.is_playing() and picking:
 		picking = false
@@ -75,7 +75,10 @@ func _process(delta: float) -> void:
 		#$"SubViewport/Container/Weapon/weapons/animation".play("RESET")
 		
 		$SubViewport/Container/Weapon/weapons.showWeapon(player.weapon.weapon_name)
-		A.play("show")
+		if not player.crouched:
+			A.play("show")
+		else:
+			print("TODO: insert slide-pick-sound")
 	
 	attackCooldownCounter += delta
 

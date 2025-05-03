@@ -159,7 +159,7 @@
 // entity 1
 {
 "classname" "player_player"
-"origin" "-152 0 192"
+"origin" "-152 0 256"
 }
 // entity 2
 {
@@ -259,4 +259,9 @@
 {
 "classname" "weapons_cock-00_model_cock-00"
 "origin" "-144 56 220"
+}
+// entity 21
+{
+"classname" "weapons_cock-00_model_cock-00"
+"origin" "-144 -56 220"
 }
