@@ -401,18 +401,6 @@ func airDash(delta:float):
 			airdashInstance = null
 func focus(delta:float):
 	focused = Input.is_action_pressed("shift")
-	return
-	#we could turn this on later just does not feel right + exploitable
-	if focused:
-		if Engine.time_scale - (Engine.time_scale/1.5)*delta*10 < 0.3 or Engine.time_scale == 0.3:
-			Engine.time_scale = 0.3
-		else:
-			Engine.time_scale -= (Engine.time_scale/1.5)*delta*10
-	else:
-		if Engine.time_scale + (Engine.time_scale*2)*delta*100 > 1 or Engine.time_scale == 1:
-			Engine.time_scale = 1
-		else:
-			Engine.time_scale += (Engine.time_scale*2)*delta*100
 func move(delta:float): #custom move function for extra logic before and after calling move_and_slide()
 	velocity += extraVelocity  # Apply extra force
 	extraVelocity = reduce_vector_length(extraVelocity,1)
@@ -630,6 +618,8 @@ func play_looping_sounds(delta:float):
 
 #gameplay (firing, inventory etc.)
 func manage_attack():
+	pickUpable = pickUpable.filter(func(obj): return obj != null and is_instance_valid(obj)) #clear freed objects that get stuck
+	
 	canAttack = not crouched and not airdashing and not vaulting #used for attacking (yes, this includes throwing too)
 	canPick = not airdashing and not vaulting
 	
@@ -663,8 +653,6 @@ func manage_attack():
 					smallest.queue_free()
 					pickUpable.erase(smallest)
 					$weaponContainer.pick()
-
-
 
 func _physics_process(delta): # "main"
 	movement(delta) #trigger movement-related functions

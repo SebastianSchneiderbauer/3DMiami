@@ -6,20 +6,16 @@ extends TBLoader
 		if value and Engine.is_editor_hint():
 			makeReady()
 			generate_sdf_colliders()
+			create_lightmap()
 		make_game_ready = false  # reset toggle
 
 func makeReady():
 	for child in get_children():
-		if child is OmniLight3D:
-			child.shadow_enabled = true
-			child.set_layer_mask_value(19,true)
-		elif "Layer" in child.name and child is Node3D:
+		if "Layer" in child.name and child is Node3D:
 			child.get_child(0).mesh.surface_get_material(0).set_texture_filter(0)
 		elif "firing" in child:
 			child.firing = true
 			child.rotation.x = deg_to_rad(-90.0)
-		else:
-			print("else")
 
 func generate_sdf_colliders():
 	print("✨ Generating SDF colliders...")
@@ -53,3 +49,20 @@ func generate_sdf_colliders():
 			sdf.owner = get_tree().edited_scene_root
 			
 			print("✅ SDF collider added to:", node.name)
+
+func create_lightmap():
+	# Remove existing lightmap if it exists
+	for node in get_children():
+		if node is LightmapGI:
+			# This is a BakedLightmap node
+			remove_child(node)
+			node.queue_free()
+			print("🗑️ Removed old BakedLightmap:", node.name)
+	
+	# Create new lightmap
+	var lightmap = LightmapGI.new()
+	lightmap.name = "LightMap"
+	lightmap.set_generate_probes(4)
+	
+	add_child(lightmap)
+	lightmap.owner = get_tree().edited_scene_root
