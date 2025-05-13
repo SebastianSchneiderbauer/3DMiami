@@ -36,9 +36,15 @@ height = 1.0
 shader = ExtResource("6_qiwj3")
 shader_parameter/alpha = 0.1
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fkugw"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j3ovn"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 100, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.6
+emission_ring_inner_radius = 0.4
+emission_ring_cone_angle = 5.66
 direction = Vector3(0, -1, 0)
-spread = 30.0
+spread = 0.0
 initial_velocity_min = 10.0
 initial_velocity_max = 10.0
 gravity = Vector3(0, 0, 0)
@@ -144,16 +150,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 cull_mask = 524288
 
 [node name="airdash" type="GPUParticles3D" parent="airdash/SubViewport"]
-transform = Transform3D(1, 8.23383e-06, -1.78783e-05, 1.78783e-05, 0.000190931, 1, 8.23383e-06, -1, 0.000190931, 0, 1.6, -1.5)
+transform = Transform3D(1, 8.23383e-06, -1.78783e-05, 1.78783e-05, 0.000190931, 1, 8.23383e-06, -1, 0.000190931, 0, 1.6, -1.5651)
 layers = 524288
 gi_lightmap_texel_scale = 100.0
-emitting = false
 amount = 30
-lifetime = 0.3
+lifetime = 0.2
 fixed_fps = 100
 interpolate = false
 fract_delta = false
-process_material = SubResource("ParticleProcessMaterial_fkugw")
+process_material = SubResource("ParticleProcessMaterial_j3ovn")
 draw_pass_1 = SubResource("CapsuleMesh_26q78")
 
 [node name="weaponContainer" parent="." instance=ExtResource("9_a1qjk")]
