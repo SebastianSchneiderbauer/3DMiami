@@ -153,6 +153,7 @@ cull_mask = 524288
 transform = Transform3D(1, 8.23383e-06, -1.78783e-05, 1.78783e-05, 0.000190931, 1, 8.23383e-06, -1, 0.000190931, 0, 1.6, -1.5651)
 layers = 524288
 gi_lightmap_texel_scale = 100.0
+emitting = false
 amount = 30
 lifetime = 0.2
 fixed_fps = 100

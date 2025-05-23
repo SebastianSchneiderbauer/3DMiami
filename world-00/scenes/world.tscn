@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bf1cnlk5gb1by" path="res://BPS/textures/splats/glob1.png" id="5_io3qo"]
 [ext_resource type="Script" uid="uid://dtklo2ujeg001" path="res://world-00/scripts/blood_decals.gd" id="6_q6s7m"]
 [ext_resource type="PackedScene" uid="uid://cqei3rltlbr60" path="res://entities/weapons/cock-00/model/cock-00.tscn" id="8_xdp8h"]
-[ext_resource type="LightmapGIData" uid="uid://lvadxwxpf4s8" path="res://world-00/scenes/world.lmbake" id="10_w0s08"]
+[ext_resource type="LightmapGIData" uid="uid://bxt0rouq4jxm" path="res://world-00/scenes/world.lmbake" id="10_w0s08"]
 
 [sub_resource type="Environment" id="Environment_v1eft"]
 ambient_light_energy = 9.69
