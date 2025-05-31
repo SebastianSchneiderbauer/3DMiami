@@ -57,6 +57,7 @@ func load_game():
 		save_game()
 
 func reset_to_defaults():
+	Console.print_line("resetting save-file")
 	save_data = default_values.duplicate()  # Copy fresh default values
 	save_game()
 

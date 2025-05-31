@@ -22,10 +22,13 @@ func test():
 
 func _ready() -> void:
 	Console.add_command("hkinfo",toggle,[],0,"")
-	Console.add_command("test",test,[],0,"")
 
 func toggle():
 	visible = not visible
+	if visible:
+		Console.print_info("info-visibility: true")
+	else:
+		Console.print_info("info-visibility: false")
 
 func _process(delta):
 	if not visible:

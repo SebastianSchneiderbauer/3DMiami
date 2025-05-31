@@ -13,9 +13,13 @@ var glow = false
 
 func hk_glow():
 	glow = not glow
+	if glow:
+		Console.print_line("fullbright: true")
+	else:
+		Console.print_line("fullbright: false")
 	
 	if glow: 
-		toggleLightmap(false)
+		toggleLightmap(false) #hiding disables a lightmap
 		environment.background_energy_multiplier = 16
 	else:
 		toggleLightmap(true)
