@@ -28,14 +28,19 @@ func _on_savedata_update():
 func add():
 	if player and not player.pickUpable.has(self):
 		player.pickUpable.append(self)
-	
-	$high1.show()
-	$high2.show()
 
 func remove():
 	if player:
 		player.pickUpable.erase(self)
 	
+	$high1.hide()
+	$high2.hide()
+
+func mark():
+	$high1.show()
+	$high2.show()
+
+func unmark():
 	$high1.hide()
 	$high2.hide()
 

@@ -118,41 +118,38 @@ var flyspeed:float = 500
 var HKFLY:bool = false
 func hk_fly():
 	HKFLY = not HKFLY
-	
 	if HKFLY:
-		
-		
-		Console.print_line("TURNED FLY MODE ON")
+		Console.print_line("flyhack: true")
 	else:
-		Console.print_line("TURNED FLY MODE OFF")
+		Console.print_line("flyhack: false")
 var HKCLIP:bool = false
 func hk_clip():
 	HKCLIP = not HKCLIP
-	
 	if HKCLIP:
-		Console.print_line("TURNED CLIPPING MODE ON")
+		Console.print_line("noclip: true")
 	else:
-		Console.print_line("TURNED CLIPPING MODE OFF")
+		Console.print_line("noclip: false")
 var HKGHOST:bool = false
 func hk_ghost():
 	if HKFLY != HKCLIP: #wtf is this
-		Console.print_line("TURNED GHOST MODE ON")
+		Console.print_line("ghost: true")
 		HKFLY = true
 		HKCLIP = true
 		HKGHOST = true
 	elif HKFLY:
-		Console.print_line("TURNED GHOST MODE OFF")
+		Console.print_line("ghost: false")
 		HKFLY = false
 		HKCLIP = false
 		HKGHOST = false
 	else:
-		Console.print_line("TURNED GHOST MODE ON")
+		Console.print_line("ghost: true")
 		HKFLY = true
 		HKCLIP = true
 		HKGHOST = true
 var HKSPEED: float = 1
 func hk_spd(speed:String):
 	HKSPEED = float(speed)
+	Console.print_line("gamespeed: "+str(HKSPEED))
 
 #movement/cam methods
 func movement(delta): #triggers all movement-related methods underneath
@@ -620,20 +617,27 @@ func play_looping_sounds(delta:float):
 func manage_attack():
 	pickUpable = pickUpable.filter(func(obj): return obj != null and is_instance_valid(obj)) #clear freed objects that get stuck
 	
+	var smallest
+	
+	if pickUpable.size() != 0:
+		smallest = null
+		for weapon in pickUpable:
+			weapon.unmark()
+			if weapon and (smallest == null or (global_position - weapon.global_position).length() < (global_position - smallest.global_position).length()):
+				smallest = weapon
+	
+	if smallest:
+		smallest.mark()
+	
 	canAttack = not crouched and not airdashing and not vaulting #used for attacking (yes, this includes throwing too)
 	canPick = not airdashing and not vaulting
 	
 	if Input.is_action_just_pressed("mouseclick-l") and not Input.is_action_pressed("shift") and canAttack:
 		$weaponContainer.attack()
 	
-	if Input.is_action_just_pressed("mouseclick-r") and canPick: #| wheapons cant be poicked up and thrown at the same time (should maybe be a setting)
+	if Input.is_action_just_pressed("mouseclick-r") and canPick: #| weapons cant be picked up and thrown at the same time (should maybe be a setting)
 		if weapon.weapon_name == "fists":
 			if pickUpable.size() != 0:
-				var smallest = null
-				for weapon in pickUpable:
-					if weapon and (smallest == null or (global_position - weapon.global_position).length() < (global_position - smallest.global_position).length()):
-						smallest = weapon
-				
 				if smallest != null:
 					weapon = smallest.weapon
 					smallest.queue_free()
@@ -643,11 +647,6 @@ func manage_attack():
 			$weaponContainer.drop()
 			
 			if pickUpable.size() != 0:
-				var smallest = null
-				for weapon in pickUpable:
-					if weapon and (smallest == null or (global_position - weapon.global_position).length() < (global_position - smallest.global_position).length()):
-						smallest = weapon
-				
 				if smallest != null:
 					weapon = smallest.weapon
 					smallest.queue_free()

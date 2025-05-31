@@ -263,12 +263,14 @@ func toggle_console() -> void:
 
 	if (control.visible):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
 		was_paused_already = get_tree().paused
 		get_tree().paused = was_paused_already || pause_enabled
 		line_edit.grab_focus()
 		console_opened.emit()
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
 		control.anchor_bottom = 1.0
 		scroll_to_bottom()
 		reset_autocomplete()
