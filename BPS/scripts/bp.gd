@@ -2,6 +2,7 @@ extends RayCast3D
 
 @export var direction: Vector3 = Vector3.ZERO
 @export var gravity: Vector3 = Vector3(0, -9.81, 0)
+@export var maxDist: float = 200.0
 
 var particle_life_time: float = 10.0
 var start: Vector3
@@ -25,6 +26,10 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_colliding():
 		global_position += direction * delta
+		var distanceToSpawner = (global_position - get_parent().global_position).length()
+		
+		if distanceToSpawner > maxDist:
+			queue_free()
 	else:
 		var impact_point = get_collision_point()
 		var impact_normal = get_collision_normal()

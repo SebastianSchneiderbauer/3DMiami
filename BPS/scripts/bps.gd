@@ -1,15 +1,23 @@
 extends Node3D
 
-var done:bool = false
+var done:bool = false #prob not used
 var max:float
 var counter:float = 0
 var counterpoint:float = 0.05
+var child_deat_waiter:bool = false
 
 @export var particle_count:int = 5
 @export var life_time:float = INF
 @export var velocity_curve:Curve # Controls how far sideways each particle goes
 @export var min_velocity:float = 1.0
 @export var max_velocity:float = 5.0
+
+func _process(delta: float) -> void:
+	if child_deat_waiter and get_child_count() == 1:
+		print("deleting: ",self)
+		queue_free()
+	elif child_deat_waiter:
+		print(get_child_count())
 
 func _ready():
 	if not velocity_curve:
@@ -43,5 +51,6 @@ func fire():
 		BP.gravity = Vector3(0, -9.81, 0)
 		
 		add_child(BP)
+		child_deat_waiter = true
 		
 		rotate_y(360)

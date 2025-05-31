@@ -2,6 +2,12 @@ extends WorldEnvironment
 
 func _ready():
 	Console.add_command("hkglow",hk_glow,[],0,"")
+	
+	#performence reasons
+	var kiddo = load("res://BPS/scene/bps.tscn").instantiate()
+	add_child(kiddo)
+	kiddo.global_position = Vector3(0,0,0)
+	kiddo.fire()
 
 var glow = false
 
